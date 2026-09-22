@@ -1,6 +1,6 @@
-"""Regenerate engagement-letter/assets/letterhead-template.docx (presenter tool; not part of the skill).
+"""Regenerate the skill's assets/letterhead-template.docx. Presenter tool; lives outside the skill folder.
 
-    python extras/engagement-letter/tools/build_letterhead.py
+    python extras/build_letterhead.py
 
 Canyon & Crest LLP is fictional. The template has {{placeholders}} that
 scripts/fill_template.py replaces, and a {{BODY}} paragraph where the letter body goes.
@@ -15,7 +15,7 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 
-OUT = Path(__file__).resolve().parents[3] / "engagement-letter" / "assets" / "letterhead-template.docx"
+OUT = Path(__file__).resolve().parent.parent / "engagement-letter" / "assets" / "letterhead-template.docx"
 FONT = "Cambria"
 GRAY = RGBColor(0x55, 0x55, 0x55)
 

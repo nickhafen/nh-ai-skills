@@ -80,11 +80,14 @@ and paste prompt (a) again. Discuss:
 
 ## Install
 
-**Claude.ai (web or desktop):** zip the `engagement-letter` folder, so the zip
-contains `engagement-letter/SKILL.md`. Then go to **Settings > Capabilities >
-Skills**, choose **Upload skill**, and pick the zip. Code execution must be enabled.
+**Claude.ai (web or desktop):**
+1. Find this folder, the `engagement-letter` folder that contains `SKILL.md`.
+2. Right-click it and zip it. On Windows, choose **Compress to ZIP file** (or
+   **Send to > Compressed (zipped) folder**). On a Mac, choose **Compress**.
+3. In Claude, go to **Settings > Capabilities > Skills**, choose **Upload skill**,
+   and pick the zip. Code execution must be turned on.
 
-**Claude Code:** copy the folder to `~/.claude/skills/engagement-letter/` (all
+**Claude Code:** copy this folder to `~/.claude/skills/engagement-letter/` (all
 your projects) or to `.claude/skills/engagement-letter/` inside one project.
 
 **Other platforms:** `SKILL.md` follows the open Agent Skills format. The
@@ -103,10 +106,10 @@ Requirements: Python 3.9+ and `python-docx` for the two document scripts
   `references/clauses-*.md` file. A `## Heading` that matches a standard section
   replaces it. A new heading adds a clause.
 - **Change the letterhead:** edit `assets/letterhead-template.docx` in Word and
-  keep the `{{placeholders}}` and the `{{BODY}}` paragraph. You can also
-  regenerate it with `extras/engagement-letter/tools/build_letterhead.py` in the
-  nh-ai-skills repo, outside the skill folder. Sample outputs are in
-  `extras/engagement-letter/sample-output/`.
+  keep the `{{placeholders}}` and the `{{BODY}}` paragraph. You can also change
+  and rerun `build_letterhead.py`. It is in the `extras` folder next to this
+  skill folder, so it is not part of the skill. It is a one-time build step:
+  Claude uses the finished template and never needs to rebuild it.
 - Rule text was last verified on **September 22, 2026**. Check it again before each term.
 
 *Canyon & Crest LLP, its address, its attorneys, and all clients are fictional.
