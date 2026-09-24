@@ -1,0 +1,84 @@
+{
+  "condition": "B",
+  "seeded_recall": 1.0,
+  "recall_by_persona": {
+    "opposing-party-unrepresented": 0.75,
+    "client-business-decision-maker": 1.0,
+    "senior-colleague": 0.5
+  },
+  "caught": {
+    "i1|opposing-party-unrepresented": false,
+    "i1|client-business-decision-maker": true,
+    "i1|senior-colleague": false,
+    "i2|opposing-party-unrepresented": true,
+    "i2|client-business-decision-maker": true,
+    "i2|senior-colleague": true,
+    "i3|opposing-party-unrepresented": true,
+    "i3|client-business-decision-maker": true,
+    "i3|senior-colleague": true,
+    "i4|opposing-party-unrepresented": true,
+    "i4|client-business-decision-maker": true,
+    "i4|senior-colleague": true,
+    "i5|opposing-party-unrepresented": true,
+    "i5|client-business-decision-maker": true,
+    "i5|senior-colleague": true,
+    "d1|opposing-party-unrepresented": false,
+    "d1|client-business-decision-maker": false,
+    "d1|senior-colleague": false
+  },
+  "decoy_false_positives": 0,
+  "leakage_rate": 0.0,
+  "leaked_personas": [],
+  "curse_of_knowledge_catch_rate": 1.0,
+  "anchoring_rate": 1.0,
+  "mean_overlap": 0.667,
+  "stance_spread": 1.0,
+  "main_point_agreement": null,
+  "findings_total": 29,
+  "unmatched_findings": [
+    {
+      "persona_id": "opposing-party-unrepresented",
+      "text": "Reads as an accusation and contradicts what this reader believes he did — he told Greenline in August he wouldn't pay until the hedges were fixed. The one sentence he rereads is the one that tells him the letter is wrong about him, which makes him want to fight rather than pay and makes hiring a lawyer feel necessary.",
+      "quote": "which you accepted without complaint"
+    },
+    {
+      "persona_id": "opposing-party-unrepresented",
+      "text": "Whether they are being accused of something, and in what words \"Nonpayment\" and \"without complaint\" read as being called a deadbeat and a liar, which is the opposite of what would move him to pay.",
+      "quote": "However, that does not excuse nonpayment for the other services, which you accepted without complaint."
+    },
+    {
+      "persona_id": "client-business-decision-maker",
+      "text": "A recommendation or bottom line in the first paragraph The letter opens with background; nothing came with it telling me what counsel recommends or what I'm being asked to approve.",
+      "quote": "This firm represents Greenline Grounds LLC (\"Greenline\"). We write regarding your account for landscaping services at 418 Alder Court under the Services Agreement dated March 3, 2025."
+    },
+    {
+      "persona_id": "client-business-decision-maker",
+      "text": "Risks ranked by importance, not listed flat The hedge complaint is brushed past; nothing tells me how big a risk it is that he pushes back on it or comes after us for the hedges.",
+      "quote": "However, that does not excuse nonpayment for the other services, which you accepted without complaint."
+    },
+    {
+      "persona_id": "senior-colleague",
+      "text": "Asserts a fact the client's own file contradicts — he wrote in August that he would not pay until the hedges were fixed. An easily disproved statement in a demand letter costs us credibility with the recipient and reads badly if the letter ends up in front of a judge.",
+      "quote": "However, that does not excuse nonpayment for the other services, which you accepted without complaint."
+    },
+    {
+      "persona_id": "senior-colleague",
+      "text": "Undefined contract cross-reference sent to an unrepresented recipient, with no dollar figure or percentage. It conveys nothing to him except that our recovery is limited, which drains pressure from the paragraph meant to create it; stating the 15% figure would at least be concrete.",
+      "quote": "subject to the Section 4 cap"
+    },
+    {
+      "persona_id": "senior-colleague",
+      "text": "The ask or conclusion, stated in the first paragraph The opening is representation boilerplate; the actual demand and date don't appear until the final two sentences of the letter.",
+      "quote": "This firm represents Greenline Grounds LLC (\"Greenline\"). We write regarding your account for landscaping services at 418 Alder Court under the Services Agreement dated March 3, 2025."
+    },
+    {
+      "persona_id": "senior-colleague",
+      "text": "Claims worded more strongly than the background facts support The file has his August email refusing to pay until the hedges were fixed; \"without complaint\" is flatly contradicted by our own record.",
+      "quote": "However, that does not excuse nonpayment for the other services, which you accepted without complaint."
+    }
+  ],
+  "calls": 11,
+  "tokens": 55520,
+  "cost_usd": 1.7802,
+  "duration_seconds": 407.0
+}

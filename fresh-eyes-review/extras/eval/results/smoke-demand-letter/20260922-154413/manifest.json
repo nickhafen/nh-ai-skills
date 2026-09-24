@@ -1,0 +1,28 @@
+{
+  "fixture": "eval/fixtures/smoke-demand-letter",
+  "batch": "20260922-154413",
+  "client": "claude-code",
+  "model": "claude-opus-5",
+  "effort": "high",
+  "conditions": [
+    "C",
+    "B"
+  ],
+  "runs": 1,
+  "content_hash": "ec10ffb9703104e8",
+  "git_commit": null,
+  "ai_reader_shared_across_conditions": true,
+  "results": [
+    {
+      "label": "C-run1",
+      "status": "ok",
+      "path": "C-run1/results.json"
+    },
+    {
+      "label": "B-run1",
+      "status": "ok",
+      "path": "B-run1/results.json"
+    }
+  ],
+  "claude_code_reported_cost_usd": 3.6198
+}

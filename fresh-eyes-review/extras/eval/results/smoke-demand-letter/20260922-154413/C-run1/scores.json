@@ -1,0 +1,84 @@
+{
+  "condition": "C",
+  "seeded_recall": 1.0,
+  "recall_by_persona": {
+    "opposing-party-unrepresented": 0.75,
+    "client-business-decision-maker": 0.5,
+    "senior-colleague": 1.0
+  },
+  "caught": {
+    "i1|opposing-party-unrepresented": false,
+    "i1|client-business-decision-maker": false,
+    "i1|senior-colleague": true,
+    "i2|opposing-party-unrepresented": true,
+    "i2|client-business-decision-maker": true,
+    "i2|senior-colleague": true,
+    "i3|opposing-party-unrepresented": true,
+    "i3|client-business-decision-maker": true,
+    "i3|senior-colleague": true,
+    "i4|opposing-party-unrepresented": true,
+    "i4|client-business-decision-maker": true,
+    "i4|senior-colleague": true,
+    "i5|opposing-party-unrepresented": true,
+    "i5|client-business-decision-maker": true,
+    "i5|senior-colleague": true,
+    "d1|opposing-party-unrepresented": false,
+    "d1|client-business-decision-maker": false,
+    "d1|senior-colleague": false
+  },
+  "decoy_false_positives": 0,
+  "leakage_rate": 0.0,
+  "leaked_personas": [],
+  "curse_of_knowledge_catch_rate": 1.0,
+  "anchoring_rate": 1.0,
+  "mean_overlap": 0.133,
+  "stance_spread": 1.0,
+  "main_point_agreement": null,
+  "findings_total": 26,
+  "unmatched_findings": [
+    {
+      "persona_id": "opposing-party-unrepresented",
+      "text": "Flat statement that I never complained, which contradicts what I know I did; it reads as calling me dishonest. It's the one sentence that makes me want to dig in and fight instead of pay. It also makes me doubt the rest of the letter's accuracy.",
+      "quote": "which you accepted without complaint"
+    },
+    {
+      "persona_id": "client-business-decision-maker",
+      "text": "Inconsistent with what he actually did — he emailed in August saying he wouldn't pay until the hedges were fixed. He can rebut this with one forwarded email, which makes the whole letter look sloppy and lets him argue we're not being straight with him.",
+      "quote": "However, that does not excuse nonpayment for the other services, which you accepted without complaint."
+    },
+    {
+      "persona_id": "client-business-decision-maker",
+      "text": "Interest is asserted but never quantified, and the demand is for exactly $4,050.00 — the same as the unpaid invoice total. If he pays $4,050.00 on November 14, am I giving up the interest? I need to know whether the number we're demanding is the whole number.",
+      "quote": "Under the Agreement, late balances accrue interest"
+    },
+    {
+      "persona_id": "client-business-decision-maker",
+      "text": "A recommendation or bottom line in the first paragraph Opens with background and contract dates; the amount owed and the deadline don't show up until much later.",
+      "quote": "This firm represents Greenline Grounds LLC (\"Greenline\"). We write regarding your account for landscaping services at 418 Alder Court under the Services Agreement dated March 3, 2025."
+    },
+    {
+      "persona_id": "client-business-decision-maker",
+      "text": "The decisions they need to make, and by when The only date is the last sentence of the letter, and nothing says what happens on November 15 if nothing arrives.",
+      "quote": "Payment of the full balance of $4,050.00 must be received by November 14, 2025."
+    },
+    {
+      "persona_id": "client-business-decision-maker",
+      "text": "Risks ranked by importance, not listed flat The hedge dispute is the one real risk to collecting, and the letter brushes past it instead of telling me how serious it is.",
+      "quote": "However, that does not excuse nonpayment for the other services, which you accepted without complaint."
+    },
+    {
+      "persona_id": "senior-colleague",
+      "text": "The clause asserts no complaint when the file shows a written August complaint and a refusal to pay; it also contradicts the sentence immediately before it, which acknowledges a complaint about July. An assertion the recipient can disprove with his own email undercuts everything else in the letter and makes it look like we didn't read the file before signing.",
+      "quote": "However, that does not excuse nonpayment for the other services, which you accepted without complaint."
+    },
+    {
+      "persona_id": "senior-colleague",
+      "text": "The ask or conclusion, stated in the first paragraph The opening only identifies the client and the contract; the amount, the deadline, and the demand all sit in the final paragraph.",
+      "quote": "This firm represents Greenline Grounds LLC (\"Greenline\"). We write regarding your account for landscaping services at 418 Alder Court under the Services Agreement dated March 3, 2025."
+    }
+  ],
+  "calls": 11,
+  "tokens": 59295,
+  "cost_usd": 1.8538,
+  "duration_seconds": 336.84
+}

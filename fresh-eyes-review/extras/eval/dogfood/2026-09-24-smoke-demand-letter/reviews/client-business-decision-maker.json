@@ -1,0 +1,98 @@
+{
+  "main_point": "My lawyer is telling Okafor to pay the $4,050 he owes me by November 14, conceding the July hedge job was botched, and saying I'm ready to take him to small claims court if he doesn't.",
+  "gut_reaction": "The numbers are right and it's short, which I like. What stops me is the line admitting the crew cut the hedges too short - that's now in writing, in his hands, and I'd have wanted to talk about that before it went out. And it says I'm prepared to sue: I haven't decided that, and if I don't follow through I've told a customer my lawyer's letters don't mean anything.",
+  "likely_next_action": {
+    "action": "Call Jordan before the letter goes out to ask whether the hedge line is necessary, what it will cost to actually file if Okafor ignores this, and what the firm's fees on this collection are running.",
+    "driver": "The letter commits the business to a next step and gives something away, and neither the cost nor the follow-through was put in front of me as a decision."
+  },
+  "look_for": [
+    {
+      "item": "A recommendation or bottom line in the first paragraph",
+      "status": "unclear_or_buried",
+      "quote": "This firm represents Greenline Grounds LLC (\"Greenline\"). We write regarding your account for landscaping services at 418 Alder Court under the Services Agreement dated March 3, 2025.",
+      "note": "The opening is introductions and a contract date; the amount and the deadline don't show up until the end."
+    },
+    {
+      "item": "Cost, timeline, and business impact, stated plainly",
+      "status": "missing",
+      "quote": "Greenline is entitled to recover its costs of collection subject to the Section 4 cap",
+      "note": "Nothing says what this collection costs Greenline, what the cap actually is in dollars, or what I net if he pays."
+    },
+    {
+      "item": "The decisions they need to make, and by when",
+      "status": "missing",
+      "quote": "If this matter is not resolved, Greenline is prepared to file suit in small claims court and will seek every remedy available to it.",
+      "note": "November 14 is a decision date for me as much as for him, and the letter announces the answer without ever asking me for it."
+    },
+    {
+      "item": "Options, with the tradeoffs between them",
+      "status": "unclear_or_buried",
+      "quote": "Please contact me to discuss payment options.",
+      "note": "\"Payment options\" is offered to him but never defined, so I don't know what my lawyer is authorized to accept - a payment plan? a discount for the hedges?"
+    },
+    {
+      "item": "Risks ranked by importance, not listed flat",
+      "status": "missing",
+      "quote": "Greenline acknowledges that its crew may have cut the hedges shorter than you asked.",
+      "note": "The biggest risk in the letter is the one sentence that gives something away, and nothing marks it as a deliberate choice rather than a throwaway."
+    }
+  ],
+  "findings": [
+    {
+      "quote": "If this matter is not resolved, Greenline is prepared to file suit in small claims court and will seek every remedy available to it.",
+      "issue": "The letter states as fact that the business is prepared to sue, without the owner having made that call or being told what filing would cost.",
+      "why_it_matters": "If the deadline passes and nothing is filed, the threat was empty - with this customer and with anyone he talks to in the neighborhood. It also names the forum, which tells the customer the exposure is small.",
+      "severity": "high",
+      "confidence": "medium"
+    },
+    {
+      "quote": "Greenline acknowledges that its crew may have cut the hedges shorter than you asked.",
+      "issue": "A written concession about the business's own work goes out over the firm's name, with no accompanying statement that the rest of the work was done properly or that no credit is being offered.",
+      "why_it_matters": "It hands the customer a document to wave around, and the owner would want to weigh that against whatever it buys in goodwill before it leaves the office.",
+      "severity": "high",
+      "confidence": "medium"
+    },
+    {
+      "quote": "Please contact me to discuss payment options.",
+      "issue": "No phone number, email, or payment instructions appear anywhere, so a customer who decides to pay has no way to do it.",
+      "why_it_matters": "The entire point is collecting $4,050. Every day of friction between \"I'll pay\" and the money arriving is a day the customer can change his mind.",
+      "severity": "high",
+      "confidence": "high"
+    },
+    {
+      "quote": "Under the Agreement, late balances accrue interest, and Greenline is entitled to recover its costs of collection subject to the Section 4 cap.",
+      "issue": "Interest and recoverable costs are mentioned without a rate, a running total, or the dollar value of the cap.",
+      "why_it_matters": "The owner can't tell whether $4,050 is the real number or whether the customer already owes more, and a customer who can't size the growing cost has no reason to move before the deadline.",
+      "severity": "medium",
+      "confidence": "high"
+    },
+    {
+      "quote": "Greenline values its customers and would prefer to resolve this without litigation.",
+      "issue": "The letter never says whether the relationship continues, even though it describes service as having run only \"from April through September 2025.\"",
+      "why_it_matters": "The owner knows whether this account is being kept or closed, and the letter's friendly framing sits oddly next to a services history that stops in September with no explanation.",
+      "severity": "low",
+      "confidence": "medium"
+    }
+  ],
+  "what_works": [
+    {
+      "quote": "Greenline sent you six monthly invoices totaling $4,860.00. You paid the April invoice. The remaining five invoices, totaling $4,050.00, are unpaid. Copies are enclosed.",
+      "note": "Exactly how I'd want it - the numbers match my books and the invoices are attached, so there's nothing to argue about on the math."
+    },
+    {
+      "quote": "Greenline values its customers and would prefer to resolve this without litigation.",
+      "note": "I do want this settled, not litigated, and I'd want that line kept - my name is on the truck in this neighborhood."
+    }
+  ],
+  "attention_map": [
+    {"section_id": "p1", "attention": "read_closely", "would_miss": null},
+    {"section_id": "p2", "attention": "skipped", "would_miss": null},
+    {"section_id": "p3", "attention": "skimmed", "would_miss": null},
+    {"section_id": "p4", "attention": "read_closely", "would_miss": null},
+    {"section_id": "p5", "attention": "read_closely", "would_miss": null},
+    {"section_id": "p6", "attention": "skimmed", "would_miss": "That the letter promises to file suit - the sentence sits at the end of a legal-sounding paragraph the owner reads as boilerplate, so the commitment made in his name can slip past on a first pass."},
+    {"section_id": "p7", "attention": "read_closely", "would_miss": null},
+    {"section_id": "p8", "attention": "skipped", "would_miss": null},
+    {"section_id": "p9", "attention": "skimmed", "would_miss": "That no contact or payment details follow the signature block."}
+  ]
+}

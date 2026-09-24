@@ -1,0 +1,96 @@
+{
+  "B": {
+    "runs": 1,
+    "seeded_recall": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "curse_of_knowledge_catch_rate": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "leakage_rate": {
+      "mean": 0.0,
+      "sd": 0.0
+    },
+    "decoy_false_positives": {
+      "mean": 0,
+      "sd": 0.0
+    },
+    "anchoring_rate": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "mean_overlap": {
+      "mean": 0.667,
+      "sd": 0.0
+    },
+    "stance_spread": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "calls": {
+      "mean": 11,
+      "sd": 0.0
+    },
+    "tokens": {
+      "mean": 55520,
+      "sd": 0.0
+    },
+    "cost_usd": {
+      "mean": 1.78,
+      "sd": 0.0
+    },
+    "duration_seconds": {
+      "mean": 407.0,
+      "sd": 0.0
+    }
+  },
+  "C": {
+    "runs": 1,
+    "seeded_recall": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "curse_of_knowledge_catch_rate": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "leakage_rate": {
+      "mean": 0.0,
+      "sd": 0.0
+    },
+    "decoy_false_positives": {
+      "mean": 0,
+      "sd": 0.0
+    },
+    "anchoring_rate": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "mean_overlap": {
+      "mean": 0.133,
+      "sd": 0.0
+    },
+    "stance_spread": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "calls": {
+      "mean": 11,
+      "sd": 0.0
+    },
+    "tokens": {
+      "mean": 59295,
+      "sd": 0.0
+    },
+    "cost_usd": {
+      "mean": 1.854,
+      "sd": 0.0
+    },
+    "duration_seconds": {
+      "mean": 336.84,
+      "sd": 0.0
+    }
+  }
+}

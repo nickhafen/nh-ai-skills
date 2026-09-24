@@ -1,0 +1,85 @@
+{
+  "id": "smoke-demand-letter",
+  "note": "Smoke-test fixture for Phase 1 harness checks only. Fictional. Not one of the four seeded validation fixtures, and its answer key has not been attorney-reviewed.",
+  "title": "Demand letter: unpaid landscaping invoices",
+  "document_file": "document.md",
+  "mode": "fast",
+  "goal": "Get Mr. Okafor to pay the $4,050 balance, or call to arrange payment, by November 14, 2025, without a lawsuit.",
+  "audience": "The customer, an individual homeowner with no lawyer.",
+  "house_settings": null,
+  "background": [
+    {
+      "id": "bg1",
+      "text": "Greenline's crew lead admitted internally that the July hedge work damaged two of Mr. Okafor's boxwood shrubs, which died in August. Greenline has not told Mr. Okafor this.",
+      "sensitivity": "privileged"
+    },
+    {
+      "id": "bg2",
+      "text": "Section 4 of the Services Agreement caps recoverable collection costs at 15% of the unpaid balance.",
+      "sensitivity": "client_known"
+    },
+    {
+      "id": "bg3",
+      "text": "Mr. Okafor emailed Greenline in August saying he would not pay until the hedges were fixed.",
+      "sensitivity": "public"
+    },
+    {
+      "id": "bg4",
+      "text": "Greenline would accept a payment plan of three monthly installments and would waive interest if Mr. Okafor pays by the deadline.",
+      "sensitivity": "unlabeled"
+    }
+  ],
+  "analysis": {
+    "document_type": "demand letter",
+    "doc_type_entry": "Demand letter",
+    "stage": "pre-suit",
+    "author_side": "Creditor (Greenline Grounds LLC), represented by outside counsel",
+    "ask": "Pay the $4,050 balance or call to discuss payment options",
+    "deadline": "November 14, 2025",
+    "primary_readers": ["opposing-party-unrepresented", "client-business-decision-maker", "senior-colleague"],
+    "secondary_readers": ["future-interpreting-court"]
+  },
+  "assumptions": [
+    {
+      "id": "as1",
+      "text": "Mr. Okafor is not represented by a lawyer.",
+      "basis": "The letter is addressed to him directly; the user stated it.",
+      "confirmed": true
+    },
+    {
+      "id": "as2",
+      "text": "Greenline is a small business whose owner will read the letter before it goes out.",
+      "basis": "Inferred from the letter.",
+      "confirmed": false
+    }
+  ],
+  "personas": [
+    {
+      "id": "opposing-party-unrepresented",
+      "role": "primary",
+      "adaptations": [
+        {"parameter": "Experience with legal disputes", "value": "first dispute", "reason": "individual homeowner"},
+        {"parameter": "Ability to pay", "value": "can pay without hardship", "reason": "owns the property; disputed amount is modest"}
+      ],
+      "added_context": ["He believes Greenline damaged his hedges in July."]
+    },
+    {
+      "id": "client-business-decision-maker",
+      "role": "primary",
+      "adaptations": [
+        {"parameter": "Organization size", "value": "small business owner", "reason": "Greenline is a small landscaping company"}
+      ],
+      "added_context": []
+    },
+    {
+      "id": "senior-colleague",
+      "role": "primary",
+      "adaptations": [],
+      "added_context": []
+    }
+  ],
+  "ai_reader": {
+    "recipient": "Mr. Okafor (the customer)",
+    "batteries": ["core"]
+  }
+}

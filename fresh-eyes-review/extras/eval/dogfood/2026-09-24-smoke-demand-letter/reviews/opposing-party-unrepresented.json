@@ -1,0 +1,98 @@
+{
+  "main_point": "A lawyer says I owe Greenline $4,050 for lawn care I didn't pay for, that my hedge complaint doesn't get me out of it, and that I have to pay by November 14 or they may sue me in small claims court.",
+  "gut_reaction": "Getting a letter from a law firm over lawn care is unsettling, and my first thought is how serious this really is. The part that stings is being told I accepted everything \"without complaint\" when I did complain about the hedges - they even admit the crew cut them too short, and then tell me it doesn't matter. It also doesn't say how I'm supposed to pay or who to call, so if I wanted to settle this today I couldn't.",
+  "likely_next_action": {
+    "action": "Search online or ask an AI assistant what a small claims suit over $4,050 actually means, look up Greenline's old emails about the hedges, and probably call or write back to argue for a reduction rather than pay the full amount by the date.",
+    "driver": "The letter concedes the hedge work was bad but offers no credit and no way to pay, so arguing feels like the only move it leaves open."
+  },
+  "look_for": [
+    {
+      "item": "What they are being asked to do, in plain words",
+      "status": "unclear_or_buried",
+      "quote": "Please contact me to discuss payment options. Payment of the full balance of $4,050.00 must be received by November 14, 2025.",
+      "note": "Two different asks in back-to-back sentences - call to work something out, or pay everything by the 14th - and no signal which one they actually want."
+    },
+    {
+      "item": "How much money, if any",
+      "status": "clear",
+      "quote": "The remaining five invoices, totaling $4,050.00, are unpaid.",
+      "note": "The number is stated plainly and repeated at the end, which is the clearest thing in the letter."
+    },
+    {
+      "item": "The deadline, and what happens if they miss it",
+      "status": "unclear_or_buried",
+      "quote": "If this matter is not resolved, Greenline is prepared to file suit in small claims court and will seek every remedy available to it.",
+      "note": "The date is clear, but nothing says what happens on November 15 - whether suit is automatic, whether the number goes up, or how much."
+    },
+    {
+      "item": "How to respond (who to contact and how)",
+      "status": "missing",
+      "quote": "Please contact me to discuss payment options.",
+      "note": "No phone number, email, address, or payment instructions anywhere in the letter - there is no way to do what it asks."
+    },
+    {
+      "item": "Whether they are being accused of something, and in what words",
+      "status": "unclear_or_buried",
+      "quote": "However, that does not excuse nonpayment for the other services, which you accepted without complaint.",
+      "note": "\"Nonpayment\" and \"without complaint\" read as being called someone who ducks his bills and stayed quiet, which isn't how it felt from this side."
+    }
+  ],
+  "findings": [
+    {
+      "quote": "Please contact me to discuss payment options.",
+      "issue": "There is no phone number, email address, mailing address, or payment instruction anywhere in the letter.",
+      "why_it_matters": "This is the one thing the recipient would need to act on the letter the day it arrives. Without it, the easiest response is to set it aside, and the momentum a demand letter creates is lost.",
+      "severity": "high",
+      "confidence": "high"
+    },
+    {
+      "quote": "However, that does not excuse nonpayment for the other services, which you accepted without complaint.",
+      "issue": "The sentence corrects the recipient's version of events in a way that reads as an accusation of both bad faith and silence.",
+      "why_it_matters": "A reader who believes he did complain reads this as the lawyer calling him a liar, which makes digging in or handing the letter to his own lawyer more likely than writing a check.",
+      "severity": "high",
+      "confidence": "medium"
+    },
+    {
+      "quote": "Greenline acknowledges that its crew may have cut the hedges shorter than you asked.",
+      "issue": "The letter concedes the complaint was justified but never says whether any credit or adjustment is available because of it.",
+      "why_it_matters": "The reader takes the concession as agreement that he is owed something, and the silence that follows as an invitation to name his own number instead of paying in full.",
+      "severity": "high",
+      "confidence": "medium"
+    },
+    {
+      "quote": "Under the Agreement, late balances accrue interest, and Greenline is entitled to recover its costs of collection subject to the Section 4 cap.",
+      "issue": "Interest, collection costs, and \"the Section 4 cap\" are referenced without a rate, an amount, or any explanation, and it isn't said whether the $4,050.00 already includes them.",
+      "why_it_matters": "The reader can't tell whether the bill grows after November 14 or by how much, so the sentence produces vague worry rather than urgency - and some readers discount a threat they can't size.",
+      "severity": "medium",
+      "confidence": "high"
+    },
+    {
+      "quote": "If this matter is not resolved, Greenline is prepared to file suit in small claims court and will seek every remedy available to it.",
+      "issue": "\"Every remedy available\" is unexplained, while \"small claims court\" tells a reader who looks it up that the forum is informal and low-stakes.",
+      "why_it_matters": "The two halves pull in opposite directions: one sounds like boilerplate bluster, the other reassures. A reader who decides the threat is survivable is more likely to wait and see.",
+      "severity": "medium",
+      "confidence": "medium"
+    }
+  ],
+  "what_works": [
+    {
+      "quote": "Greenline sent you six monthly invoices totaling $4,860.00. You paid the April invoice. The remaining five invoices, totaling $4,050.00, are unpaid. Copies are enclosed.",
+      "note": "Short sentences, real numbers, and enclosed copies - this part is easy to check against my own records, which makes the rest feel credible."
+    },
+    {
+      "quote": "Greenline values its customers and would prefer to resolve this without litigation.",
+      "note": "This reads like a door left open rather than a threat, and it is the sentence that makes picking up the phone feel possible."
+    }
+  ],
+  "attention_map": [
+    {"section_id": "p1", "attention": "read_closely", "would_miss": null},
+    {"section_id": "p2", "attention": "skimmed", "would_miss": null},
+    {"section_id": "p3", "attention": "read_closely", "would_miss": null},
+    {"section_id": "p4", "attention": "read_closely", "would_miss": null},
+    {"section_id": "p5", "attention": "read_closely", "would_miss": null},
+    {"section_id": "p6", "attention": "skimmed", "would_miss": "That interest and collection costs may be added on top of the $4,050.00, and that the recoverable costs are capped - the sentence reads as legal boilerplate and gets skipped over."},
+    {"section_id": "p7", "attention": "read_closely", "would_miss": null},
+    {"section_id": "p8", "attention": "skipped", "would_miss": null},
+    {"section_id": "p9", "attention": "skimmed", "would_miss": "That there is no contact information under the signature - noticed only when he tries to respond, which is often days later."}
+  ]
+}

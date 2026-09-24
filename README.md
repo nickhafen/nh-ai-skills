@@ -6,6 +6,7 @@ work.
 | Skill | What it does |
 |---|---|
 | [engagement-letter](engagement-letter/engagement-letter/) | Drafts a client engagement letter for a fictional Utah firm, computes Utah answer deadlines for litigation matters, and produces a Word redline with real tracked changes. See its [presenter guide](engagement-letter/engagement-letter/README.md). |
+| [fresh-eyes-review](fresh-eyes-review/fresh-eyes-review/) | Shows how a legal document's real readers (opposing counsel, the judge, the client, the adjuster) are likely to react before it goes out, and what an AI assistant would tell the recipient. A writing review, not a check of the law. Pre-release. See its [README](fresh-eyes-review/README.md), which also covers a paste-in prompt for any AI assistant. |
 
 ## Layout
 
