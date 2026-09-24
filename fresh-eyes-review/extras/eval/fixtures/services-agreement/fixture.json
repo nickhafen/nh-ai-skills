@@ -1,0 +1,40 @@
+{
+  "id": "services-agreement",
+  "note": "Phase 2 document, used for MVP dogfooding. Fictional. Answer key not written yet; seeded issues are listed in seeded-issues.md.",
+  "title": "Managed IT services agreement (Provider's draft)",
+  "document_file": "document.md",
+  "mode": "fast",
+  "goal": "Get the Client to sign with few markups, while giving Provider predictable revenue and limited exposure.",
+  "audience": "The Client's managing partner, who will review it with outside counsel.",
+  "house_settings": null,
+  "background": [
+    {"id": "bg1", "text": "Provider has twice failed backup restoration tests for other clients this year and wants to avoid committing to a testing schedule.", "sensitivity": "privileged"},
+    {"id": "bg2", "text": "The early termination fee is three months of fees; it's in Exhibit B, which Provider hasn't finalized.", "sensitivity": "client_known"},
+    {"id": "bg3", "text": "The parties discussed a 4-hour response time for critical issues during the sales process.", "sensitivity": "public"}
+  ],
+  "analysis": {
+    "document_type": "commercial contract",
+    "doc_type_entry": "Commercial contract",
+    "stage": "first draft sent to counterparty",
+    "author_side": "Provider (drafted by Provider's counsel)",
+    "ask": "Sign the agreement",
+    "deadline": null,
+    "primary_readers": ["counterparty-business-contact", "opposing-counsel", "client-business-decision-maker"],
+    "secondary_readers": ["future-interpreting-court"]
+  },
+  "assumptions": [
+    {"id": "as1", "text": "The Client is a mid-size accounting firm with no in-house counsel.", "basis": "Inferred from the parties.", "confirmed": false}
+  ],
+  "personas": [
+    {"id": "counterparty-business-contact", "role": "primary", "adaptations": [
+      {"parameter": "Organization size", "value": "small business", "reason": "regional accounting firm"}
+    ], "added_context": ["The sales team promised a 4-hour response time for critical issues."]},
+    {"id": "opposing-counsel", "role": "primary", "adaptations": [
+      {"parameter": "Posture", "value": "deal counterpart", "reason": "reviewing a vendor draft"}
+    ], "added_context": []},
+    {"id": "client-business-decision-maker", "role": "primary", "adaptations": [
+      {"parameter": "Organization size", "value": "small business owner", "reason": "Provider is a small IT firm"}
+    ], "added_context": []}
+  ],
+  "ai_reader": {"recipient": "Sterling & Reyes's managing partner", "batteries": ["core", "transactional"]}
+}

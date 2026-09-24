@@ -1,0 +1,23 @@
+{
+  "prompt": "Can you give letter.md a fresh-eyes review before I send it?",
+  "client": "claude -p (Claude Code 2.1.222), Pro plan",
+  "model": "claude-opus-5 (AI-reader subagents ran on claude-sonnet-5)",
+  "turns": 34,
+  "duration_minutes": 8.7,
+  "api_equivalent_cost_usd": 2.7,
+  "model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "output_tokens": 14,
+      "cost_usd": 0.0
+    },
+    "claude-opus-5": {
+      "output_tokens": 37768,
+      "cost_usd": 2.41
+    },
+    "claude-sonnet-5": {
+      "output_tokens": 7494,
+      "cost_usd": 0.29
+    }
+  },
+  "final_message": "Done. Full report: `fresh-eyes/letter/report.md` (summary also in `summary.md`).\n\n**Plan.** Read as a pre-suit demand letter to an unrepresented individual. Goal (inferred): get $4,050 paid by Nov 14 without suit, without pushing him into hiring a lawyer. Readers: the recipient, Greenline's owner, a senior colleague. Left out: opposing counsel, and a small claims judge reading it as an exhibit.\n\n**Top three**\n\n1. **The hedge concession floats free.** \"Greenline acknowledges that its crew may have cut the hedges shorter than you asked\" concedes the defect but never says whether any credit follows. All three readers flagged it, and it's also the run's one survival failure — see below.\n2. **No date, no contact details, no way to pay.** The letter asks him to call and to send $4,050 and gives no phone, email, address, or payment instructions, and carries no date or delivery line. The recipient can't comply, the client can't get paid, the senior colleague can't prove when the clock started.\n3. **The litigation threat undercuts itself.** Naming small claims court signals capped, informal exposure; \"every remedy available to it\" reads as boilerplate next to it. It also commits the client to filing without saying what happens on November 15.\n\nAlso flagged: interest and the \"Section 4 cap\" asserted with no rate or amount against a flat $4,050 demand; the ask buried in the last paragraph, where two back-to-back sentences point different ways (\"contact me to discuss payment options\" / \"must be received by November 14\").\n\n**AI-reader check** (six Core prompts, fresh contexts, Sonnet). The ask and deadline survived cleanly. Two things didn't: asked how serious it is, the assistant called it \"not something to lose sleep over\"; asked how to respond, it led with \"The hedge-trimming admission is your leverage,\" laid out a setoff argument, told him to gather photos and a repair estimate, advised against paying by the deadline, and offered to draft his reply. That's the letter's own concession being turned into a discount.\n\n**Biggest tradeoff.** The recipient wants the hedge acknowledgment kept — it's the only place the letter shows it heard him, and it's what makes calling feel worthwhile. The client wants it gone. Both objections are really about the same gap: nothing says what it buys.\n\n**Working well.** The invoice paragraph — every reader singled it out. And \"Greenline values its customers and would prefer to resolve this without litigation,\" though read cold that same line signals willingness to settle for less.\n\nTwo caveats on the run: the recipient's and client's findings overlapped heavily, so one may not be adding much; and all four assumptions are unconfirmed — if he's actually represented, the tone findings matter less and the concession matters more."
+}

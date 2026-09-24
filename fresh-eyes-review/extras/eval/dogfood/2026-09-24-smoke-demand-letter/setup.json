@@ -1,0 +1,67 @@
+{
+  "title": "Greenline Grounds demand letter to Okafor",
+  "mode": "fast",
+  "inputs": {
+    "goal": null,
+    "audience": null,
+    "persona_overrides": [],
+    "house_settings": "all defaults (outside counsel at a law firm; fast mode; max 4 personas)",
+    "background": []
+  },
+  "analysis": {
+    "document_type": "demand letter",
+    "doc_type_entry": "Demand letter",
+    "stage": "pre-suit",
+    "author_side": "Greenline Grounds LLC (the landscaping vendor / creditor), through outside counsel Jordan Ellis of Ellis & Park",
+    "ask": "Pay the full outstanding balance of $4,050.00, or contact counsel to discuss payment options",
+    "deadline": "November 14, 2025",
+    "goal": {
+      "text": "Get Mr. Okafor to pay the $4,050.00 balance (or open a payment conversation) by November 14, 2025, without filing suit and without pushing him into hiring a lawyer or digging in over the hedge complaint.",
+      "source": "inferred"
+    },
+    "primary_readers": ["Mr. Okafor (unrepresented individual homeowner)", "Greenline's owner/decision-maker", "senior colleague at Ellis & Park"],
+    "secondary_readers": ["a small claims judge reading the letter as an exhibit"],
+    "plan_line": "Read as a pre-suit demand letter to an unrepresented individual. Goal (inferred): get $4,050 paid by Nov 14 without suit. Readers: the recipient, the client decision-maker, and a senior colleague."
+  },
+  "assumptions": [
+    {"id": "as1", "text": "Mr. Okafor is an unrepresented individual homeowner, not represented by counsel and not a business.", "basis": "Letter is addressed to him directly at a residential-sounding address (418 Alder Court) and explains basic points; no counsel is copied.", "confirmed": false},
+    {"id": "as2", "text": "The author's goal is payment without litigation, not building a record for suit.", "basis": "\"Greenline values its customers and would prefer to resolve this without litigation.\"", "confirmed": false},
+    {"id": "as3", "text": "The author is outside counsel, and Greenline's owner or manager will see or approve the letter.", "basis": "Signature block \"Ellis & Park, Attorneys at Law\" and \"This firm represents Greenline Grounds LLC\"; house settings default.", "confirmed": false},
+    {"id": "as4", "text": "This is the first formal demand from counsel, not a follow-up to earlier demands.", "basis": "The letter introduces the firm and recites the account history from the beginning.", "confirmed": false}
+  ],
+  "personas": [
+    {
+      "id": "opposing-party-unrepresented",
+      "role": "primary",
+      "adaptations": [
+        {"parameter": "Type of party", "value": "individual", "reason": "Letter is addressed to a named individual about services at a single residence."},
+        {"parameter": "Experience with legal disputes", "value": "first dispute", "reason": "Nothing in the document suggests a repeat litigant; default applies."},
+        {"parameter": "Ability to pay", "value": "limited", "reason": "Default; the amount ($4,050) is large enough to matter to a household but not obviously unpayable."}
+      ],
+      "added_context": ["Believes the July hedge trimming was done badly and has said so to Greenline."],
+      "background_ids": []
+    },
+    {
+      "id": "client-business-decision-maker",
+      "role": "primary",
+      "adaptations": [
+        {"parameter": "Organization size", "value": "small business owner", "reason": "Greenline Grounds LLC is a local landscaping company; the owner is likely the only decision-maker."},
+        {"parameter": "Relationship to author", "value": "client of outside counsel", "reason": "Ellis & Park is outside counsel."},
+        {"parameter": "Experience with legal matters", "value": "occasional", "reason": "Default; a small service business handles collections sometimes but not routinely."}
+      ],
+      "added_context": ["Knows the crew, the customer relationship, and that the July hedge job drew a complaint."],
+      "background_ids": []
+    },
+    {
+      "id": "senior-colleague",
+      "role": "primary",
+      "adaptations": [
+        {"parameter": "Relationship to author", "value": "peer asked for a second look", "reason": "Default; no indication of a formal sign-off requirement."},
+        {"parameter": "Risk tolerance", "value": "moderate", "reason": "Default."},
+        {"parameter": "Familiarity with the matter", "value": "knows it at a high level", "reason": "Default; small collections matter."}
+      ],
+      "added_context": [],
+      "background_ids": []
+    }
+  ]
+}

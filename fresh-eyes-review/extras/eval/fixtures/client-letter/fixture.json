@@ -1,0 +1,39 @@
+{
+  "id": "client-letter",
+  "note": "Phase 2 document, used for MVP dogfooding. Fictional. Answer key not written yet; seeded issues are listed in seeded-issues.md.",
+  "title": "Client letter: settlement offer in employment case",
+  "document_file": "document.md",
+  "mode": "fast",
+  "goal": "Help Ms. Alvarez decide, by October 6, whether to accept the $62,500 offer or authorize a counteroffer of $85,000 to $95,000.",
+  "audience": "The client, an individual former warehouse employee in her first lawsuit.",
+  "house_settings": null,
+  "background": [
+    {"id": "bg1", "text": "Hendricks (the operations manager) testified that the termination decision was made two days after Ms. Alvarez's third safety report, and that he had been told to 'deal with the complainer.'", "sensitivity": "client_known"},
+    {"id": "bg2", "text": "Our internal assessment puts the probability of surviving summary judgment at about 60%, and expert costs through trial would add roughly $25,000 in costs.", "sensitivity": "privileged"},
+    {"id": "bg3", "text": "Under the engagement agreement, the 33% fee is calculated on the gross recovery, before costs are deducted.", "sensitivity": "client_known"}
+  ],
+  "analysis": {
+    "document_type": "client letter",
+    "doc_type_entry": "Client letter",
+    "stage": "post-discovery settlement negotiation",
+    "author_side": "Plaintiff's counsel (outside counsel, contingency fee)",
+    "ask": "Decide whether to accept or authorize a counteroffer",
+    "deadline": "October 6",
+    "primary_readers": ["client-individual", "senior-colleague"],
+    "secondary_readers": ["future-interpreting-court"]
+  },
+  "assumptions": [
+    {"id": "as1", "text": "Ms. Alvarez has no prior experience with lawsuits or settlements.", "basis": "Stated by the user.", "confirmed": true}
+  ],
+  "personas": [
+    {"id": "client-individual", "role": "primary", "adaptations": [
+      {"parameter": "Experience with legal documents", "value": "first legal matter", "reason": "first lawsuit"},
+      {"parameter": "Cost sensitivity", "value": "every dollar matters", "reason": "lost her job; hourly worker"}
+    ], "added_context": []},
+    {"id": "senior-colleague", "role": "primary", "adaptations": [], "added_context": []},
+    {"id": "future-interpreting-court", "role": "secondary", "adaptations": [
+      {"parameter": "Document role", "value": "exhibit in later dispute", "reason": "advice later disputed by the client"}
+    ], "added_context": []}
+  ],
+  "ai_reader": {"recipient": "Ms. Alvarez (the client)", "batteries": ["core", "client"]}
+}

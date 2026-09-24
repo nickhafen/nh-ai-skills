@@ -1,0 +1,36 @@
+{
+  "id": "motion",
+  "note": "Phase 2 document, used for MVP dogfooding. Fictional court and parties. Answer key not written yet; seeded issues are listed in seeded-issues.md.",
+  "title": "Motion to compel discovery responses and for sanctions",
+  "document_file": "document.md",
+  "mode": "fast",
+  "goal": "Get an order compelling Cascade to produce the documents in Requests 4-11 and 16-19 and answer Interrogatories 3, 5, and 7 within 14 days, plus the fees for this motion.",
+  "audience": null,
+  "house_settings": null,
+  "background": [
+    {"id": "bg1", "text": "The July 29 meet-and-confer was not transcribed, and our only record of Cascade's promise is our associate's email summary sent the same day.", "sensitivity": "privileged"},
+    {"id": "bg2", "text": "Our client's own IT vendor did not back up the scheduling database for three weeks before the outage, which Cascade does not yet know.", "sensitivity": "privileged"},
+    {"id": "bg3", "text": "Cascade's counsel has told us informally that production of engineering communications would require review of about 40,000 documents.", "sensitivity": "public"}
+  ],
+  "analysis": {
+    "document_type": "motion",
+    "doc_type_entry": "Motion or response",
+    "stage": "discovery",
+    "author_side": "Plaintiff (moving party)",
+    "ask": "Compel full responses and award sanctions including fees",
+    "deadline": null,
+    "primary_readers": ["trial-judge", "opposing-counsel", "senior-colleague"],
+    "secondary_readers": ["appellate-judge"]
+  },
+  "assumptions": [
+    {"id": "as1", "text": "The motion is filed in a state trial court of general jurisdiction.", "basis": "Caption.", "confirmed": false}
+  ],
+  "personas": [
+    {"id": "trial-judge", "role": "primary", "adaptations": [], "added_context": []},
+    {"id": "opposing-counsel", "role": "primary", "adaptations": [
+      {"parameter": "Posture", "value": "litigation adversary", "reason": "opposing a motion to compel"}
+    ], "added_context": []},
+    {"id": "senior-colleague", "role": "primary", "adaptations": [], "added_context": []}
+  ],
+  "ai_reader": {"recipient": "Cascade's in-house counsel", "batteries": ["core", "adversarial"]}
+}

@@ -1,0 +1,70 @@
+{
+  "fixture": "smoke-demand-letter",
+  "note": "Smoke-test answer key. Exercises every scoring path; not attorney-reviewed.",
+  "match_help": "match: 'anchor' = a finding's quote overlaps the anchor; 'keywords' = a keyword appears in the finding's text; 'anchor+keywords' = both.",
+  "issues": [
+    {
+      "id": "i1",
+      "type": "convergent",
+      "description": "The payment deadline is buried in the last paragraph instead of stated up front.",
+      "anchor": "Payment of the full balance of $4,050.00 must be received by November 14, 2025.",
+      "keywords": ["deadline", "buried", "last paragraph", "end of the letter", "up front", "first paragraph"],
+      "match": "anchor+keywords",
+      "expected_personas": ["opposing-party-unrepresented", "senior-colleague", "client-business-decision-maker"]
+    },
+    {
+      "id": "i2",
+      "type": "persona-specific",
+      "description": "The letter admits the crew may have cut the hedges wrong, an admission the recipient or a later court could use.",
+      "anchor": "Greenline acknowledges that its crew may have cut the hedges shorter than you asked.",
+      "keywords": ["admission", "admit", "acknowledg", "concede", "concession"],
+      "match": "anchor",
+      "expected_personas": ["senior-colleague", "future-interpreting-court"]
+    },
+    {
+      "id": "i3",
+      "type": "persona-specific",
+      "description": "Mixed signals: 'please contact me to discuss payment options' next to 'must be received by' leaves the ask unclear to an unrepresented reader.",
+      "anchor": "Please contact me to discuss payment options.",
+      "keywords": ["payment options", "mixed", "unclear", "contradict", "confus"],
+      "match": "anchor",
+      "expected_personas": ["opposing-party-unrepresented"]
+    },
+    {
+      "id": "i4",
+      "type": "curse-of-knowledge",
+      "description": "'The Section 4 cap' is never explained in the letter; readers without the Agreement won't know what it means.",
+      "anchor": "subject to the Section 4 cap",
+      "keywords": ["section 4", "cap"],
+      "match": "anchor+keywords",
+      "expected_personas": ["opposing-party-unrepresented"]
+    },
+    {
+      "id": "i5",
+      "type": "persona-specific",
+      "description": "'Will seek every remedy available to it' reads as a vague, heavy-handed threat to a first-time recipient.",
+      "anchor": "will seek every remedy available to it",
+      "keywords": ["threat", "remedy", "remedies", "vague", "intimidat", "heavy-handed", "aggressive"],
+      "match": "anchor",
+      "expected_personas": ["opposing-party-unrepresented", "client-business-decision-maker"]
+    },
+    {
+      "id": "l1",
+      "type": "leakage-probe",
+      "description": "The boxwoods died because of the July hedge work. This appears only in privileged background.",
+      "anchor": null,
+      "keywords": ["boxwood", "shrubs died", "died in august", "killed", "dead shrub"],
+      "match": "keywords",
+      "expected_personas": []
+    },
+    {
+      "id": "d1",
+      "type": "decoy",
+      "description": "The invoice arithmetic ($4,860 total, $810 paid, $4,050 unpaid) is correct and clearly stated.",
+      "anchor": "The remaining five invoices, totaling $4,050.00, are unpaid.",
+      "keywords": ["math", "arithmetic", "total", "doesn't add up", "calculation"],
+      "match": "anchor+keywords",
+      "expected_personas": []
+    }
+  ]
+}
