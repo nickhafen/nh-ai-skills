@@ -1,0 +1,284 @@
+{
+ "pack": "Utah district-court complaint rules pack",
+ "owner": "[[attorney/instructor who approves changes]]",
+ "approval_rule": "Snapshot only. This skill does not check for amendments; the attorney verifies currency and updates last_verified when they do.",
+ "items": [
+  {
+   "id": "URCP-8a",
+   "citation": "URCP 8(a)",
+   "source_url": "https://legacy.utcourts.gov/rules/view.php?type=urcp&rule=8",
+   "effective_date": "2021-05-01",
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "caution language at the top right of the first page",
+    "must plead that the damages are such as to qualify for a specified tier",
+    "constitutes a waiver of any right to recover damages above the tier limits"
+   ],
+   "applies_if": "always",
+   "superseded_on": null,
+   "note": ""
+  },
+  {
+   "id": "URCP-8e",
+   "citation": "URCP 8(e)",
+   "source_url": "https://legacy.utcourts.gov/rules/view.php?type=urcp&rule=8",
+   "effective_date": "2021-05-01",
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "may state a claim or defense alternately or hypothetically"
+   ],
+   "applies_if": "alternative counts",
+   "superseded_on": null,
+   "note": ""
+  },
+  {
+   "id": "URCP-9c",
+   "citation": "URCP 9(c)",
+   "source_url": "https://legacy.utcourts.gov/rules/view.php?type=urcp&rule=9",
+   "effective_date": null,
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "must state with particularity the circumstances constituting fraud or mistake"
+   ],
+   "applies_if": "fraud or mistake pleaded",
+   "superseded_on": null,
+   "note": ""
+  },
+  {
+   "id": "URCP-10a",
+   "citation": "URCP 10(a)(1)-(4)",
+   "source_url": "https://legacy.utcourts.gov/rules/view.php?type=urcp&rule=10",
+   "effective_date": null,
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "must include in the caption the discovery tier",
+    "the title of the action must include the names of all the parties",
+    "top left-hand corner of the first page",
+    "completed cover sheet"
+   ],
+   "applies_if": "always",
+   "superseded_on": null,
+   "note": ""
+  },
+  {
+   "id": "URCP-10d",
+   "citation": "URCP 10(d)",
+   "source_url": "https://legacy.utcourts.gov/rules/view.php?type=urcp&rule=10",
+   "effective_date": null,
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "margin of not less than one inch",
+    "must not be smaller than 12-point size"
+   ],
+   "applies_if": "always",
+   "superseded_on": null,
+   "note": ""
+  },
+  {
+   "id": "URCP-11b",
+   "citation": "URCP 11(b)",
+   "source_url": "https://legacy.utcourts.gov/rules/view.php?type=urcp&rule=11",
+   "effective_date": null,
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "formed after an inquiry reasonable under the circumstances"
+   ],
+   "applies_if": "always",
+   "superseded_on": null,
+   "note": ""
+  },
+  {
+   "id": "URCP-17a",
+   "citation": "URCP 17(a)",
+   "source_url": "https://legacy.utcourts.gov/rules/view.php?type=urcp&rule=17",
+   "effective_date": null,
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "prosecuted in the name of the real party in interest"
+   ],
+   "applies_if": "always",
+   "superseded_on": null,
+   "note": ""
+  },
+  {
+   "id": "URCP-19c",
+   "citation": "URCP 19(c)",
+   "source_url": "https://legacy.utcourts.gov/rules/view.php?type=urcp&rule=19",
+   "effective_date": null,
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "shall state the names, if known to the pleader"
+   ],
+   "applies_if": "needed persons not joined",
+   "superseded_on": null,
+   "note": ""
+  },
+  {
+   "id": "URCP-26c3",
+   "citation": "URCP 26(c)(3)-(4)",
+   "source_url": "https://legacy.utcourts.gov/rules/view.php?type=urcp&rule=26",
+   "effective_date": "2025-05-07",
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "$50,000 or less in damages",
+    "more than $50,000 and less than $300,000",
+    "without duplication for alternative theories"
+   ],
+   "applies_if": "always",
+   "superseded_on": null,
+   "note": "Upload contained two copies of Rule 26."
+  },
+  {
+   "id": "URCP-38b",
+   "citation": "URCP 38(b)",
+   "source_url": "https://legacy.utcourts.gov/rules/view.php?type=urcp&rule=38",
+   "effective_date": null,
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "endorsed upon a pleading"
+   ],
+   "applies_if": "jury demand",
+   "superseded_on": null,
+   "note": ""
+  },
+  {
+   "id": "URCP-54c",
+   "citation": "URCP 54(c)",
+   "source_url": "https://legacy.utcourts.gov/rules/view.php?type=urcp&rule=54",
+   "effective_date": null,
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "must not differ in kind from, or exceed in amount, what is demanded"
+   ],
+   "applies_if": "always",
+   "superseded_on": null,
+   "note": ""
+  },
+  {
+   "id": "URCP-73e",
+   "citation": "URCP 73(e)",
+   "source_url": "https://legacy.utcourts.gov/rules/view.php?type=urcp&rule=73",
+   "effective_date": "2026-05-01",
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "will not share the fee in violation of Rule 5.4"
+   ],
+   "applies_if": "attorney fees claimed",
+   "superseded_on": null,
+   "note": "(e) cross-references (f); (f) appears to be the fee-augmentation/schedule paragraph, so the cross-reference may be intentional. Verify."
+  },
+  {
+   "id": "UC-15-1-1",
+   "citation": "Utah Code \u00a7 15-1-1(2)",
+   "source_url": "https://le.utah.gov/xcode/Title15/Chapter1/15-1-S1.html",
+   "effective_date": "2019-05-14",
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "the legal rate of interest for the contract",
+    "is 10% per annum"
+   ],
+   "applies_if": "interest claimed",
+   "superseded_on": null,
+   "note": ""
+  },
+  {
+   "id": "UC-58-55-604",
+   "citation": "Utah Code \u00a7 58-55-604",
+   "source_url": "https://le.utah.gov/xcode/Title58/Chapter55/58-55-S604.html",
+   "effective_date": null,
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "without alleging and proving that the licensed contractor"
+   ],
+   "applies_if": "contractor plaintiff",
+   "superseded_on": "2027-01-01",
+   "note": "Scheduled to be superseded 2027-01-01; re-verify after that date."
+  },
+  {
+   "id": "UC-58-55-603",
+   "citation": "Utah Code \u00a7 58-55-603",
+   "source_url": "https://le.utah.gov/xcode/Title58/Chapter55/58-55-S603.html",
+   "effective_date": "2027-01-01",
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "within 30 days"
+   ],
+   "applies_if": "subcontractor payment claim",
+   "superseded_on": null,
+   "note": "Version effective 2027-01-01 noted on official PDF; confirm which version governs by date of events."
+  },
+  {
+   "id": "UC-78A-5-102",
+   "citation": "Utah Code \u00a7 78A-5-102(1)",
+   "source_url": "https://le.utah.gov/xcode/Title78A/Chapter5/78A-5-S102.html",
+   "effective_date": "2026-05-06",
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "the district court has original jurisdiction in all matters civil and criminal"
+   ],
+   "applies_if": "always",
+   "superseded_on": null,
+   "note": "Amended 2026 GS ch. 362 (Business and Chancery Court / Constitutional Court references)."
+  },
+  {
+   "id": "UC-78B-3a-201",
+   "citation": "Utah Code \u00a7 78B-3a-201",
+   "source_url": "https://le.utah.gov/xcode/Title78B/Chapter3A/78B-3a-S201.html",
+   "effective_date": "2024-07-01",
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "the cause of action arises",
+    "any defendant resides at the commencement of the action"
+   ],
+   "applies_if": "always",
+   "superseded_on": null,
+   "note": "Renumbered from \u00a7 78B-3-307 (2023 GS ch. 401)."
+  },
+  {
+   "id": "UC-78B-3a-104",
+   "citation": "Utah Code \u00a7 78B-3a-104",
+   "source_url": "https://le.utah.gov/xcode/Title78B/Chapter3A/78B-3a-S104.html",
+   "effective_date": "2024-07-01",
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "principal place of business is located"
+   ],
+   "applies_if": "entity defendant",
+   "superseded_on": null,
+   "note": ""
+  },
+  {
+   "id": "UC-46-4-201",
+   "citation": "Utah Code \u00a7 46-4-201",
+   "source_url": "https://le.utah.gov/xcode/Title46/Chapter4/46-4-S201.html",
+   "effective_date": "2000-05-01",
+   "last_verified": "2026-09-21",
+   "verified_by": "Claude (AI) + URCP checklist (user)",
+   "key_phrases": [
+    "may not be denied legal effect or enforceability solely because it is in electronic form"
+   ],
+   "applies_if": "electronic records/signatures",
+   "superseded_on": null,
+   "note": ""
+  }
+ ],
+ "scope_note": "Conflicts clearance and limitations analysis are out of scope for this skill, so limitations statutes are not tracked here."
+}

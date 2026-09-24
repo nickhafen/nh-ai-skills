@@ -1,0 +1,169 @@
+{
+ "_comment": "Source for assets/complaint-template.docx. Regenerate with: node scripts/render_complaint.js assets/template-matter.json assets/complaint-template.docx",
+ "profile": "default",
+ "matter": {
+  "name": "TEMPLATE",
+  "court": {
+   "judicial_district": "[[Fourth]]",
+   "county": "[[Utah]]"
+  },
+  "tier": "[[1/2/3]]"
+ },
+ "parties": {
+  "plaintiffs": [
+   {
+    "id": "p1",
+    "name": "[[Plaintiff Name]]",
+    "caption_desc": "[[an individual / a Utah limited liability company]]"
+   }
+  ],
+  "defendants": [
+   {
+    "id": "d1",
+    "name": "[[Defendant One]]",
+    "caption_desc": "[[an individual]]"
+   },
+   {
+    "id": "d2",
+    "name": "[[Defendant Two]]",
+    "caption_desc": "[[a Utah corporation]]"
+   }
+  ]
+ },
+ "complaint": {
+  "filed_for": "Plaintiff [[Plaintiff Name]]",
+  "intro": "Plaintiff [[Plaintiff Name]], through undersigned counsel, complains against Defendants [[Defendant One]] and [[Defendant Two]] and alleges as follows:",
+  "sections": [
+   {
+    "heading": "PARTIES",
+    "paragraphs": [
+     {
+      "id": "p_pl",
+      "text": "Plaintiff [[Name]] (\u201c[[Short Name]]\u201d) is [[an individual residing in ___ County, Utah / a Utah limited liability company with its principal place of business in ___ County, Utah]]."
+     },
+     {
+      "id": "p_lic",
+      "text": "[[CONTRACTOR PLAINTIFFS ONLY (Utah Code \u00a7 58-55-604): At all relevant times, including when each contract sued upon was entered into and when each cause of action arose, [Short Name] was appropriately licensed under the Utah Construction Trades Licensing Act (License No. ___; classifications ___). Delete otherwise.]]"
+     },
+     {
+      "id": "p_d1",
+      "text": "Defendant [[Name]] (\u201c[[Short Name]]\u201d) is [[an individual residing in ___ County, Utah]]."
+     },
+     {
+      "id": "p_d2",
+      "text": "Defendant [[Name]] (\u201c[[Short Name]]\u201d) is [[a Utah corporation with its principal place of business in ___ County, Utah; its registered agent is ___]]."
+     }
+    ]
+   },
+   {
+    "heading": "JURISDICTION AND VENUE",
+    "paragraphs": [
+     {
+      "id": "j_smj",
+      "text": "This Court has subject-matter jurisdiction under Utah Code \u00a7 78A-5-102(1)."
+     },
+     {
+      "id": "j_pj",
+      "text": "This Court has personal jurisdiction over Defendants because [[each resides in / is organized under the laws of / transacted the business at issue in]] Utah."
+     },
+     {
+      "id": "j_venue",
+      "text": "Venue is proper in [[___]] County under Utah Code \u00a7 78B-3a-201 because [[a defendant resides in ___ County at the commencement of this action / the cause of action arose in ___ County]]. [[For an entity defendant, residence is determined under \u00a7 78B-3a-104.]]"
+     },
+     {
+      "id": "j_tier",
+      "text": "[[Plaintiff seeks damages of $50,000 or less / more than $50,000 and less than $300,000 / $300,000 or more]]. Under Rule 26(c)(3) of the Utah Rules of Civil Procedure, this is a Tier [[1/2/3]] action. [[Compute without duplicating alternative theories, URCP 26(c)(4). Tier 1 and 2 waive damages above the cap, URCP 8(a).]]"
+     }
+    ]
+   },
+   {
+    "heading": "GENERAL ALLEGATIONS",
+    "paragraphs": [
+     {
+      "id": "ga_1",
+      "subheading": "[[A. Descriptive subheading]]",
+      "text": "[[One fact per paragraph, in chronological order. Define terms once (the \u201cAgreement\u201d). Plead time and place where material (URCP 9(g)). Mark facts not yet confirmed in yellow brackets. Plead facts, not law or case citations.]]"
+     },
+     {
+      "id": "ga_2",
+      "text": "[[Facts supporting each element of each count; see references/clauses/<ID>.md for element-tagged templates.]]"
+     },
+     {
+      "id": "ga_demand",
+      "text": "[[On ___, Plaintiff demanded ___. Defendants have not ___.]]"
+     },
+     {
+      "id": "ga_perf",
+      "text": "[[Plaintiff has performed all conditions precedent, or they have occurred or been excused (URCP 9(d)).]]"
+     }
+    ]
+   }
+  ],
+  "rule19c": {
+   "heading": "PERSONS NOT JOINED (URCP 19(c))",
+   "paragraphs": [
+    {
+     "id": "r19",
+     "text": "[[ONLY IF APPLICABLE: [Name] is a person described in Rule 19(a) who is not joined because ___. Delete this section otherwise.]]"
+    }
+   ]
+  },
+  "attorney_fees": {
+   "heading": "ATTORNEY FEES (URCP 73(e))",
+   "paragraphs": [
+    {
+     "id": "af1",
+     "text": "[[ONLY IF CLAIMING FEES: Plaintiff claims attorney fees under [Section ___ of the Agreement, attached as Exhibit ___ / Utah Code \u00a7 ___].]]"
+    },
+    {
+     "id": "af2",
+     "text": "[[Plaintiff\u2019s attorney will not share the fee in violation of Rule 5.4 of the Utah Rules of Professional Conduct.]]"
+    }
+   ]
+  },
+  "counts": [
+   {
+    "claim_id": "c1",
+    "title": "[[Claim Name, e.g., Breach of Contract]]",
+    "sub": "[[(Against Defendant ___)]]",
+    "paragraphs": [
+     {
+      "id": "c1_e1",
+      "text": "[[Element 1 conclusion tied to defined facts, e.g., The Agreement is a valid and enforceable contract.]]"
+     },
+     {
+      "id": "c1_e2",
+      "text": "[[Element 2, citing supporting paragraph numbers (use ref tokens in matter.json).]]"
+     },
+     {
+      "id": "c1_dmg",
+      "text": "[[Damages: not less than $___, in an amount to be proven at trial.]]"
+     }
+    ]
+   },
+   {
+    "claim_id": "c2",
+    "title": "[[Alternative Claim, e.g., Unjust Enrichment]]",
+    "sub": "[[(Against Defendant ___, in the alternative to the First Cause of Action)]]",
+    "paragraphs": [
+     {
+      "id": "c2_alt",
+      "text": "Plaintiff pleads this claim in the alternative under Rule 8(e) of the Utah Rules of Civil Procedure[[, to the extent the Court finds that no enforceable contract governs ___]]."
+     },
+     {
+      "id": "c2_e1",
+      "text": "[[Element paragraphs...]]"
+     }
+    ]
+   }
+  ],
+  "prayer": [
+   "[[On the First Cause of Action (or alternatively the Second), judgment for $___ against ___;]]",
+   "[[Prejudgment interest at the contract rate or, if none, at 10% per annum under Utah Code \u00a7 15-1-1(2), from ___;]]",
+   "[[Attorney fees under ___ (only if pleaded under URCP 73(e));]]",
+   "Post-judgment interest as provided by law;",
+   "Costs of suit; and",
+   "Such other relief as the Court deems just and equitable. [[A default judgment cannot exceed or differ from this demand (URCP 54(c)).]]"
+  ]
+ }
+}

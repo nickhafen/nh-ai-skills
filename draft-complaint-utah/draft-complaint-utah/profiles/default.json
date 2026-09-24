@@ -1,0 +1,73 @@
+{
+  "profile_id": "default",
+  "description": "Default practitioner profile for Utah district-court complaints. Copy and edit per firm or matter (signature block, checkpoint mode, jury, review requirements).",
+  "filer": {
+    "attorney_name": "[[Attorney Name]]",
+    "bar_number": "[[Utah Bar No.]]",
+    "firm": "[[Law Firm]]",
+    "address_lines": [
+      "[[Street Address]]",
+      "[[City, Utah ZIP]]"
+    ],
+    "phone": "[[(801) ___-____]]",
+    "email": "[[email@firm.com]]"
+  },
+  "court_defaults": {
+    "court_type": "District",
+    "judicial_district": "[[Fourth]]",
+    "county": "[[Utah]]",
+    "state": "Utah",
+    "example": "Fourth Judicial District, Utah County"
+  },
+  "checkpoint_mode": "pause",
+  "pause_points": [
+    "M2"
+  ],
+  "claim_posture": "core+alternatives",
+  "drafting": {
+    "cite_case_law_in_complaint": false,
+    "jury_demand": true,
+    "jury_demand_note": "Endorsed on the complaint under URCP 38(b). The jury fee is charged when the demand is filed; see the civil cover sheet. Attorney may turn this off per matter.",
+    "incorporate_general_allegations_only": true,
+    "plain_english": true,
+    "bracket_unconfirmed_facts": true
+  },
+  "review": {
+    "fresh_agent_adversarial_review": true,
+    "second_vendor_authority_check": false,
+    "lenses": [
+      "judge",
+      "opposing_counsel",
+      "client",
+      "rules_and_law_currency",
+      "math_and_consistency"
+    ]
+  },
+  "rules_pack": {
+    "reference": "references/rules/",
+    "currency": "MANUAL \u2014 the attorney confirms the rules and statutes are current before filing. This skill does not check for updates."
+  },
+  "outputs": {
+    "complaint": "{case} - Draft Complaint.docx",
+    "memo": "{case} - Drafting Memo.docx",
+    "workpapers": "{case} - Working Papers.xlsx",
+    "matter_json": "{case} - matter.json",
+    "folder": "AI outputs"
+  },
+  "approved_tools": {
+    "legal_research": [
+      "Westlaw/CoCounsel",
+      "Lexis+ AI/Protege",
+      "vLex/Vincent",
+      "Harvey"
+    ],
+    "citation_existence": [
+      "CourtListener"
+    ],
+    "note": "Client-confidential facts go only into tools the firm has approved."
+  },
+  "scope_exclusions": [
+    "Conflicts clearance is handled outside this skill.",
+    "Limitations analysis is handled outside this skill."
+  ]
+}
