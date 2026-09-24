@@ -36,14 +36,12 @@ This file is the orchestrator. Read a module's instructions in `references/modul
 | 5 | `m5-drafting.md` | `complaint` → .docx (start from `assets/template-matter.json`; clauses from `references/clauses/`) | `render_complaint.js` |
 | 6 | `m6-review.md` | `review_log` (independent opposing-counsel lens if the profile requires it) | `workflows/complaint-review.js` (optional) |
 | 7 | `m7-memo.md` | memo + working papers | `build_workpapers.py`, `validate_matter.py` |
-| 8 | `m8-template-capture.md` | proposed template, clause, and checklist updates | — |
 
 **Entry points:**
 - Full run: steps 0–7.
 - "Just the chronology": 0 and 1.
 - "Here's my Harvey timeline": 1 in VALIDATE mode, then continue.
 - "Review my draft": convert the draft into `matter.complaint`, then run 3, 4, 6, and 7.
-- After approval: 8.
 
 ## Commands
 ```bash
@@ -60,5 +58,4 @@ Requires `docx` (npm) and `openpyxl`. Install either if missing.
 - `references/clauses/`: element-tagged pleading clauses with verification logs (index in `README.md`).
 - `references/tool-routing.md`: which tool to use for what.
 - `assets/`: `complaint-template.docx`, `template-matter.json`, `sample-matter.json` (a schema example only).
-- `workflows/`: optional multi-agent scripts for review and evals.
-- `evals/`: trap-based test cases. Answer keys live outside the skill, in `extras/answer-keys/`. **Never read them during a drafting run.**
+- `workflows/complaint-review.js`: optional multi-agent review for M6.
