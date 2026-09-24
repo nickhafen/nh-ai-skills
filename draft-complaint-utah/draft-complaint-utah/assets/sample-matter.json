@@ -1,0 +1,351 @@
+{
+ "_comment": "Synthetic example for testing scripts and illustrating the schema only. Not a model of drafting quality.",
+ "schema_version": "1.0",
+ "profile": "default",
+ "matter": {
+  "name": "Wasatch Signworks v Bonneville Bistro",
+  "court": {
+   "judicial_district": "Third",
+   "county": "Salt Lake"
+  },
+  "tier": 2,
+  "case_no": "",
+  "judge": "",
+  "client_stated_total": 58400.0,
+  "as_of_date": "2026-10-01"
+ },
+ "parties": {
+  "plaintiffs": [
+   {
+    "id": "wsw",
+    "name": "Wasatch Signworks, LLC",
+    "short": "Wasatch",
+    "caption_desc": "a Utah limited liability company"
+   }
+  ],
+  "defendants": [
+   {
+    "id": "bb",
+    "name": "Bonneville Bistro, Inc.",
+    "short": "Bistro",
+    "caption_desc": "a Utah corporation"
+   }
+  ]
+ },
+ "chronology": [
+  {
+   "id": "e1",
+   "date": "2026-02-03",
+   "date_basis": "signed contract",
+   "event": "Parties sign Sign Fabrication Agreement ($58,400; net 30; fee clause \u00a79).",
+   "source": "Agreement p.1",
+   "ai_comparison": "",
+   "paras": [
+    "ga_contract"
+   ],
+   "flag": ""
+  },
+  {
+   "id": "e2",
+   "date": "2026-04-15",
+   "date_basis": "invoice",
+   "event": "Signs installed; Invoice 2201 issued for $58,400.",
+   "source": "Invoice 2201",
+   "ai_comparison": "",
+   "paras": [
+    "ga_install"
+   ],
+   "flag": ""
+  },
+  {
+   "id": "e3",
+   "date": "[[2026-06-01]]",
+   "date_basis": "client recollection",
+   "event": "Demand letter sent; no response.",
+   "source": "Client notes",
+   "ai_comparison": "",
+   "paras": [
+    "ga_demand"
+   ],
+   "flag": "Confirm date and obtain copy."
+  }
+ ],
+ "claims": [
+  {
+   "id": "c1",
+   "clause_id": "BOC-01",
+   "title": "Breach of Contract",
+   "by": [
+    "wsw"
+   ],
+   "against": [
+    "bb"
+   ],
+   "decision": "PLEADED",
+   "alt_to": [],
+   "suggested_by": "Claude",
+   "rationale": "Signed agreement; performance; nonpayment.",
+   "authority": "America West Bank Members v. State, 2014 UT 49",
+   "risk": ""
+  },
+  {
+   "id": "c2",
+   "clause_id": "UE-01",
+   "title": "Unjust Enrichment",
+   "by": [
+    "wsw"
+   ],
+   "against": [
+    "bb"
+   ],
+   "decision": "ALTERNATIVE",
+   "alt_to": [
+    "c1"
+   ],
+   "suggested_by": "Claude",
+   "rationale": "Hedge if contract unenforceable.",
+   "authority": "Jeffs v. Stubbs, 970 P.2d 1234 (Utah 1998)",
+   "risk": "Barred if contract enforceable."
+  }
+ ],
+ "damages": [
+  {
+   "id": "d1",
+   "item": "Invoice 2201 (sign fabrication and install)",
+   "plaintiff": "wsw",
+   "amount": 58400.0,
+   "due_date": "2026-05-15",
+   "claims": [
+    "c1",
+    "c2"
+   ],
+   "alternative_group": "A"
+  }
+ ],
+ "decisions": [
+  {
+   "decision": "Jury demand",
+   "chosen": "Demand jury (profile default)",
+   "alternative": "Bench trial",
+   "why": "Profile default; attorney may change per matter.",
+   "gate": "flag"
+  }
+ ],
+ "open_questions": [
+  {
+   "priority": "High",
+   "question": "Confirm the date of the demand letter.",
+   "who": "Client",
+   "affects": "{{ref:ga_demand}}"
+  }
+ ],
+ "review_log": [],
+ "run_log": [],
+ "elements": [
+  {
+   "claim": "c1",
+   "element": "E1 Contract",
+   "authority": "America West, 2014 UT 49",
+   "paras": [
+    "ga_contract",
+    "c1_contract"
+   ]
+  },
+  {
+   "claim": "c1",
+   "element": "E2 Performance",
+   "authority": "America West",
+   "paras": [
+    "ga_install",
+    "c1_perf"
+   ]
+  },
+  {
+   "claim": "c1",
+   "element": "E3 Breach",
+   "authority": "America West",
+   "paras": [
+    "ga_nonpay",
+    "c1_breach"
+   ]
+  },
+  {
+   "claim": "c1",
+   "element": "E4 Damages",
+   "authority": "America West",
+   "paras": [
+    "c1_dmg"
+   ]
+  },
+  {
+   "claim": "c2",
+   "element": "E1 Benefit conferred",
+   "authority": "Jeffs v. Stubbs",
+   "paras": [
+    "c2_benefit"
+   ]
+  },
+  {
+   "claim": "c2",
+   "element": "E2 Appreciation/knowledge",
+   "authority": "Jeffs v. Stubbs",
+   "paras": [
+    "c2_know"
+   ]
+  },
+  {
+   "claim": "c2",
+   "element": "E3 Inequitable retention",
+   "authority": "Jeffs v. Stubbs",
+   "paras": [
+    "c2_inequit"
+   ]
+  }
+ ],
+ "complaint": {
+  "filed_for": "Plaintiff Wasatch Signworks, LLC",
+  "year": "2026",
+  "intro": "Plaintiff Wasatch Signworks, LLC, through undersigned counsel, complains against Defendant Bonneville Bistro, Inc. and alleges as follows:",
+  "sections": [
+   {
+    "heading": "PARTIES",
+    "paragraphs": [
+     {
+      "id": "p_wsw",
+      "text": "Plaintiff Wasatch Signworks, LLC (\u201cWasatch\u201d) is a Utah limited liability company with its principal place of business in Salt Lake County, Utah."
+     },
+     {
+      "id": "p_bb",
+      "text": "Defendant Bonneville Bistro, Inc. (the \u201cBistro\u201d) is a Utah corporation with its principal place of business in Salt Lake County, Utah."
+     }
+    ]
+   },
+   {
+    "heading": "JURISDICTION AND VENUE",
+    "paragraphs": [
+     {
+      "id": "j_smj",
+      "text": "This Court has subject-matter jurisdiction under Utah Code \u00a7 78A-5-102(1)."
+     },
+     {
+      "id": "j_venue",
+      "text": "Venue is proper in Salt Lake County under Utah Code \u00a7\u00a7 78B-3a-201 and 78B-3a-104 because the Bistro resides in Salt Lake County and the claims arose there."
+     },
+     {
+      "id": "j_tier",
+      "text": "Wasatch seeks damages of more than $50,000 and less than $300,000. This is a Tier 2 action under Rule 26(c)(3) of the Utah Rules of Civil Procedure."
+     }
+    ]
+   },
+   {
+    "heading": "GENERAL ALLEGATIONS",
+    "paragraphs": [
+     {
+      "id": "ga_contract",
+      "text": "On February 3, 2026, Wasatch and the Bistro signed a Sign Fabrication Agreement (the \u201cAgreement\u201d) under which Wasatch agreed to fabricate and install exterior signs and the Bistro agreed to pay $58,400.00 within 30 days after installation. A copy of the Agreement is attached as Exhibit A."
+     },
+     {
+      "id": "ga_install",
+      "text": "Wasatch fabricated and installed the signs on April 15, 2026, and invoiced the Bistro $58,400.00 that day."
+     },
+     {
+      "id": "ga_nonpay",
+      "text": "Payment was due on May 15, 2026. The Bistro has not paid any part of the invoice."
+     },
+     {
+      "id": "ga_demand",
+      "text": "On [[June 1, 2026]], Wasatch demanded payment in writing. The Bistro did not respond."
+     }
+    ]
+   }
+  ],
+  "attorney_fees": {
+   "paragraphs": [
+    {
+     "id": "af_basis",
+     "text": "Section 9 of the Agreement (Exhibit A) provides that the prevailing party in any action to enforce the Agreement may recover its reasonable attorney fees and costs. Wasatch claims its attorney fees on that basis."
+    },
+    {
+     "id": "af_5_4",
+     "text": "Wasatch\u2019s attorney will not share the fee in violation of Rule 5.4 of the Utah Rules of Professional Conduct."
+    }
+   ]
+  },
+  "counts": [
+   {
+    "claim_id": "c1",
+    "title": "Breach of Contract",
+    "sub": "(Against the Bistro)",
+    "paragraphs": [
+     {
+      "id": "c1_contract",
+      "text": "The Agreement is a valid and enforceable contract.",
+      "elements": [
+       "E1"
+      ]
+     },
+     {
+      "id": "c1_perf",
+      "text": "Wasatch performed its obligations under the Agreement.",
+      "elements": [
+       "E2"
+      ]
+     },
+     {
+      "id": "c1_breach",
+      "text": "The Bistro breached the Agreement by failing to pay, as alleged in paragraph {{ref:ga_nonpay}}.",
+      "elements": [
+       "E3"
+      ]
+     },
+     {
+      "id": "c1_dmg",
+      "text": "Wasatch has been damaged in the amount of $58,400.00, plus interest.",
+      "elements": [
+       "E4"
+      ]
+     }
+    ]
+   },
+   {
+    "claim_id": "c2",
+    "title": "Unjust Enrichment",
+    "sub": "(Against the Bistro, in the alternative to the First Cause of Action)",
+    "paragraphs": [
+     {
+      "id": "c2_alt",
+      "text": "Wasatch pleads this claim in the alternative under Rule 8(e), to the extent the Court finds no enforceable contract."
+     },
+     {
+      "id": "c2_benefit",
+      "text": "Wasatch conferred a benefit on the Bistro by fabricating and installing the signs.",
+      "elements": [
+       "E1"
+      ]
+     },
+     {
+      "id": "c2_know",
+      "text": "The Bistro knew of and appreciated the benefit.",
+      "elements": [
+       "E2"
+      ]
+     },
+     {
+      "id": "c2_inequit",
+      "text": "It would be inequitable for the Bistro to retain the benefit without paying its value, which is not less than $58,400.00.",
+      "elements": [
+       "E3"
+      ]
+     }
+    ]
+   }
+  ],
+  "prayer": [
+   "On the First Cause of Action, or alternatively the Second, judgment for $58,400.00;",
+   "Prejudgment interest at the contract rate or, if none, at 10% per annum under Utah Code \u00a7 15-1-1(2);",
+   "Attorney fees under Section 9 of the Agreement, and costs;",
+   "Post-judgment interest as provided by law; and",
+   "Such other relief as the Court deems just."
+  ]
+ }
+}

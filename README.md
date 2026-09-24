@@ -7,6 +7,7 @@ work.
 |---|---|
 | [engagement-letter](engagement-letter/engagement-letter/) | Drafts a client engagement letter for a fictional Utah firm, computes Utah answer deadlines for litigation matters, and produces a Word redline with real tracked changes. See its [presenter guide](engagement-letter/engagement-letter/README.md). |
 | [fresh-eyes-review](fresh-eyes-review/fresh-eyes-review/) | Shows how a legal document's real readers (opposing counsel, the judge, the client, the adjuster) are likely to react before it goes out, and what an AI assistant would tell the recipient. A writing review, not a check of the law. Pre-release. See its [README](fresh-eyes-review/README.md), which also covers a paste-in prompt for any AI assistant. |
+| [draft-complaint-utah](draft-complaint-utah/draft-complaint-utah/) | Drafts a Utah district-court civil complaint from client facts in modules you can run alone: chronology, claim selection, element mapping, damages, drafting, multi-perspective review, and a drafting memo. Checks outside work product (a Harvey or CoCounsel timeline, research memos) against the sources instead of redoing it, and renders the complaint as a Word file. AI-drafted and not yet attorney-reviewed; checking rule currency, conflicts, and limitations is left to the attorney. |
 
 ## Layout
 
