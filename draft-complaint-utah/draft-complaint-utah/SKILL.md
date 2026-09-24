@@ -61,4 +61,4 @@ Requires `docx` (npm) and `openpyxl`. Install either if missing.
 - `references/tool-routing.md`: which tool to use for what.
 - `assets/`: `complaint-template.docx`, `template-matter.json`, `sample-matter.json` (a schema example only).
 - `workflows/`: optional multi-agent scripts for review and evals.
-- `evals/`: trap-based test cases. **Never read `evals/answer-keys/` during a drafting run.**
+- `evals/`: trap-based test cases. Answer keys live outside the skill, in `extras/answer-keys/`. **Never read them during a drafting run.**

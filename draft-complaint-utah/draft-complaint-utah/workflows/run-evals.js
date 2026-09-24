@@ -15,7 +15,7 @@ const graded = await pipeline(runs,
   ({ e, cfg }) => agent(
     (cfg === 'with_skill' ? `Read and follow the skill at ${args.skill_dir}/SKILL.md. ` : `Do not use any complaint-drafting skill. `) +
     `Task: ${e.prompt}\nInput files (relative to ${args.skill_dir}): ${e.files.join(', ')}.\nWrite all outputs to ${args.out_dir}/eval-${e.id}/${cfg}/outputs/. ` +
-    `Do not open anything under evals/answer-keys/. When a checkpoint would pause for the user, record the question in outputs/pending-questions.md and continue with the default.`,
+    `Do not open anything under extras/answer-keys/. When a checkpoint would pause for the user, record the question in outputs/pending-questions.md and continue with the default.`,
     { label: `run:${e.id}:${cfg}`, phase: 'Run' }),
   (_, { e, cfg }) => agent(
     `You are a strict grader. Read the outputs in ${args.out_dir}/eval-${e.id}/${cfg}/outputs/ (convert .docx/.xlsx to text first). ` +
