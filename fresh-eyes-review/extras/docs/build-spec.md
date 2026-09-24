@@ -17,9 +17,9 @@ Updated as each phase moves. Agreed changes to this spec are logged in `docs/dec
 | --- | --- | --- |
 | M1. Skill core | ✅ Complete (2026-09-24) | `SKILL.md`, reader selection, single-conversation workflow, markdown report rendered by script, `results.json`. AI-reader check via subagents in Claude Code; copyable prompts elsewhere. |
 | M1b. HTML report | ✅ Complete (2026-09-24) | Pulled forward from 5a at user request: self-contained `report.html` (tabs, filters, copy buttons, light/dark, print), rendered by `scripts/render_report.py`; doubles as a results viewer. |
-| M2. Dogfood | 🟡 In progress | Smoke letter done (zero-config, 8.7 min, ~$2.70 API-equivalent, all quotes verified, no schema errors; saved in `eval/dogfood/`). Client letter, motion, and services agreement written, not yet run. **User review of outputs.** |
+| M2. Dogfood | 🟡 In progress | User ran a draft complaint on claude.ai (fixes from it logged in decisions). Smoke letter done (zero-config, 8.7 min, ~$2.70 API-equivalent, all quotes verified, no schema errors; saved in `eval/dogfood/`). Client letter, motion, and services agreement written, not yet run. **User review of outputs.** |
 | M3. Paste-in prompt + README | 🟡 Drafted | `build/build_portable.py` generates full (~21k tokens) and lite (~15k) prompts; README on-ramps drafted. Not yet tried by hand in ChatGPT/Gemini. |
-| M4. Package + publish v0.1 | ⬜ Not started | Skill zip, tagged release, public repo. |
+| M4. Package + publish v0.1 | 🟡 In progress | Moved into the private `nh-ai-skills` collection (PR #1, 2026-09-24); users zip the skill folder per the collection README. Tag v0.1 after M2. |
 
 After the MVP, in order:
 
