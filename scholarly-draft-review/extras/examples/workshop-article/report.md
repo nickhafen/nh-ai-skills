@@ -1,12 +1,6 @@
 # Scholarly draft review: Clocks Without Notice (workshop draft)
 
-**Plan.** Read as a workshop draft of a law review article, testing your patch-notice claim. Readers: expert in the field, skeptical expert, law colleague outside the subfield. The judge-or-practitioner reader is suggested as a follow-up because the piece proposes a rule for courts.
-
-**Stage:** Workshop draft
-
-**Claim (yours):** Courts should start the limitations clock for software-defect claims no earlier than the manufacturer's public disclosure of the defect (a patch-notice rule).
-
-## Before you rely on this
+<details open><summary><strong>Before you rely on this</strong></summary>
 
 - **These are simulated readers.** The readers are AI simulations of typical readers, not real people. Their reactions are hypotheses, and simulated readers tend to be more agreeable and more alike than real ones.
 - **AI can be wrong, including about sources.** The AI can misread your draft, misstate what it says, or invent or misdescribe sources. Quotes from your draft are checked word for word; summaries and paraphrases aren't. A named work is marked verified only if a search found it, which confirms it exists and seems to address the topic, not that it says what the reader claims.
@@ -15,13 +9,15 @@
 - **Verify before you act.** Check anything you plan to act on against your draft and the sources, and get real readers' reactions before you submit. The feedback plan suggests who to ask.
 - **Your draft went to an AI service.** Follow any rules that apply to your use of AI tools, such as a journal's or publisher's policy.
 
+</details>
+
 ## Priority actions
 
 What matters at this stage: The contribution and how it's positioned; objections; stakes; scope; claims about the literature.
 
 ### 1. The introduction states a topic; your claim first appears in Part III
 
-*High · several readers — raised by Expert in the field, Law colleague outside the subfield, Key-sentence outline*
+*High — raised by Expert in the field, Law colleague outside the subfield, Key-sentence outline*
 
 > “This Article explores how the discovery rule applies to software defects and what courts should make of the manufacturer's power to change the product after the sale.”
 
@@ -31,7 +27,7 @@ The generalist colleague finished the introduction without knowing your position
 
 ### 2. The roadmap promises a framework and a Part IV that aren't in the draft
 
-*High · several readers — raised by Law colleague outside the subfield, Skeptical expert*
+*High — raised by Law colleague outside the subfield, Skeptical expert*
 
 > “Part III develops a framework for software accrual. Part IV responds to objections.”
 
@@ -41,7 +37,7 @@ Two readers went looking for the objections Part and didn't find it. Part III pr
 
 ### 3. The rule lets manufacturers control when the clock starts, and the draft says it rewards prompt disclosure
 
-*High · several readers — raised by Expert in the field, Skeptical expert*
+*High — raised by Expert in the field, Skeptical expert*
 
 > “Third, the rule puts the burden on the party with the information. Manufacturers know when they have found and fixed a defect. Tying accrual to disclosure rewards them for telling owners promptly.”
 
@@ -71,7 +67,7 @@ A flat novelty claim, supported by one footnote on a different question. Experts
 
 ### 6. Part I's history outweighs the argument
 
-*Medium · several readers — raised by Expert in the field, Law colleague outside the subfield*
+*Medium — raised by Expert in the field, Law colleague outside the subfield*
 
 > “The discovery rule has a long pedigree.”
 
@@ -81,7 +77,7 @@ Part I is the longest Part; the proposal gets about five paragraphs. Both the ex
 
 ### 7. The conclusion retreats from a rule to one factor among many
 
-*Medium · several readers — raised by Expert in the field, Skeptical expert*
+*Medium — raised by Expert in the field, Skeptical expert*
 
 > “Courts should consider the timing of a manufacturer's patch disclosures, among other factors, in deciding when a software claim accrues.”
 
@@ -95,9 +91,9 @@ Part III proposes a firm rule; the conclusion proposes a factor. Both experts no
 - No hard cases: defects never disclosed or fixed silently (medium; Skeptical expert)
 - The Keystead story never comes back to test the rule (medium; Law colleague outside the subfield)
 
-## Park for later
+## For a later draft
 
-Real issues, but not for this stage. Come back to them in a later draft.
+Real issues, but not priorities at this stage.
 
 - **Several Part I paragraphs open with a transition or a case, not their point** — k6, k7, and k9 don't say what their paragraphs do for the argument. Worth fixing, but only after Part I is cut; many of these paragraphs may go. *(Key-sentence outline)*
 
@@ -140,12 +136,6 @@ A clear limit that makes the claim easier to defend. *(Skeptical expert)*
 | Before you submit | A judge, clerk, or litigator who handles product cases | Would you know how to apply this rule to a real case, and what would make you cite it? | The piece proposes a rule for courts; a practitioner's read tests whether it's usable. |
 
 When they respond, listen without defending. Ask "Can you say more about that?" rather than explaining what you meant. If a reader found a passage unclear, it was unclear to that reader, whatever you intended. Then respond to each comment, even if the response is to decide against it.
-
-## Related work to check
-
-- Priya Anand, Is Code a Product?, 61 Franklin L. Rev. 1 (2021) — The draft cites it only on whether software is a product. If it also takes up accrual, the 'no scholar has examined' claim fails, so it's the first thing to reread. *(Already cited in the draft; medium confidence; Expert in the field)*
-- Scholarship on accrual rules and statutes of repose for latent product defects — The closest existing conversation. The draft should say how a disclosure-based trigger differs from the accrual rules that work proposes. *(Kind of work to search for; high confidence; Expert in the field)*
-- Law-and-economics work on disclosure incentives and strategic delay — The incentive objection has a literature. Engaging it would show the author has seen the problem. *(Kind of work to search for; medium confidence; Skeptical expert)*
 
 ## By reader
 
@@ -378,7 +368,7 @@ Read alone, the introduction's key sentences give the story, the problem, and th
 ## Method
 
 - **Draft:** document.md (1499 words; working copy `document.md`). This report refers to the draft by filename and doesn't include its text.
-- **Run:** 917700fc0767 · 2026-09-29T16:05:59+00:00 · claude-code · model claude-opus-5-5 · skill content d81c4ed0b083d6a8. Each reader reviewed the draft in turn, in one conversation.
+- **Run:** 561bcb495700 · 2026-09-29T21:37:40+00:00 · claude-code · model claude-opus-5-5 · skill content 6b9b87b751939cb1. Each reader reviewed the draft in turn, in one conversation.
 - **Quotes checked:** 19 of 19 quote the draft word for word.
 - **Named works:** 1 named; 0 verified, 1 already cited, 0 not checked, 0 not found and left out.
 

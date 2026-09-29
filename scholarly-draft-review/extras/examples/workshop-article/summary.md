@@ -1,12 +1,12 @@
 **Plan.** Read as a workshop draft of a law review article, testing your patch-notice claim. Readers: expert in the field, skeptical expert, law colleague outside the subfield. The judge-or-practitioner reader is suggested as a follow-up because the piece proposes a rule for courts.
 **Stage:** Workshop draft
-**Claim (yours):** Courts should start the limitations clock for software-defect claims no earlier than the manufacturer's public disclosure of the defect (a patch-notice rule).
+**Claim:** Courts should start the limitations clock for software-defect claims no earlier than the manufacturer's public disclosure of the defect (a patch-notice rule).
 
 **Top priorities now**
 1. The introduction states a topic; your claim first appears in Part III (Expert in the field, Law colleague outside the subfield, Key-sentence outline)
 2. The roadmap promises a framework and a Part IV that aren't in the draft (Law colleague outside the subfield, Skeptical expert)
 3. The rule lets manufacturers control when the clock starts, and the draft says it rewards prompt disclosure (Expert in the field, Skeptical expert)
-Parked for a later draft: 1 issue(s), listed in the report.
+For a later draft: 1 issue(s), listed in the report.
 
 **Biggest tradeoff:** Expert in the field vs. Law colleague outside the subfield — Where the positioning goes, not only how long it is, affects both readers.
 

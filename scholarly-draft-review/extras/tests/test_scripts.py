@@ -60,9 +60,11 @@ def test_finalize_assembles_valid_results_and_report():
     assert synthesis["parked"] and all(issues[i]["timing"] == "later" for i in synthesis["parked"])
     assert results["document"]["key_sentences"][0]["text"].startswith("On a cold night")
     report = (workdir / "report.md").read_text(encoding="utf-8")
-    for heading in ("## Before you rely on this", "## Priority actions", "## Park for later", "## Who to ask next",
-                    "## Related work to check", "## By reader", "## Key-sentence outline", "## Method"):
+    assert "<summary><strong>Before you rely on this</strong></summary>" in report
+    for heading in ("## Priority actions", "## For a later draft", "## Who to ask next", "## By reader",
+                    "## Key-sentence outline", "## Method"):
         assert heading in report, heading
+    assert "## Related work to check" not in report
     assert (workdir / "summary.md").exists()
 
 
@@ -84,7 +86,7 @@ def test_limitations_are_disclosed_in_summary_and_report():
     summary = (workdir / "summary.md").read_text(encoding="utf-8")
     report = (workdir / "report.md").read_text(encoding="utf-8")
     assert "**Before you rely on this**" in summary
-    assert report.index("## Before you rely on this") < report.index("## Priority actions")
+    assert report.index("Before you rely on this") < report.index("## Priority actions")
     for title, text in quality.STANDING_LIMITATIONS:
         assert f"**{title}.** {text}" in summary and f"**{title}.** {text}" in report, title
     assert "**Your claim was inferred.**" in summary
@@ -112,7 +114,6 @@ def test_named_works_default_to_not_checked_and_never_to_verified():
                                                   "not_found": 0, "not_checked": 2}
     report = (workdir / "report.md").read_text(encoding="utf-8")
     assert "Not checked: confirm it exists before relying on it" in report
-    assert "No search ran, so named works are unchecked." in report
     assert "**2 named works not checked.**" in (workdir / "summary.md").read_text(encoding="utf-8")
 
 
