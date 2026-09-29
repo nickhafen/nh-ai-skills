@@ -144,7 +144,7 @@ def assemble(workdir, platform, model):
     inputs.update(setup.get("inputs", {}))
 
     results = {
-        "schema_version": "0.2",
+        "schema_version": "0.3",
         "run": {"id": uuid.uuid4().hex[:12], "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 "tool_version": TOOL_VERSION, "content_hash": content_hash(), "model": model, "platform": platform},
         "document": {"title": setup.get("title"), "source_file": source.get("source_file"),

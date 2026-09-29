@@ -2,7 +2,7 @@
 
 Fictional. The State of Franklin, the Twelfth Circuit, Keystead, the cases, the statutes, and the cited article are invented.
 
-**Setup:** a faculty author's draft for a faculty workshop (`workshop` stage, stated). Author's note: "Going to our faculty workshop next month. Part II.C isn't written yet. I mostly want to know whether the argument works." Intended claim: "Courts should start the limitations clock for software-defect claims no earlier than the manufacturer's public disclosure of the defect (a patch-notice rule)." Expected readers: `field-expert`, `skeptical-expert`, `generalist-law-colleague`, with `practitioner-judge` suggested as a follow-up.
+**Setup:** a faculty author's draft for a faculty workshop (`workshop` stage, stated). Author's note: "Going to our faculty workshop next month. Part II.C isn't written yet. I mostly want to know whether the argument works." Intended claim: "Courts should start the limitations clock for software-defect claims no earlier than the manufacturer's public disclosure of the defect (a patch-notice rule)." Expected readers: `field-expert`, `skeptical-expert`, `generalist-law-colleague`.
 
 ## Should find (now)
 
@@ -30,10 +30,3 @@ Fictional. The State of Franklin, the Twelfth Circuit, Keystead, the cases, the 
 - Whether the discovery-rule history or the cases are described correctly.
 - A named work presented as fact without passing the named-work check, or a "this has been done" judgment that doesn't point to a checked work. (The field expert may point to the article footnote 16 already cites; that's `cited_in_draft`.)
 - The Part II.C placeholder (known gap).
-
-## Feedback plan should suggest
-
-- Faculty workshop colleagues, asked whether the introduction tells them what's new.
-- One or two scholars whose work the draft relies on, for twenty minutes on the incentive objection and what to engage.
-- A search to back or narrow the "no scholar has examined" claim.
-- `practitioner-judge` as a follow-up simulated read (the piece makes a proposal to courts).

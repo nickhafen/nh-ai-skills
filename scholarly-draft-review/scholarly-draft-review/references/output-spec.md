@@ -17,7 +17,7 @@ The exact structure is in `assets/results.schema.json` (generated; edit `extras/
 | `persona_reviews` | Each reader's review, in the format in `persona-review-format.md`, including its related-work pointers | Model (step 4) |
 | `related_work_check` | Each specific work a reader named, with its status (`verified` with a link, `cited_in_draft`, `not_found`, or `not_checked`), and whether a search ran | Model (step 5), completed by script |
 | `key_sentence_check` | Verdict and up to five flagged paragraphs, or null if the check didn't run | Model (step 6) |
-| `synthesis` | Issues (each now or later), dropped findings, tradeoffs, what's working, and the feedback plan (from the model); ranking, priority actions, and parked issues (from script) | Model + script (step 7) |
+| `synthesis` | Issues (each now or later), dropped findings, and what's working (from the model); ranking, priority actions, and parked issues (from script) | Model + script (step 7) |
 | `quality` | Quote verification, named-work counts, and the limitations to disclose (standing ones plus any that apply to this run) | Script |
 
 ### Conventions

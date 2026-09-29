@@ -2,7 +2,7 @@
 
 Design choices for scholarly-draft-review, newest first.
 
-## 2026-09-29 — Leaner reports: one issue list; no tradeoffs or feedback plan
+## 2026-09-29 — Leaner reports; no tradeoffs, feedback plan, or next readers
 
 The reports had grown sections that repeated each other or asked the author to weigh more than they could act on. In both `report.html` and `report.md`:
 
@@ -11,7 +11,7 @@ The reports had grown sections that repeated each other or asked the author to w
 - **Removed from the reports:** tradeoffs, "who to ask next" with its listening note, the stage ladder, and the related-work section. Named works still appear under the reader who named them, with their check status.
 - **Reader details** show each reader's fuller finding text, without the one-line reason, the quote, or the finding number.
 
-The chat summary drops the biggest tradeoff and who to ask next too, and the skill's description no longer promises who to ask next. The "Verify before you act" limitation no longer points to the feedback plan. Asking only who should read a draft still gets the stage, the readers, and real readers to suggest (SKILL.md, before step 1).
+**No tradeoffs or feedback plan at all, and nothing about who should read the draft next.** The synthesis no longer produces `tradeoffs` or `feedback_plan` (schema version 0.3), and the chat summary and skill description drop them. When two readers want opposite things from a passage, that becomes one issue stating both sides, with the choice left to the author. An unverified "not new" finding's search becomes the issue's direction. Also removed: the "who should read my draft?" shortcut, the stage map's "Real readers to suggest" table (with its read-aloud and listening notes), the plan line's list of readers left for a later stage, the `practitioner-judge` follow-up suggestion, and the feedback-plan expectations in the fixtures. The "Verify before you act" limitation no longer points to a plan. Reader selection is unchanged: stage, defaults, and swaps still pick the readers, and authors run the skill again on a revised draft to get the next stage's readers.
 
 ## 2026-09-29 — Simplified for authors: no cold read, next actions, attention maps, or next-steps tab
 

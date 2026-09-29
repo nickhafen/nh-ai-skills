@@ -1,4 +1,4 @@
-**Plan.** Read as a workshop draft of a law review article, testing your patch-notice claim. Readers: expert in the field, skeptical expert, law colleague outside the subfield. The judge-or-practitioner reader is suggested as a follow-up because the piece proposes a rule for courts.
+**Plan.** Read as a workshop draft of a law review article, testing your patch-notice claim. Readers: expert in the field, skeptical expert, law colleague outside the subfield.
 **Stage:** Workshop draft
 **Claim:** Courts should start the limitations clock for software-defect claims no earlier than the manufacturer's public disclosure of the defect (a patch-notice rule).
 

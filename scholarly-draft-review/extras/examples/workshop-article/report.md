@@ -372,7 +372,7 @@ Read alone, the introduction's key sentences give the story, the problem, and th
 ## Method
 
 - **Draft:** document.md (1499 words; working copy `document.md`). This report refers to the draft by filename and doesn't include its text.
-- **Run:** a561eaab4f00 · 2026-09-29T22:03:47+00:00 · claude-code · model claude-opus-5-5 · skill content 257c2302d76d6222. Each reader reviewed the draft in turn, in one conversation.
+- **Run:** b8c6daca38d5 · 2026-09-29T22:13:20+00:00 · claude-code · model claude-opus-5-5 · skill content a98629fb3214b33a. Each reader reviewed the draft in turn, in one conversation.
 - **Quotes checked:** 19 of 19 quote the draft word for word.
 - **Named works:** 1 named; 0 verified, 1 already cited, 0 not checked, 0 not found and left out.
 

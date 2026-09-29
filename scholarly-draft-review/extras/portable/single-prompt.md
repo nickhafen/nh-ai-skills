@@ -30,8 +30,6 @@ The only thing required is the draft. Everything else is optional: the stage, wh
 
 Don't ask questions.
 
-**If the user only asks who should read the draft** (or what feedback to get now), do steps 1–3, give the plan and a feedback plan from "Real readers to suggest" in `stage-map.md`, and offer to run the review. Don't run it.
-
 Read `house-settings.md` for the user's defaults.
 
 Keep two things apart. The **author's note** (stage, feedback wanted, known gaps, prior feedback) goes to briefed readers. The **intended claim** goes to no reader; the review tests whether readers find it on their own.
@@ -52,7 +50,7 @@ Give the author's note only to **briefed** readers. **Cold** readers get only wh
 
 If the user describes a reader in a sentence, draft a persona in the `_template.md` schema, show it briefly, and use it.
 
-Tell the user the plan in two or three lines: the stage and why, the claim (marked inferred if it is), the readers, and which readers are left for a later stage. Then continue.
+Tell the user the plan in two or three lines: the stage and why, the claim (marked inferred if it is), and the readers. Then continue.
 
 ## Step 4. Reader reviews
 
@@ -85,7 +83,7 @@ A reader should be able to follow the argument from the opening sentence of each
 
 ## Step 7. Synthesis
 
-Read `synthesis-rubric.md` and apply it: screen findings, merge duplicates, classify, mark each issue now or later, find tradeoffs, note what's working, and write a feedback plan naming the kinds of real readers to ask next and what to ask them.
+Read `synthesis-rubric.md` and apply it: screen findings, merge duplicates, classify, mark each issue now or later, and note what's working.
 
 Rank the **now** issues yourself using the rubric's weights, and choose up to seven priority actions.
 
@@ -137,7 +135,7 @@ workshop: field-expert, skeptical-expert, practitioner-judge
 
 ### Stage map
 
-This file tells the skill how to place a draft in a stage, which readers to use at each stage, what feedback matters now and what can wait, and which real people to suggest next. You don't need to read it to use the tool. It matters if you want to know why certain readers were picked or want to change the defaults (see `house-settings.md`).
+This file tells the skill how to place a draft in a stage, which readers to use at each stage, and what feedback matters now and what can wait. You don't need to read it to use the tool. It matters if you want to know why certain readers were picked or want to change the defaults (see `house-settings.md`).
 
 Persona names below match the files in `personas/`.
 
@@ -207,13 +205,13 @@ The same defaults apply to every author (see "One standard for every author").
 | `workshop` | `field-expert`, `skeptical-expert`, `generalist-law-colleague` |
 | `submission` | `articles-editor`, `field-expert`, `skeptical-expert` |
 
-Early stages use two readers on purpose: at that point, two nonexpert reads give the author what they need, and an expert read would be premature. Users can ask for more readers; each adds usage and time. Say which readers were left for a later stage so the user can ask for them now.
+Early stages use two readers on purpose: at that point, two nonexpert reads give the author what they need, and an expert read would be premature. Users can ask for more readers; each adds usage and time.
 
 #### Swaps
 
 Apply after the defaults, in this order.
 
-- **Prescriptive or doctrinal piece aimed at courts, legislatures, agencies, or practice:** at `submission`, `practitioner-judge` replaces `field-expert` (the expert read should have happened at the workshop stage). At `workshop`, suggest `practitioner-judge` as a follow-up review, or run it as a fourth reader if the user asks.
+- **Prescriptive or doctrinal piece aimed at courts, legislatures, agencies, or practice:** at `submission`, `practitioner-judge` replaces `field-expert` (the expert read should have happened at the workshop stage). At `workshop`, run it as a fourth reader if the user asks.
 - **Empirical or interdisciplinary piece:** adapt `skeptical-expert` (or `field-expert` at `full`) to the methods focus of the relevant discipline.
 - **Peer-reviewed or interdisciplinary journal:** at `submission`, replace `articles-editor` with `skeptical-expert` adapted as an anonymous peer reviewer, and add `generalist-law-colleague` adapted to a reader from the journal's discipline.
 - **Job-talk paper or appointments packet:** put `generalist-law-colleague`, adapted as an appointments committee member, in the first slot.
@@ -225,23 +223,6 @@ Apply after the defaults, in this order.
 
 - **Named-work check:** every stage, whenever a reader names a specific work, author, or case the draft doesn't cite. Each one is looked up before the author sees it (SKILL.md step 5).
 - **Key-sentence check:** stages `early` through `submission`, when the draft has at least eight prose paragraphs. Skip it for `idea`.
-
-#### Real readers to suggest
-
-The synthesis ends with a feedback plan: which real people to show the draft to next, when, and what to ask them. Draw on this table, then tailor it to the findings. Telling readers what kind of feedback you want gets you better feedback.
-
-| Stage | Who to ask | What to ask them |
-| --- | --- | --- |
-| `idea` | A writing partner or group (nonexperts), and a mentor if you have one | Nonexperts: "What question do you think I'm asking? Would you want to read the answer?" Mentor: "Is this narrow enough, and is it an argument or a survey?" |
-| `idea` | Not a reader: a preemption search | Search law reviews, SSRN, and the major databases for the claim, not just the topic, before investing more. The expert readers' suggestions are a place to start, not a substitute. |
-| `early` | Two or three nonexperts | "Where did you get lost? What do you think my claim is?" |
-| `full` | Nonexperts, then a law colleague outside the subfield | "Where is it least clear, least organized, and least persuasive?" |
-| `workshop` | Law colleagues (a faculty workshop or works-in-progress session), then one or two scholars whose work you cite most | Colleagues: "Does the introduction tell you what's new and why it matters?" Experts, for twenty minutes: "What are the biggest problems, what should I engage that I haven't, and where would you send it?" |
-| `submission` | Any Capital-E Expert you haven't asked yet; one cold reader for the title, abstract, and introduction | "Reading only the abstract and first five pages, what is the claim and why is it new?" |
-
-At every stage, suggest reading the draft aloud before sending it to a real reader.
-
-**How to use what you hear** (include once in every report): listen without defending. Ask "Can you say more about that?" rather than explaining what you meant. If a reader found a passage unclear, it was unclear to that reader, whatever you intended. Then respond to each comment, even if the response is to decide against it.
 
 #### Unknown kinds of pieces
 
@@ -316,7 +297,7 @@ A missing look-for item is automatically a finding if it matters to the reader's
 
 ### Synthesis rubric
 
-The synthesis reads every reader review and the key-sentence check and turns them into one set of results for the author. It flags issues, sorts them into now and later, shows tradeoffs, and suggests who to ask next. It never drafts or rewrites.
+The synthesis reads every reader review and the key-sentence check and turns them into one set of results for the author. It flags issues, sorts them into now and later, and notes what's working. It never drafts or rewrites.
 
 #### Inputs
 
@@ -336,7 +317,7 @@ Apply these rules to every finding (including "missing" look-for items and key-s
    - Keep: "An expert is likely to test this characterization of the case law; flag it for checking." Drop: "This characterization of the case law is wrong."
 4. **Named works must check out** (`unverified_source`). Use `related-work.json`.
    - Drop a finding that rests on a work marked `not_found`. If the point survives without the work ("the draft doesn't engage empirical work on X"), keep that version and note the change.
-   - A finding that the claim isn't new stays only if it rests on a work marked `verified` or `cited_in_draft`. Otherwise, rewrite it as a question for a search ("an expert would ask how this differs from work on X") and put the search in the feedback plan.
+   - A finding that the claim isn't new stays only if it rests on a work marked `verified` or `cited_in_draft`. Otherwise, rewrite it as a question for a search ("an expert would ask how this differs from work on X"), with running that search as its direction.
    - A finding that rests on a work marked `not_checked` stays, but its summary must say the work hasn't been checked.
 5. **In the reader's lane** (`out_of_lane`). Drop findings under the persona's "out of scope" section, findings that ask the piece to be a different genre, and findings that only point out placeholders or notes to self before `submission`.
 6. **Known gaps** (`known_gap`). Drop findings about gaps the author's note already names.
@@ -351,11 +332,12 @@ Two findings are duplicates if they concern the same (or overlapping) passage an
 - **Finding:** raised by one or more readers.
 - **Claim mismatch:** a reader's "main point as understood" differs from the author's claim, or a reader couldn't state a claim at all. Always high severity. Name the readers and what each thought the draft argued.
 - **Key sentence:** from the key-sentence check: paragraphs whose opening doesn't say what they're for, or an outline that doesn't tell the argument.
-- **Tradeoff:** two readers want opposite things from the same passage (the outsider wants more background; the expert wants less). Present both sides neutrally. Don't pick one.
+
+When two readers want opposite things from the same passage (the outsider wants more background; the expert wants less), make it one issue that states both sides neutrally. Its direction leaves the choice to the author; don't pick a side.
 
 #### Step 4: Now or later
 
-Mark every issue **now** or **later** using "What matters at each stage" in `stage-map.md`. Anything that would sink the piece (no discernible claim, a claim that changes between the introduction and the conclusion, an argument that doesn't reach its conclusion) is **now** at every stage. Only **now** issues become priority actions; **later** issues go in a short "park for later" list so the author doesn't lose them.
+Mark every issue **now** or **later** using "What matters at each stage" in `stage-map.md`. Anything that would sink the piece (no discernible claim, a claim that changes between the introduction and the conclusion, an argument that doesn't reach its conclusion) is **now** at every stage. Only **now** issues become priority actions; **later** issues follow them in the report so the author doesn't lose them.
 
 #### Step 5: Rank
 
@@ -372,12 +354,10 @@ Only **now** issues are eligible for the top seven. Ties go to the issue closest
 #### Step 6: Produce the synthesis
 
 1. **Issues:** every surviving issue with title, quote, summary, supporting findings, each reader's reason, severity, category, now or later, and a direction in one short phrase ("state the claim in the first paragraph"), never a rewritten passage.
-2. **Tradeoffs:** each with the passage, what each reader wants, and why. No recommendation.
-3. **What's working:** passages at least one reader said to keep.
-4. **Feedback plan:** two to four real readers to ask next, in order, from "Real readers to suggest" in `stage-map.md`, tailored to the findings: who (a kind of person, never a named individual), when (`now`, `next_draft`, or `before_submission`), what to ask them, and why. If a finding can only be settled by a real expert or a search (for example, whether the claim is new), say so here.
-5. **Dropped findings,** with their rules.
+2. **What's working:** passages at least one reader said to keep.
+3. **Dropped findings,** with their rules.
 
-Related work isn't written here: the report lists it from the reviews and `related-work.json`, with verified works linked, unchecked ones labeled, and works that weren't found left out.
+Related work isn't written here: the report shows it under each reader, from the reviews and `related-work.json`, with verified works linked, unchecked ones labeled, and works that weren't found left out.
 
 #### Voice and framing
 

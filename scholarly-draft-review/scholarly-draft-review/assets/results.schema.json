@@ -20,7 +20,7 @@
   ],
   "properties": {
     "schema_version": {
-      "const": "0.2"
+      "const": "0.3"
     },
     "run": {
       "type": "object",
@@ -907,49 +907,6 @@
             "additionalProperties": false
           }
         },
-        "tradeoffs": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "quote": {
-                "type": "string"
-              },
-              "sides": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "reader": {
-                      "type": "string"
-                    },
-                    "wants": {
-                      "type": "string"
-                    },
-                    "why": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "reader",
-                    "wants",
-                    "why"
-                  ],
-                  "additionalProperties": false
-                }
-              },
-              "note": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "quote",
-              "sides",
-              "note"
-            ],
-            "additionalProperties": false
-          }
-        },
         "whats_working": {
           "type": "array",
           "items": {
@@ -975,46 +932,12 @@
             ],
             "additionalProperties": false
           }
-        },
-        "feedback_plan": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "who": {
-                "type": "string"
-              },
-              "when": {
-                "type": "string",
-                "enum": [
-                  "now",
-                  "next_draft",
-                  "before_submission"
-                ]
-              },
-              "ask": {
-                "type": "string"
-              },
-              "why": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "who",
-              "when",
-              "ask",
-              "why"
-            ],
-            "additionalProperties": false
-          }
         }
       },
       "required": [
         "issues",
         "dropped_findings",
-        "tradeoffs",
-        "whats_working",
-        "feedback_plan"
+        "whats_working"
       ],
       "additionalProperties": false,
       "description": "What the synthesis writes. See references/synthesis-rubric.md."

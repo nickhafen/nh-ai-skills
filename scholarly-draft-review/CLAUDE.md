@@ -6,7 +6,7 @@ A skill that gives stage-appropriate reader feedback on legal scholarship drafts
 
 ## Where things are
 
-- `scholarly-draft-review/references/`: personas (all in the `_template.md` schema), `stage-map.md` (stages, default readers, swaps, real-reader suggestions), house settings, reader review format, cold-read prompts, synthesis rubric, output spec.
+- `scholarly-draft-review/references/`: personas (all in the `_template.md` schema), `stage-map.md` (stages, default readers, swaps), house settings, reader review format, cold-read prompts, synthesis rubric, output spec.
 - `scholarly-draft-review/assets/results.schema.json` is **generated** by `extras/build/build_schema.py`. Edit the builder, not the JSON.
 - `scholarly-draft-review/scripts/quality.py` (stdlib only): section splitting (law-review headings), the key-sentence outline, quote verification, ranking with now/later timing, coverage, run-quality metrics.
 - `extras/portable/single-prompt.md` is **generated** by `extras/build/build_portable.py` from SKILL.md's `skill-only` / `portable-only` markers plus the reference files.
@@ -32,7 +32,7 @@ If you change a working-file format, rerun `finalize.py` on `extras/examples/wor
 - **Written for authors, and every author is a scholar.** Nothing in the skill takes a grader's view (no assignment requirements, no grading). Author status never changes the readers, severity, or tone; only the stage and where the piece is headed do.
 - **Limitations are always disclosed.** `quality.STANDING_LIMITATIONS` plus run-specific items appear under "Before you rely on this" at the top of the chat summary, `report.md`, and the HTML report's header. The standing texts must match "Limitations to disclose" in `synthesis-rubric.md`; a test checks this.
 - **No reader sees the intended claim.** Briefed readers get the author's note; cold readers get only what a real reader in that role would see.
-- **Stage drives everything:** reader choice, what counts as "now" versus "later," and the real-reader plan. User guidance overrides inference.
+- **Stage drives everything:** reader choice and what counts as "now" versus "later." User guidance overrides inference.
 - Personas describe the typical reader by role, goal, knowledge, and incentives. No names, backstories, quirks, or demographic attributes. Every persona keeps the stance instruction verbatim from `_template.md` (the checker enforces it).
 - Scripts handle anything deterministic. Keep SKILL.md lean; put detail in `references/`.
 - Fixtures are fictional. No real unpublished drafts in the repo.

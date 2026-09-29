@@ -75,6 +75,9 @@ def test_finalize_assembles_valid_results_and_report():
     summary = (workdir / "summary.md").read_text(encoding="utf-8")
     for cut in ("Biggest tradeoff", "Who to ask next", "feedback plan"):
         assert cut not in summary and cut not in report, cut
+    # The synthesis no longer produces tradeoffs or a feedback plan.
+    assert "tradeoffs" not in synthesis["output"] and "feedback_plan" not in synthesis["output"]
+    assert results["schema_version"] == "0.3"
 
 
 def test_results_and_reports_refer_to_the_draft_by_filename():
