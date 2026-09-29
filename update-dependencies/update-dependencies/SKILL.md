@@ -1,6 +1,6 @@
 ---
 name: update-dependencies
-description: Update pinned third-party code (CDN script URLs, vendored libraries, runtime imports, package manifests) safely: check for security advisories and new versions, bump pins, recompute SRI hashes, review changelogs for breaking changes, and verify the app still works. Use when the user asks to update dependencies/libraries, resolve a "Dependency watch" issue or Dependabot alert, fix a vulnerable package, or check whether third-party code is current.
+description: 'Update pinned third-party code (CDN script URLs, vendored libraries, runtime imports, package manifests) safely: check for security advisories and new versions, bump pins, recompute SRI hashes, review changelogs for breaking changes, and verify the app still works. Use when the user asks to update dependencies/libraries, resolve a "Dependency watch" issue or Dependabot alert, fix a vulnerable package, or check whether third-party code is current.'
 ---
 
 # Update dependencies

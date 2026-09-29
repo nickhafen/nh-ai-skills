@@ -87,12 +87,25 @@ def _skipped(path):
 
 # ---------------------------------------------------------------- frontmatter
 
+FRONTMATTER = re.compile(r"---\r?\n(.*?)\r?\n---\s*(\r?\n|$)", re.S)
+TOP_KEY = re.compile(r"([A-Za-z_][\w-]*):(?:\s+(.*))?$")
+
+# Claude.ai's published upload rules for SKILL.md frontmatter.
+ALLOWED_KEYS = {"name", "description", "license", "allowed-tools", "metadata"}
+MAX_NAME = 64
+MAX_DESCRIPTION = 1024
+
+
+def _frontmatter_block(text):
+    m = FRONTMATTER.match(text.lstrip("\ufeff"))
+    return m.group(1) if m else None
+
+
 def parse_frontmatter(text):
     """Read the simple YAML subset SKILL.md frontmatter uses: top-level
     `key: value` pairs, quoted strings, and folded or literal blocks."""
-    text = text.lstrip("﻿")
-    m = re.match(r"---\r?\n(.*?)\r?\n---\s*(\r?\n|$)", text, re.S)
-    if not m:
+    block = _frontmatter_block(text)
+    if block is None:
         return None
     fields, key, lines, style = {}, None, [], None
 
@@ -104,8 +117,8 @@ def parse_frontmatter(text):
         else:
             fields[key] = " ".join(l.strip() for l in lines if l.strip())
 
-    for line in m.group(1).splitlines():
-        top = re.match(r"([A-Za-z_][\w-]*):(?:\s+(.*))?$", line)
+    for line in block.splitlines():
+        top = TOP_KEY.match(line)
         if top and not line[0].isspace():
             flush()
             key, value = top.group(1), (top.group(2) or "").strip()
@@ -122,6 +135,67 @@ def parse_frontmatter(text):
             lines.append(line)
     flush()
     return fields
+
+
+def _plain_scalar_problem(value):
+    """Why an unquoted YAML value would fail to parse, or None."""
+    if value[0] in "[]{}&*!%@`,#" or value.startswith(("- ", "? ")):
+        return f"starts with '{value[0]}', which YAML treats as special"
+    if re.search(r":(\s|$)", value):
+        return "contains a colon followed by a space"
+    if " #" in value:
+        return "contains ' #', which YAML reads as a comment"
+    return None
+
+
+def frontmatter_problems(text):
+    """Everything in SKILL.md frontmatter that Claude.ai's upload would
+    reject: invalid YAML, unknown keys, and the name and description rules."""
+    block = _frontmatter_block(text)
+    if block is None:
+        return ["no frontmatter (the file must start with a --- line)"]
+    problems, in_plain = [], False
+    for n, line in enumerate(block.splitlines(), start=2):
+        if not line.strip():
+            continue
+        top = TOP_KEY.match(line)
+        if top and not line[0].isspace():
+            value = (top.group(2) or "").strip()
+            in_plain = bool(value) and value[0] not in "\"'|>"
+        elif line[0].isspace():
+            value = line.strip() if in_plain else ""
+        else:
+            problems.append(f"line {n} isn't a 'key: value' line")
+            continue
+        why = value and in_plain and _plain_scalar_problem(value)
+        if why:
+            problems.append(f"line {n}: the unquoted value {why}, so it isn't "
+                            "valid YAML. Put the whole value in quotes.")
+
+    fields = parse_frontmatter(text)
+    extra = sorted(set(fields) - ALLOWED_KEYS)
+    if extra:
+        problems.append(f"keys Claude.ai doesn't allow: {', '.join(extra)} "
+                        f"(allowed: {', '.join(sorted(ALLOWED_KEYS))})")
+    name, description = fields.get("name", ""), fields.get("description", "")
+    if not name:
+        problems.append("'name' is missing")
+    elif not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", name):
+        problems.append(f"name '{name}' must be lowercase letters, digits, "
+                        "and single hyphens")
+    elif len(name) > MAX_NAME:
+        problems.append(f"name is {len(name)} characters (max {MAX_NAME})")
+    elif "anthropic" in name or "claude" in name:
+        problems.append(f"name '{name}' can't contain 'anthropic' or 'claude'")
+    if not description:
+        problems.append("'description' is missing")
+    else:
+        if len(description) > MAX_DESCRIPTION:
+            problems.append(f"description is {len(description)} characters "
+                            f"(max {MAX_DESCRIPTION})")
+        if "<" in description or ">" in description:
+            problems.append("description can't contain < or >")
+    return problems
 
 
 # ---------------------------------------------------------------- README table
@@ -272,14 +346,12 @@ def find_skills(root, paths):
 
 
 def skill_meta(root, skill_id, rows):
-    fm = parse_frontmatter(
-        (root / skill_id / skill_id / "SKILL.md").read_text(encoding="utf-8"))
-    if fm is None:
-        raise BuildError(f"{skill_id}/{skill_id}/SKILL.md has no frontmatter")
-    for field in ("name", "description"):
-        if not fm.get(field):
-            raise BuildError(
-                f"{skill_id}/{skill_id}/SKILL.md frontmatter is missing '{field}'")
+    rel = f"{skill_id}/{skill_id}/SKILL.md"
+    text = (root / rel).read_text(encoding="utf-8")
+    problems = frontmatter_problems(text)
+    if problems:
+        raise BuildError(f"{rel} frontmatter: " + "; ".join(problems))
+    fm = parse_frontmatter(text)
 
     summary, pre = fm["description"], False
     if skill_id in rows:
@@ -316,12 +388,16 @@ def _remove_tree(path):
 
 def build(root, out):
     root, out = Path(root).resolve(), Path(out).resolve()
+    # The marker is written first, so even a failed build can be cleared next
+    # time. Dotfiles are left out of the Pages upload.
+    marker = out / ".skills-site-build"
     if out.exists():
-        if any(out.iterdir()) and not (out / "manifest.json").exists():
+        if any(out.iterdir()) and not marker.exists():
             raise BuildError(f"{out} exists and isn't a previous build; "
                              "not deleting it")
         _remove_tree(out)
     (out / "downloads").mkdir(parents=True)
+    marker.write_text("Output of site/build.py; deleted on each build.\n")
 
     paths = list_files(root)
     rows = readme_rows(root)

@@ -115,6 +115,14 @@ class Fixtures(unittest.TestCase):
         self.assertEqual(roles, {"demo": "skill", "extras": "extras",
                                  "README.md": None})
 
+    def test_failed_build_does_not_block_the_next(self):
+        self.write("demo/demo/SKILL.md", "---\nname: demo\ndescription: a: b\n---\n")
+        with self.assertRaises(build.BuildError):
+            build.build(self.root, self.out)
+        self.write("demo/demo/SKILL.md", "---\nname: demo\ndescription: 'a: b'\n---\n")
+        build.build(self.root, self.out)
+        self.assertTrue((self.out / "downloads/demo.zip").is_file())
+
     def test_refuses_to_delete_unrelated_out_folder(self):
         self.write("demo/demo/SKILL.md",
                    "---\nname: demo\ndescription: x\n---\n")
@@ -135,6 +143,46 @@ class Frontmatter(unittest.TestCase):
 
     def test_no_frontmatter(self):
         self.assertIsNone(build.parse_frontmatter("# Title\n"))
+
+
+class UploadRules(unittest.TestCase):
+    """frontmatter_problems() mirrors what Claude.ai's upload rejects."""
+
+    def problems(self, body):
+        return build.frontmatter_problems(f"---\n{body}\n---\n# Skill\n")
+
+    def test_valid_frontmatter_passes(self):
+        self.assertEqual(self.problems(
+            "name: my-skill\ndescription: 'Does this: a thing, \"well\".'\n"
+            "license: MIT\nmetadata:\n  status: pre-release"), [])
+
+    def test_unquoted_colon_space_fails(self):
+        # The mistake update-dependencies had.
+        found = self.problems("name: x\ndescription: Updates code safely: checks it.")
+        self.assertEqual(len(found), 1)
+        self.assertIn("line 3", found[0])
+        self.assertIn("colon followed by a space", found[0])
+
+    def test_colon_in_continuation_line_fails(self):
+        found = self.problems("name: x\ndescription: Does a thing\n  and then: more.")
+        self.assertIn("line 4", found[0])
+
+    def test_colon_without_space_is_fine(self):
+        self.assertEqual(self.problems("name: x\ndescription: See https://example.com."), [])
+
+    def test_unknown_key_fails(self):
+        found = self.problems("name: x\ndescription: y\nstatus: pre-release")
+        self.assertIn("status", found[0])
+
+    def test_name_rules(self):
+        for name in ("My-Skill", "my_skill", "my--skill", "-skill", "claude-helper",
+                     "x" * 65):
+            self.assertTrue(self.problems(f"name: {name}\ndescription: y"), name)
+
+    def test_description_rules(self):
+        self.assertTrue(self.problems("name: x\ndescription: Uses <tags>."))
+        self.assertTrue(self.problems(f"name: x\ndescription: {'a' * 1025}"))
+        self.assertTrue(self.problems("name: x"))
 
 
 class ReadmeSummary(unittest.TestCase):
