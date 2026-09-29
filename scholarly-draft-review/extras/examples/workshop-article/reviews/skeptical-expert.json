@@ -1,0 +1,87 @@
+{
+  "main_point": "Courts should start the limitations clock for software defects at the manufacturer's public patch note, because owners can't see code.",
+  "look_for": [
+    {
+      "item": "The strongest counterargument, stated fairly and answered",
+      "status": "missing",
+      "quote": "Part IV responds to objections.",
+      "note": "The roadmap promises objections; none are addressed."
+    },
+    {
+      "item": "Premises the argument needs but never states (normative commitments, empirical assumptions, a baseline)",
+      "status": "unclear_or_buried",
+      "quote": "Tying accrual to disclosure rewards them for telling owners promptly.",
+      "note": "Assumes manufacturers will disclose, and disclose accurately. Never stated or defended."
+    },
+    {
+      "item": "Claims worded more strongly than the support on the page",
+      "status": "unclear_or_buried",
+      "quote": "Second, the rule is administrable.",
+      "note": "Asserted without addressing vague, partial, or buried patch notes."
+    },
+    {
+      "item": "The step from description to prescription, and whether the draft justifies it",
+      "status": "clear",
+      "quote": "When the product can change after the sale, asking when the owner should have discovered the defect is asking the wrong question.",
+      "note": "The move from the fixed-product premise to a new accrual rule is motivated."
+    },
+    {
+      "item": "Hard cases or examples that test the proposal",
+      "status": "missing",
+      "quote": "The rule would not displace the discovery rule for defects that owners can find without help.",
+      "note": "No example of a vague patch note, a defect never disclosed, or a defect fixed silently."
+    },
+    {
+      "item": "Consistency across Parts in definitions, the scope of the claim, and the standard applied",
+      "status": "unclear_or_buried",
+      "quote": "Courts should consider the timing of a manufacturer's patch disclosures, among other factors, in deciding when a software claim accrues.",
+      "note": "'Latent' shifts meaning between Parts I and III, and the conclusion shifts from a rule to a factor."
+    }
+  ],
+  "findings": [
+    {
+      "quote": "Third, the rule puts the burden on the party with the information. Manufacturers know when they have found and fixed a defect. Tying accrual to disclosure rewards them for telling owners promptly.",
+      "issue": "The rule gives manufacturers a reason to delay or bury disclosure, and the draft claims the opposite",
+      "why_it_matters": "This is the first objection a commentator will raise. As written, the third advantage reads as if the author hasn't noticed that the defendant now controls when the clock starts.",
+      "severity": "high"
+    },
+    {
+      "quote": "Part IV responds to objections.",
+      "issue": "The promised objections Part is missing",
+      "why_it_matters": "A reader who trusts the roadmap will look for answers that aren't there, and that missing Part is where the incentive problem has to be met.",
+      "severity": "high"
+    },
+    {
+      "quote": "the limitations period should begin to run no earlier than the date on which the manufacturer publicly discloses the defect",
+      "issue": "No answer for defects that are never disclosed or are fixed silently",
+      "why_it_matters": "'No earlier than' disclosure implies the clock may never start for an undisclosed defect. A skeptic will press on whether that's intended.",
+      "severity": "medium"
+    },
+    {
+      "quote": "A defect is latent, in the language of these cases, when the manufacturer could not have known of it at the time of sale.",
+      "issue": "'Latent' changes meaning between Part I and Part III",
+      "why_it_matters": "Part III uses 'latent defect' for a defect the owner can't see. A careful reader will notice the shift and ask which standard the rule uses.",
+      "severity": "medium"
+    },
+    {
+      "quote": "Courts should consider the timing of a manufacturer's patch disclosures, among other factors, in deciding when a software claim accrues.",
+      "issue": "The conclusion retreats from a rule to a factor",
+      "why_it_matters": "A skeptic attacks whichever version is weaker; stating two versions invites the charge that the author isn't sure.",
+      "severity": "medium"
+    }
+  ],
+  "what_works": [
+    {
+      "quote": "The patch-notice rule applies only where the defect lives in code that the owner cannot see.",
+      "note": "A clear limit. Narrowing the claim this way makes it easier to defend."
+    }
+  ],
+  "related_work": [
+    {
+      "work": "Law-and-economics work on disclosure incentives and strategic delay",
+      "specific": false,
+      "why": "The incentive objection has a literature. Engaging it would show the author has seen the problem.",
+      "confidence": "medium"
+    }
+  ]
+}

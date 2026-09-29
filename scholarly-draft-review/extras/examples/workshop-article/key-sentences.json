@@ -1,0 +1,9 @@
+{
+  "verdict": "Read alone, the introduction's key sentences give the story, the problem, and the tool, but the last one (k4) announces a topic, so the outline has no thesis until k17 in Part III. k5 through k12 tell a history without saying why it matters to software. From k13 on, the outline tells the argument well.",
+  "flags": [
+    {"paragraph_id": "k4", "quote": "This Article explores how the discovery rule applies to software defects and what courts should make of the manufacturer's power to change the product after the sale.", "issue": "The introduction's last key sentence announces a topic; the claim first appears at k17."},
+    {"paragraph_id": "k6", "quote": "Moreover, the early exceptions were narrow.", "issue": "Opens with a transition; the paragraph's point isn't tied to the argument."},
+    {"paragraph_id": "k7", "quote": "In Hollis v. Brandt Manufacturing Co., the Twelfth Circuit applied the modern rule to a defective furnace valve that leaked for years before anyone noticed.", "issue": "Opens with a case rather than a point, and sits out of order between the nineteenth-century rule and the mid-century disease cases."},
+    {"paragraph_id": "k9", "quote": "Medical malpractice followed.", "issue": "Says what comes next in the history, not why it matters for software."}
+  ]
+}

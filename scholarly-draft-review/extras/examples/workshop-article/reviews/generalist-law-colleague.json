@@ -1,0 +1,84 @@
+{
+  "main_point": "It's about whether the discovery rule works for software; I couldn't tell what the author wanted courts to do until Part III.",
+  "look_for": [
+    {
+      "item": "The claim and the contribution, stated in the introduction's first few pages",
+      "status": "missing",
+      "quote": "This Article explores how the discovery rule applies to software defects",
+      "note": "A topic, not a claim."
+    },
+    {
+      "item": "A roadmap that matches the Parts that follow",
+      "status": "unclear_or_buried",
+      "quote": "Part III develops a framework for software accrual. Part IV responds to objections.",
+      "note": "Part III proposes a rule, not a framework, and there's no Part IV."
+    },
+    {
+      "item": "Background sized to what the argument needs, not a survey of the whole area",
+      "status": "unclear_or_buried",
+      "quote": "Part I traces the history of the discovery rule.",
+      "note": "Part I is the longest Part; I needed two paragraphs of it."
+    },
+    {
+      "item": "Stakes that reach beyond specialists in the subfield",
+      "status": "clear",
+      "quote": "Software now runs the locks on our doors, the brakes in our cars, and the pumps that deliver insulin.",
+      "note": "The stakes land for any reader."
+    },
+    {
+      "item": "Subfield terms and acronyms explained at first use",
+      "status": "clear",
+      "quote": "Under the discovery rule, a claim does not accrue until the plaintiff knew or reasonably should have known of the injury and its cause.",
+      "note": "The key doctrine is explained in one sentence."
+    },
+    {
+      "item": "Each Part's opening saying what that Part does for the argument",
+      "status": "unclear_or_buried",
+      "quote": "The discovery rule has a long pedigree.",
+      "note": "Part I opens with history, not with why the history matters here."
+    }
+  ],
+  "findings": [
+    {
+      "quote": "This Article explores how the discovery rule applies to software defects and what courts should make of the manufacturer's power to change the product after the sale.",
+      "issue": "No claim in the introduction",
+      "why_it_matters": "I decide whether to keep reading at the end of the introduction, and 'explores' tells me there's no position yet.",
+      "severity": "high"
+    },
+    {
+      "quote": "Part III develops a framework for software accrual. Part IV responds to objections.",
+      "issue": "The roadmap promises a framework and a Part IV the draft doesn't have",
+      "why_it_matters": "I trusted the roadmap and went looking for objections that aren't there.",
+      "severity": "medium"
+    },
+    {
+      "quote": "The discovery rule has a long pedigree.",
+      "issue": "The history Part is longer than the argument",
+      "why_it_matters": "I skimmed most of Part I; the one point I needed, that the rule assumes a fixed product, is in its last paragraph.",
+      "severity": "medium"
+    },
+    {
+      "quote": "Second, the rule is administrable. Patch notes are dated and public.",
+      "issue": "The opening story never comes back to test the rule",
+      "why_it_matters": "I'd find the proposal more convincing if I saw it decide the Keystead case. When would the first family's clock have started?",
+      "severity": "medium"
+    },
+    {
+      "quote": "[Part II.C to come: survey of state statutes of repose and how they treat updates]",
+      "issue": "Part II.C is a placeholder",
+      "why_it_matters": "A reader at the workshop will see an unfinished section.",
+      "severity": "low"
+    }
+  ],
+  "what_works": [
+    {
+      "quote": "Software breaks the fixed-product premise.",
+      "note": "The best sentence in the draft. I'd want it right after the opening story."
+    },
+    {
+      "quote": "On a cold night in January, a family in Rivermont woke to find their front door standing open.",
+      "note": "An opening that makes me keep reading."
+    }
+  ],
+  "related_work": []
+}

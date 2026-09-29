@@ -1,0 +1,97 @@
+{
+  "main_point": "The draft is about how the discovery rule should handle software that changes after sale; only in Part III did I learn it proposes starting the clock at the manufacturer's patch note.",
+  "look_for": [
+    {
+      "item": "The contribution stated against the existing positions the draft names",
+      "status": "unclear_or_buried",
+      "quote": "This Article explores how the discovery rule applies to software defects and what courts should make of the manufacturer's power to change the product after the sale.",
+      "note": "The contribution isn't stated until Part III, and it's never set against the positions described in Part II.B."
+    },
+    {
+      "item": "Positions the draft argues against, attributed and stated in a form their holders would accept",
+      "status": "clear",
+      "quote": "In Delacroix v. Omnisync Systems, a Franklin trial court held that a claim involving a defective thermostat update accrued when the plaintiff first noticed the thermostat behaving oddly, even though she had no reason to suspect a software defect.",
+      "note": "The judicial positions are attributed and fairly stated."
+    },
+    {
+      "item": "Claims about the literature (\"no scholar has,\" \"the literature ignores\") that an expert would test",
+      "status": "unclear_or_buried",
+      "quote": "No scholar has examined how the discovery rule applies to software defects.",
+      "note": "Stated flatly, with one footnote on a different question behind it."
+    },
+    {
+      "item": "The scope of the claim: what it covers and what it sets aside",
+      "status": "clear",
+      "quote": "The patch-notice rule applies only where the defect lives in code that the owner cannot see.",
+      "note": "Scope is stated, though only at the end of Part III."
+    },
+    {
+      "item": "Words spent explaining what experts already know, compared with words spent on the new move",
+      "status": "unclear_or_buried",
+      "quote": "The discovery rule has a long pedigree.",
+      "note": "Part I retells the history in eight paragraphs; the proposal gets five."
+    },
+    {
+      "item": "The obvious objection from within the field, acknowledged",
+      "status": "missing",
+      "quote": "Part IV responds to objections.",
+      "note": "Promised in the roadmap but absent; nothing takes up the manufacturer's control over when disclosure happens."
+    }
+  ],
+  "findings": [
+    {
+      "quote": "No scholar has examined how the discovery rule applies to software defects.",
+      "issue": "A flat novelty claim that experts will test",
+      "why_it_matters": "Readers in the field tend to read 'no scholar has' as a sign the author hasn't looked, and a single counterexample would undercut the contribution. A precise statement of what's new is safer and more persuasive.",
+      "severity": "high"
+    },
+    {
+      "quote": "In Pruitt v. Harlan Devices, by contrast, the court held that the claim accrued only when the manufacturer publicly acknowledged the defect.",
+      "issue": "The draft never says how its rule differs from Pruitt",
+      "why_it_matters": "As described, Pruitt already ties accrual to the manufacturer's public acknowledgment. An expert will ask what the Article adds beyond picking a side of the split.",
+      "severity": "high"
+    },
+    {
+      "quote": "This Article explores how the discovery rule applies to software defects and what courts should make of the manufacturer's power to change the product after the sale.",
+      "issue": "The introduction states a topic, not the claim",
+      "why_it_matters": "An expert deciding how closely to read wants the proposal and what's new up front; 'explores' signals a survey.",
+      "severity": "high"
+    },
+    {
+      "quote": "The discovery rule has a long pedigree.",
+      "issue": "Part I spends most of the draft on history experts know",
+      "why_it_matters": "Experts will skim it and may miss the one point the argument needs: that the latent-defect cases asked what the manufacturer knew.",
+      "severity": "medium"
+    },
+    {
+      "quote": "Courts should consider the timing of a manufacturer's patch disclosures, among other factors, in deciding when a software claim accrues.",
+      "issue": "The conclusion is weaker than the proposal in Part III",
+      "why_it_matters": "An expert will ask which claim the author is defending: a bright-line rule or one factor among many.",
+      "severity": "medium"
+    }
+  ],
+  "what_works": [
+    {
+      "quote": "Every version of the discovery rule assumes that the product is fixed at the moment of sale.",
+      "note": "The paper's real insight, stated crisply. It belongs in the introduction."
+    },
+    {
+      "quote": "The lock they bought was not defective. The lock that opened their door was.",
+      "note": "Makes the post-sale-change problem concrete in two sentences."
+    }
+  ],
+  "related_work": [
+    {
+      "work": "Priya Anand, Is Code a Product?, 61 Franklin L. Rev. 1 (2021)",
+      "specific": true,
+      "why": "The draft cites it only on whether software is a product. If it also takes up accrual, the 'no scholar has examined' claim fails, so it's the first thing to reread.",
+      "confidence": "medium"
+    },
+    {
+      "work": "Scholarship on accrual rules and statutes of repose for latent product defects",
+      "specific": false,
+      "why": "The closest existing conversation. The draft should say how a disclosure-based trigger differs from the accrual rules that work proposes.",
+      "confidence": "high"
+    }
+  ]
+}
