@@ -1,0 +1,75 @@
+{
+  "title": "Clocks Without Notice (workshop draft)",
+  "inputs": {
+    "intended_claim": "Courts should start the limitations clock for software-defect claims no earlier than the manufacturer's public disclosure of the defect (a patch-notice rule).",
+    "stage": "workshop",
+    "venue": "faculty workshop",
+    "feedback_wanted": "Whether the argument works.",
+    "known_gaps": [
+      "Part II.C (survey of state statutes of repose) isn't written yet."
+    ],
+    "prior_feedback": null,
+    "persona_overrides": [],
+    "house_settings": null
+  },
+  "analysis": {
+    "piece_type": "law review article",
+    "stage": {
+      "id": "workshop",
+      "source": "stated",
+      "basis": "The author says it's going to the faculty workshop next month."
+    },
+    "venue": "faculty workshop",
+    "field": "products liability; limitations and accrual",
+    "prescriptive": true,
+    "claim": {
+      "text": "Courts should start the limitations clock for software-defect claims no earlier than the manufacturer's public disclosure of the defect (a patch-notice rule).",
+      "source": "stated"
+    },
+    "stage_focus": "The contribution and how it's positioned; objections; stakes; scope; claims about the literature.",
+    "plan_line": "Read as a workshop draft of a law review article, testing your patch-notice claim. Readers: expert in the field, skeptical expert, law colleague outside the subfield. The judge-or-practitioner reader is suggested as a follow-up because the piece proposes a rule for courts."
+  },
+  "assumptions": [
+    {
+      "id": "as1",
+      "text": "Most of the workshop audience works outside products liability.",
+      "basis": "Faculty workshops usually draw the whole faculty.",
+      "confirmed": false
+    }
+  ],
+  "personas": [
+    {
+      "id": "field-expert",
+      "adaptations": [
+        {
+          "parameter": "Field",
+          "value": "products liability and limitations doctrine",
+          "reason": "The draft's subject"
+        }
+      ],
+      "added_context": []
+    },
+    {
+      "id": "skeptical-expert",
+      "adaptations": [
+        {
+          "parameter": "Role",
+          "value": "workshop commentator",
+          "reason": "The draft is going to a faculty workshop"
+        }
+      ],
+      "added_context": []
+    },
+    {
+      "id": "generalist-law-colleague",
+      "adaptations": [
+        {
+          "parameter": "Role",
+          "value": "workshop attendee",
+          "reason": "The draft is going to a faculty workshop"
+        }
+      ],
+      "added_context": []
+    }
+  ]
+}

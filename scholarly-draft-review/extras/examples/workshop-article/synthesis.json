@@ -1,0 +1,314 @@
+{
+  "issues": [
+    {
+      "title": "The introduction states a topic; your claim first appears in Part III",
+      "quote": "This Article explores how the discovery rule applies to software defects and what courts should make of the manufacturer's power to change the product after the sale.",
+      "summary": "The generalist colleague finished the introduction without knowing your position, and the key-sentence outline has no thesis until Part III. The field expert read 'explores' as a survey. At a faculty workshop, most of the room is likely to form its view from the introduction.",
+      "finding_refs": [
+        "generalist-law-colleague/1",
+        "field-expert/3",
+        "key-sentences/1"
+      ],
+      "reasons": [
+        {
+          "reader": "generalist-law-colleague",
+          "reason": "Decides whether to keep reading at the end of the introduction; couldn't tell the author's position until Part III."
+        },
+        {
+          "reader": "field-expert",
+          "reason": "Wants the proposal and what's new up front; 'explores' signals a survey."
+        },
+        {
+          "reader": "key-sentences",
+          "reason": "The outline, read alone, has no thesis until k17."
+        }
+      ],
+      "severity": "high",
+      "category": "claim_mismatch",
+      "timing": "now",
+      "direction": "state the patch-notice rule, and what's new about it, in the introduction"
+    },
+    {
+      "title": "The rule lets manufacturers control when the clock starts, and the draft says it rewards prompt disclosure",
+      "quote": "Third, the rule puts the burden on the party with the information. Manufacturers know when they have found and fixed a defect. Tying accrual to disclosure rewards them for telling owners promptly.",
+      "summary": "The skeptical expert reads the third advantage as backwards: if disclosure starts the clock, delaying or burying disclosure delays it. The field expert flagged the same gap as the field's obvious objection. This is likely to be the first question at the workshop.",
+      "finding_refs": [
+        "skeptical-expert/1"
+      ],
+      "reasons": [
+        {
+          "reader": "skeptical-expert",
+          "reason": "The first objection a commentator will raise; the draft seems not to have noticed it."
+        },
+        {
+          "reader": "field-expert",
+          "reason": "Marked the obvious objection from within the field as missing."
+        }
+      ],
+      "severity": "high",
+      "category": "finding",
+      "timing": "now",
+      "direction": "take up the incentive to delay or obscure disclosure directly"
+    },
+    {
+      "title": "The draft doesn't say how its rule differs from Pruitt",
+      "quote": "In Pruitt v. Harlan Devices, by contrast, the court held that the claim accrued only when the manufacturer publicly acknowledged the defect.",
+      "summary": "As described, one side of the split already ties accrual to the manufacturer's public acknowledgment. An expert will ask whether the Article's contribution is a new rule or an endorsement of Pruitt, and the draft doesn't answer.",
+      "finding_refs": [
+        "field-expert/2"
+      ],
+      "reasons": [
+        {
+          "reader": "field-expert",
+          "reason": "Needs to see what the Article adds beyond picking a side of the split."
+        }
+      ],
+      "severity": "high",
+      "category": "finding",
+      "timing": "now",
+      "direction": "say what the patch-notice rule adds to the Pruitt approach"
+    },
+    {
+      "title": "The roadmap promises a framework and a Part IV that aren't in the draft",
+      "quote": "Part III develops a framework for software accrual. Part IV responds to objections.",
+      "summary": "Two readers went looking for the objections Part and didn't find it. Part III proposes a rule, not a framework.",
+      "finding_refs": [
+        "generalist-law-colleague/2",
+        "skeptical-expert/2"
+      ],
+      "reasons": [
+        {
+          "reader": "generalist-law-colleague",
+          "reason": "Trusted the roadmap and got lost."
+        },
+        {
+          "reader": "skeptical-expert",
+          "reason": "The missing Part is where the incentive objection would have to be answered."
+        }
+      ],
+      "severity": "high",
+      "category": "finding",
+      "timing": "now",
+      "direction": "make the roadmap match the Parts the workshop will see"
+    },
+    {
+      "title": "Unsupported 'no scholar has examined' claim",
+      "quote": "No scholar has examined how the discovery rule applies to software defects.",
+      "summary": "A flat novelty claim, supported by one footnote on a different question. Experts are likely to test it, and one counterexample would undercut the contribution. The expert's first lead is the article footnote 16 already cites: if it also takes up accrual, the claim fails. Beyond that, only a real search can settle it.",
+      "finding_refs": [
+        "field-expert/1"
+      ],
+      "reasons": [
+        {
+          "reader": "field-expert",
+          "reason": "Reads 'no scholar has' as a sign the author hasn't looked."
+        }
+      ],
+      "severity": "high",
+      "category": "finding",
+      "timing": "now",
+      "direction": "state precisely what's new, and back it with a search or narrow it"
+    },
+    {
+      "title": "The conclusion retreats from a rule to one factor among many",
+      "quote": "Courts should consider the timing of a manufacturer's patch disclosures, among other factors, in deciding when a software claim accrues.",
+      "summary": "Part III proposes a firm rule; the conclusion proposes a factor. Both experts noticed, and a skeptic will attack whichever version is weaker.",
+      "finding_refs": [
+        "field-expert/5",
+        "skeptical-expert/5"
+      ],
+      "reasons": [
+        {
+          "reader": "field-expert",
+          "reason": "Can't tell which claim the author is defending."
+        },
+        {
+          "reader": "skeptical-expert",
+          "reason": "Two versions invite the charge that the author isn't sure."
+        }
+      ],
+      "severity": "medium",
+      "category": "finding",
+      "timing": "now",
+      "direction": "state one version of the claim the same way throughout"
+    },
+    {
+      "title": "Part I's history outweighs the argument",
+      "quote": "The discovery rule has a long pedigree.",
+      "summary": "Part I is the longest Part; the proposal gets about five paragraphs. Both the expert and the generalist skimmed Part I and nearly missed its last paragraph, which states the premise the Article attacks.",
+      "finding_refs": [
+        "field-expert/4",
+        "generalist-law-colleague/3"
+      ],
+      "reasons": [
+        {
+          "reader": "field-expert",
+          "reason": "Knows the history and skims it."
+        },
+        {
+          "reader": "generalist-law-colleague",
+          "reason": "Needed two paragraphs of it."
+        }
+      ],
+      "severity": "medium",
+      "category": "finding",
+      "timing": "now",
+      "direction": "cut Part I to what the argument needs"
+    },
+    {
+      "title": "'Latent' changes meaning between Part I and Part III",
+      "quote": "A defect is latent, in the language of these cases, when the manufacturer could not have known of it at the time of sale.",
+      "summary": "Part I defines a latent defect by what the manufacturer knew; Part III uses the term for a defect the owner can't see. A careful reader will ask which standard the rule uses.",
+      "finding_refs": [
+        "skeptical-expert/4"
+      ],
+      "reasons": [
+        {
+          "reader": "skeptical-expert",
+          "reason": "Checks definitions for consistency across Parts."
+        }
+      ],
+      "severity": "medium",
+      "category": "finding",
+      "timing": "now",
+      "direction": "use one definition of 'latent' throughout"
+    },
+    {
+      "title": "No hard cases: defects never disclosed or fixed silently",
+      "quote": "the limitations period should begin to run no earlier than the date on which the manufacturer publicly discloses the defect",
+      "summary": "'No earlier than' disclosure implies the clock may never start for a defect that's never disclosed. The draft doesn't say whether that's intended.",
+      "finding_refs": [
+        "skeptical-expert/3"
+      ],
+      "reasons": [
+        {
+          "reader": "skeptical-expert",
+          "reason": "Tests the proposal against cases it wasn't built for."
+        }
+      ],
+      "severity": "medium",
+      "category": "finding",
+      "timing": "now",
+      "direction": "work through the undisclosed-defect case"
+    },
+    {
+      "title": "The Keystead story never comes back to test the rule",
+      "quote": "Second, the rule is administrable. Patch notes are dated and public.",
+      "summary": "The generalist wanted to see the rule decide the opening case: when would the first family's clock have started? The example that sells the problem isn't used to show the solution.",
+      "finding_refs": [
+        "generalist-law-colleague/4"
+      ],
+      "reasons": [
+        {
+          "reader": "generalist-law-colleague",
+          "reason": "Would find the proposal more convincing applied to a case."
+        }
+      ],
+      "severity": "medium",
+      "category": "finding",
+      "timing": "now",
+      "direction": "apply the rule to the opening example"
+    },
+    {
+      "title": "Several Part I paragraphs open with a transition or a case, not their point",
+      "quote": "Moreover, the early exceptions were narrow.",
+      "summary": "k6, k7, and k9 don't say what their paragraphs do for the argument. Worth fixing, but only after Part I is cut; many of these paragraphs may go.",
+      "finding_refs": [
+        "key-sentences/2",
+        "key-sentences/3",
+        "key-sentences/4"
+      ],
+      "reasons": [
+        {
+          "reader": "key-sentences",
+          "reason": "Read alone, these openings tell a history without its purpose."
+        }
+      ],
+      "severity": "low",
+      "category": "key_sentence",
+      "timing": "later",
+      "direction": "revisit Part I's paragraph openings after cutting it"
+    }
+  ],
+  "dropped_findings": [
+    {
+      "finding_ref": "generalist-law-colleague/5",
+      "rule": "known_gap",
+      "note": "Part II.C is unwritten; your note already says so."
+    }
+  ],
+  "tradeoffs": [
+    {
+      "quote": "The literature on the discovery rule predates the rise of connected devices, and the literature on software liability has focused on whether software is a \"product\" at all.",
+      "sides": [
+        {
+          "reader": "field-expert",
+          "wants": "a fuller map of existing work, so the contribution is positioned",
+          "why": "Two sentences can't carry a novelty claim for readers in the field."
+        },
+        {
+          "reader": "generalist-law-colleague",
+          "wants": "less material before the claim, not more",
+          "why": "Every added paragraph of background pushes the proposal further from the first pages."
+        }
+      ],
+      "note": "Where the positioning goes, not only how long it is, affects both readers."
+    }
+  ],
+  "whats_working": [
+    {
+      "quote": "Every version of the discovery rule assumes that the product is fixed at the moment of sale.",
+      "readers": [
+        "field-expert"
+      ],
+      "note": "The paper's central insight, stated crisply."
+    },
+    {
+      "quote": "Software breaks the fixed-product premise.",
+      "readers": [
+        "generalist-law-colleague"
+      ],
+      "note": "The sentence readers remembered. They wanted it earlier."
+    },
+    {
+      "quote": "The lock they bought was not defective. The lock that opened their door was.",
+      "readers": [
+        "field-expert"
+      ],
+      "note": "Makes the post-sale-change problem concrete in two sentences."
+    },
+    {
+      "quote": "The patch-notice rule applies only where the defect lives in code that the owner cannot see.",
+      "readers": [
+        "skeptical-expert"
+      ],
+      "note": "A clear limit that makes the claim easier to defend."
+    }
+  ],
+  "feedback_plan": [
+    {
+      "who": "Two or three colleagues who'll be at the workshop and work outside products liability",
+      "when": "now",
+      "ask": "Reading just the introduction, what do you think I'm proposing, and what's new about it?",
+      "why": "The buried claim is the problem most likely to shape the workshop discussion, and a ten-minute read tells you whether a revised introduction fixes it."
+    },
+    {
+      "who": "Not a reader: a literature search",
+      "when": "now",
+      "ask": "Search law reviews, SSRN, and the databases for accrual rules tied to manufacturer disclosure or software updates.",
+      "why": "The 'no scholar has examined' claim needs a search behind it, or a narrower wording. The simulated readers can't do this."
+    },
+    {
+      "who": "One or two scholars whose work on accrual or software liability you rely on most",
+      "when": "next_draft",
+      "ask": "Could you give me twenty minutes on the incentive objection, what I should engage that I haven't, and where you'd send this?",
+      "why": "Only a real expert can say whether the contribution is new and which work you must address."
+    },
+    {
+      "who": "A judge, clerk, or litigator who handles product cases",
+      "when": "before_submission",
+      "ask": "Would you know how to apply this rule to a real case, and what would make you cite it?",
+      "why": "The piece proposes a rule for courts; a practitioner's read tests whether it's usable."
+    }
+  ]
+}
