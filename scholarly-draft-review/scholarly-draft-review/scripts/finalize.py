@@ -34,7 +34,7 @@ from validate_results import validate
 
 SKILL_DIR = Path(__file__).resolve().parent.parent
 PERSONA_DIR = SKILL_DIR / "references" / "personas"
-TOOL_VERSION = "0.2.0"
+TOOL_VERSION = "0.3.0"
 READER_TYPES = {"nonexpert", "expert", "Expert", "gatekeeper"}
 
 

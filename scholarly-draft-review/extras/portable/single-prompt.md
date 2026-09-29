@@ -91,7 +91,7 @@ Rank the **now** issues yourself using the rubric's weights, and choose up to se
 
 ## Step 8. Report
 
-Write the report in chat, in this order: first a short summary (the plan line, the top three priorities, the biggest tradeoff, who to ask next, and every item in "Limitations to disclose" in `synthesis-rubric.md` under the heading "Before you rely on this"), then the full report (priority actions, park for later, tradeoffs, what's working, who to ask next, related work, by reader, and key sentences).
+Write the report in chat, in this order: first a short summary (the plan line, the top three priorities, the biggest tradeoff, who to ask next, and every item in "Limitations to disclose" in `synthesis-rubric.md` under the heading "Before you rely on this"), then the full report (priority actions, park for later, tradeoffs, what's working, who to ask next, by reader, and key sentences).
 
 ---
 

@@ -39,11 +39,10 @@ The exact structure is in `assets/results.schema.json` (generated; edit `extras/
 
 ## HTML report
 
-One self-contained file, rendered by `scripts/render_report.py` from `assets/report-template.html` with `results.json` embedded inline. It opens by double-click with no server or network access, prints cleanly, and follows the system's light or dark mode. With no embedded results, the same template is a viewer (`render_report.py --viewer`). The header shows the stage on a five-step ladder and the claim. Tabs:
+One self-contained file, rendered by `scripts/render_report.py` from `assets/report-template.html` with `results.json` embedded inline. It opens by double-click with no server or network access, prints cleanly, and follows the system's light or dark mode. With no embedded results, the same template is a viewer (`render_report.py --viewer`). Its collapsible header contains every "Before you rely on this" limitation. Tabs:
 
-1. **Overview:** "Before you rely on this" (every limitation) first; then top priorities, the biggest tradeoff, what's working, who to ask next (the full feedback plan), and related work to check
-2. **Now:** ranked issues for this stage, each expanding to what each reader said, plus tradeoffs; filterable by severity and reader
-3. **Later:** issues parked for a later draft (shown only if there are any)
-4. **Readers:** one tab per reader with what they think the draft argues, look-for checks, findings, what to keep, and the work they'd point to
-5. **Key sentences:** the verdict, and the full outline with flagged paragraphs highlighted
-6. **Method:** the draft's filename, run details, assumptions, readers as adapted, findings set aside, named works that couldn't be found, the limitations again, and a download of `results.json`
+1. **Overview:** top priorities and what's working.
+2. **Priorities:** priority actions followed by the remaining issues in one continuously numbered list. Issue cards show severity and readers, without filters or convergence tags.
+3. **Readers:** one tab per reader with what they think the draft argues, look-for checks, findings, what to keep, and the work they'd point to; reader-tab buttons show names only.
+4. **Key sentences:** the verdict, and the full outline with flagged paragraphs highlighted
+5. **Method:** the draft's filename, run details, assumptions, readers as adapted, findings set aside, named works that couldn't be found, and a download of `results.json`

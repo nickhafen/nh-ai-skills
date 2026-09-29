@@ -86,14 +86,17 @@ def stage_line(a):
 def claim_line(a):
     c = a["claim"]
     if c["source"] == "inferred":
-        return f"**Claim (inferred; if this is wrong, much of the feedback shifts):** {c['text']}"
-    return f"**Claim (yours):** {c['text']}"
+        return f"**Claim (inferred):** {c['text']} — confirm it; much of the feedback shifts if it is wrong."
+    return f"**Claim:** {c['text']}"
+
+
+def front_matter(results):
+    """The compact setup and reliance note shown first in each rendered report."""
+    return ["<details open><summary><strong>Before you rely on this</strong></summary>", ""] + limitation_lines(results) + ["", "</details>", ""]
 
 
 def issue_block(issue, n, ranked, table):
     tags = [SEVERITY_LABEL[issue["severity"]]]
-    if ranked.get("convergent"):
-        tags.append("several readers")
     out = [f"### {n}. {issue['title']}", "",
            f"*{' · '.join(tags)} — raised by {reader_list(issue_readers(issue), table)}*", ""]
     if issue["quote"]:
@@ -109,8 +112,7 @@ def render_report(results):
     a = results["analysis"]
     doc = results["document"]
     out = [f"# Scholarly draft review: {doc.get('title') or a['piece_type']}", ""]
-    out += [f"**Plan.** {a['plan_line']}", "", stage_line(a), "", claim_line(a), ""]
-    out += ["## Before you rely on this", ""] + limitation_lines(results) + [""]
+    out += front_matter(results)
 
     synthesis = results.get("synthesis")
     if synthesis:
@@ -126,7 +128,7 @@ def render_report(results):
             out += [f"- {issues[i]['title']} ({SEVERITY_LABEL[issues[i]['severity']].lower()}; "
                     f"{reader_list(issue_readers(issues[i]), table)})" for i in others] + [""]
         if synthesis["parked"]:
-            out += ["## Park for later", "", "Real issues, but not for this stage. Come back to them in a later draft.", ""]
+            out += ["## For a later draft", "", "Real issues, but not priorities at this stage.", ""]
             for i in synthesis["parked"]:
                 issue = issues[i]
                 out.append(f"- **{issue['title']}** — {issue['summary']} *({reader_list(issue_readers(issue), table)})*")
@@ -155,15 +157,6 @@ def render_report(results):
             for x in plan:
                 out.append(f"| {WHEN_LABEL[x['when']]} | {x['who']} | {x['ask']} | {x['why']} |".replace("\n", " "))
             out += ["", LISTENING_NOTE, ""]
-
-    works = [w for w in related_work(results) if w["status"] != "not_found"]
-    if works:
-        out += ["## Related work to check", ""]
-        if (results.get("related_work_check") or {}).get("method") == "searched":
-            out += ["Specific works were looked up; ones that couldn't be found are left out.", ""]
-        elif any(w["status"] == "not_checked" for w in works):
-            out += ["No search ran, so named works are unchecked.", ""]
-        out += [work_line(w, table) for w in works] + [""]
 
     # By reader
     out += ["## By reader", ""]
@@ -255,7 +248,7 @@ def render_summary(results, report_path=None):
             issue = issues[index]
             lines.append(f"{n}. {issue['title']} ({reader_list(issue_readers(issue), table)})")
         if synthesis["parked"]:
-            lines.append(f"Parked for a later draft: {len(synthesis['parked'])} issue(s), listed in the report.")
+            lines.append(f"For a later draft: {len(synthesis['parked'])} issue(s), listed in the report.")
         tradeoffs = synthesis["output"].get("tradeoffs", [])
         if tradeoffs:
             t = tradeoffs[0]
