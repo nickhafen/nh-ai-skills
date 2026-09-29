@@ -1,6 +1,6 @@
 {
   "id": "motion",
-  "note": "Phase 2 document, used for MVP dogfooding. Fictional court and parties. Answer key not written yet; seeded issues are listed in seeded-issues.md.",
+  "note": "Phase 2 document, used for MVP trial runs. Fictional court and parties. Answer key not written yet; seeded issues are listed in seeded-issues.md.",
   "title": "Motion to compel discovery responses and for sanctions",
   "document_file": "document.md",
   "mode": "fast",

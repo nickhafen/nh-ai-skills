@@ -1,6 +1,6 @@
 {
   "id": "client-letter",
-  "note": "Phase 2 document, used for MVP dogfooding. Fictional. Answer key not written yet; seeded issues are listed in seeded-issues.md.",
+  "note": "Phase 2 document, used for MVP trial runs. Fictional. Answer key not written yet; seeded issues are listed in seeded-issues.md.",
   "title": "Client letter: settlement offer in employment case",
   "document_file": "document.md",
   "mode": "fast",
