@@ -3,6 +3,9 @@
 Agent skills for teaching law students, lawyers, and instructors how skills
 work.
 
+**Download a skill:** [nickhafen.github.io/nh-ai-skills](https://nickhafen.github.io/nh-ai-skills/)
+has a one-click download for each skill, ready to upload to Claude.ai.
+
 | Skill | What it does |
 |---|---|
 | [engagement-letter](engagement-letter/engagement-letter/) | Drafts a client engagement letter for a fictional Utah firm, computes Utah answer deadlines for litigation matters, and produces a Word redline with real tracked changes. See its [presenter guide](engagement-letter/engagement-letter/README.md). |
@@ -21,6 +24,11 @@ engagement-letter/
 ├── engagement-letter/   ← the skill (SKILL.md is here). Zip this folder.
 └── extras/              ← presenter and maintainer tools. Not part of the skill.
 ```
+
+The download site is built from this layout. Every push to `main` rebuilds
+and republishes it (`site/build.py`, run by `.github/workflows/pages.yml`), so
+nothing on the site is edited by hand. A skill's card uses its row in the table
+above; "Pre-release." in that row adds the badge.
 
 ## Install a skill
 

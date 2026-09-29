@@ -1,0 +1,213 @@
+:root {
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --text: #1c1d1f;
+  --muted: #5b5e66;
+  --border: #dcdde0;
+  --accent: #1f4f8f;
+  --accent-hover: #173d70;
+  --accent-text: #ffffff;
+  --accent-soft: #e8eef7;
+  --badge-bg: #fdf1dc;
+  --badge-text: #7a4600;
+  --focus: #2f6fd0;
+  --radius: 10px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15171a;
+    --surface: #1e2024;
+    --text: #e8e9eb;
+    --muted: #a5a8b0;
+    --border: #34373d;
+    --accent: #8db4f0;
+    --accent-hover: #a9c7f5;
+    --accent-text: #0e1a2c;
+    --accent-soft: #22324a;
+    --badge-bg: #3d2c10;
+    --badge-text: #f3c77c;
+    --focus: #8db4f0;
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  overflow-wrap: break-word;
+}
+
+a { color: var(--accent); }
+a:hover { color: var(--accent-hover); }
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+.skip-link:focus {
+  left: 16px;
+  top: 8px;
+  z-index: 10;
+  background: var(--surface);
+  padding: 8px 12px;
+}
+
+/* Header and footer */
+
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.site-header .wrap { padding-top: 14px; padding-bottom: 14px; }
+.site-title {
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+main { padding-top: 28px; padding-bottom: 40px; }
+main:focus { outline: none; }
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+  padding: 20px 0 32px;
+}
+.site-footer p { margin: 0 0 6px; }
+
+/* Home */
+
+.intro h1 {
+  font-size: 1.75rem;
+  line-height: 1.25;
+  margin: 0 0 8px;
+}
+.intro p { margin: 0 0 20px; color: var(--muted); max-width: 60ch; }
+
+.install {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 28px;
+}
+.install summary {
+  cursor: pointer;
+  padding: 14px 18px;
+  font-weight: 600;
+}
+.install-body {
+  padding: 0 18px 16px;
+  display: grid;
+  gap: 8px 32px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.install h2 { font-size: 1rem; margin: 6px 0 4px; }
+.install ol { margin: 0; padding-left: 1.3em; }
+.install li { margin-bottom: 4px; }
+.install code {
+  font-size: 0.9em;
+  background: var(--accent-soft);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+}
+.card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-bottom: 6px;
+}
+.card h2 {
+  font-size: 1.15rem;
+  margin: 0;
+}
+.card p { margin: 0 0 14px; }
+
+.badge {
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+.btn-primary:hover { background: var(--accent-hover); color: var(--accent-text); }
+.btn-secondary {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--border);
+}
+.btn-secondary:hover { background: var(--accent-soft); }
+.btn svg { flex: none; }
+
+.size { color: var(--muted); font-size: 0.9rem; }
+
+.status { color: var(--muted); }
+.error {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 16px 20px;
+}

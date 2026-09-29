@@ -1,0 +1,8 @@
+{
+  "SKILL.md": "The instructions Claude reads first",
+  "references/": "Material Claude pulls in when it needs it",
+  "scripts/": "Code the skill runs",
+  "assets/": "Templates and sample files",
+  "evals/": "Test cases for checking the skill",
+  "README.md": "Guide for people (Claude doesn't use it)"
+}
