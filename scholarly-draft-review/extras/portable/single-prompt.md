@@ -91,7 +91,7 @@ Rank the **now** issues yourself using the rubric's weights, and choose up to se
 
 ## Step 8. Report
 
-Write the report in chat, in this order: first a short summary (the plan line, the top three priorities, the biggest tradeoff, who to ask next, and every item in "Limitations to disclose" in `synthesis-rubric.md` under the heading "Before you rely on this"), then the full report (priority actions followed by every other issue in one numbered list, what's working, by reader, and key sentences).
+Write the report in chat, in this order: first a short summary (the plan line, the top three priorities, and every item in "Limitations to disclose" in `synthesis-rubric.md` under the heading "Before you rely on this"), then the full report (priority actions followed by every other issue in one numbered list, what's working, by reader, and key sentences).
 
 ---
 
@@ -397,7 +397,7 @@ Always:
 - **AI can be wrong, including about sources.** The AI can misread your draft, misstate what it says, or invent or misdescribe sources. Quotes from your draft are checked word for word; summaries and paraphrases aren't. A named work is marked verified only if a search found it, which confirms it exists and seems to address the topic, not that it says what the reader claims.
 - **Novelty views are leads.** What the AI knows about legal scholarship is incomplete and out of date, especially recent work. Treat its views on whether your claim is new, and its reading suggestions, as leads, and do your own search before relying on them.
 - **Not a cite-check.** This review doesn't verify the law, cases, facts, or citations in your draft. A reader may flag something to check; nothing here confirms that anything is correct.
-- **Verify before you act.** Check anything you plan to act on against your draft and the sources, and get real readers' reactions before you submit. The feedback plan suggests who to ask.
+- **Verify before you act.** Check anything you plan to act on against your draft and the sources, and get real readers' reactions before you submit.
 - **Your draft went to an AI service.** Follow any rules that apply to your use of AI tools, such as a journal's or publisher's policy.
 
 When they apply to the run:

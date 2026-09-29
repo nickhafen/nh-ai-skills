@@ -1,6 +1,6 @@
 ---
 name: scholarly-draft-review
-description: Gives feedback on legal scholarship drafts (law review articles, student notes and seminar papers, essays, job-talk papers, abstracts) at any stage, from readers matched to that stage, and suggests who to ask next. Use when a law professor or law student wants feedback on a scholarly draft, asks who should read it, or wants to know how a workshop, expert, or law review will react. Gives feedback only; doesn't draft or rewrite.
+description: Gives feedback on legal scholarship drafts (law review articles, student notes and seminar papers, essays, job-talk papers, abstracts) at any stage, from readers matched to that stage. Use when a law professor or law student wants feedback on a scholarly draft, asks who should read it, or wants to know how a workshop, expert, or law review will react. Gives feedback only; doesn't draft or rewrite.
 ---
 
 # Scholarly draft review
@@ -166,5 +166,5 @@ python <skill-dir>/scripts/finalize.py <working-folder> --platform <claude-code 
 If it reports problems, fix the working file it names and run it again. When it succeeds, show the user the summary it prints (also saved as `summary.md`), including its "Before you rely on this" list in full, and point them to `report.html`, a self-contained page that opens in any browser. Its collapsible front matter contains the reliance notes; run context and assumptions are in Method. `report.md` has the same content as plain text. In claude.ai, share `report.html` as a file. Don't retype the report in chat.
 <!-- /skill-only -->
 <!-- portable-only -->
-Write the report in chat, in this order: first a short summary (the plan line, the top three priorities, the biggest tradeoff, who to ask next, and every item in "Limitations to disclose" in `synthesis-rubric.md` under the heading "Before you rely on this"), then the full report (priority actions followed by every other issue in one numbered list, what's working, by reader, and key sentences).
+Write the report in chat, in this order: first a short summary (the plan line, the top three priorities, and every item in "Limitations to disclose" in `synthesis-rubric.md` under the heading "Before you rely on this"), then the full report (priority actions followed by every other issue in one numbered list, what's working, by reader, and key sentences).
 <!-- /portable-only -->

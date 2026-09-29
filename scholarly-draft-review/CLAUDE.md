@@ -1,6 +1,6 @@
 # scholarly-draft-review
 
-A skill that gives stage-appropriate reader feedback on legal scholarship drafts (articles, essays, job-talk papers, notes, comments, seminar papers) and suggests which real people to ask next. It's written for authors, and it treats every author as a scholar. It's the scholarship sibling of `../fresh-eyes-review/` and reuses its architecture: persona files, a selection map, single-conversation reviews, a fresh-context AI check, a synthesis rubric, and script-built `results.json` and reports.
+A skill that gives stage-appropriate reader feedback on legal scholarship drafts (articles, essays, job-talk papers, notes, comments, seminar papers). It's written for authors, and it treats every author as a scholar. It's the scholarship sibling of `../fresh-eyes-review/` and reuses its architecture: persona files, a selection map, single-conversation reviews, a fresh-context AI check, a synthesis rubric, and script-built `results.json` and reports.
 
 `scholarly-draft-review/` (next to this file) is the skill itself, the folder users zip and install. `extras/` holds everything that isn't part of the skill. Agreed design changes go in `extras/docs/decisions.md`, newest first.
 

@@ -1,10 +1,10 @@
 {
   "schema_version": "0.2",
   "run": {
-    "id": "b3be758881c7",
-    "created_at": "2026-09-29T21:54:04+00:00",
+    "id": "a561eaab4f00",
+    "created_at": "2026-09-29T22:03:47+00:00",
     "tool_version": "0.3.0",
-    "content_hash": "5568d7d2e42f933b",
+    "content_hash": "257c2302d76d6222",
     "model": "claude-opus-5-5",
     "platform": "claude-code"
   },
@@ -1022,7 +1022,7 @@
       },
       {
         "title": "Verify before you act",
-        "text": "Check anything you plan to act on against your draft and the sources, and get real readers' reactions before you submit. The feedback plan suggests who to ask.",
+        "text": "Check anything you plan to act on against your draft and the sources, and get real readers' reactions before you submit.",
         "scope": "standing"
       },
       {

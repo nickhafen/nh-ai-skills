@@ -218,14 +218,6 @@ def render_summary(results, report_path=None):
             lines.append(f"{n}. {issue['title']} ({reader_list(issue_readers(issue), table)})")
         if synthesis["parked"]:
             lines.append(f"For a later draft: {len(synthesis['parked'])} issue(s), listed in the report.")
-        tradeoffs = synthesis["output"].get("tradeoffs", [])
-        if tradeoffs:
-            t = tradeoffs[0]
-            sides = " vs. ".join(table.get(s["reader"], s["reader"]) for s in t["sides"])
-            lines += ["", f"**Biggest tradeoff:** {sides} — {t['note'] or t['sides'][0]['wants']}"]
-        plan = synthesis["output"].get("feedback_plan", [])
-        if plan:
-            lines += ["", f"**Who to ask next:** {plan[0]['who']} — “{plan[0]['ask']}”"]
     rw = results["quality"]["related_work"]
     if rw["verified"]:
         lines += ["", f"**Related work:** {rw['verified']} named work{'s' if rw['verified'] > 1 else ''} found by "

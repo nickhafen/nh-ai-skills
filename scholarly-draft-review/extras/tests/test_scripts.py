@@ -72,7 +72,9 @@ def test_finalize_assembles_valid_results_and_report():
     assert [int(n) for n, _ in numbered] == list(range(1, len(issues) + 1))
     first = [issues[i]["title"] for i in synthesis["priority_actions"]]
     assert [t for _, t in numbered[:len(first)]] == first
-    assert (workdir / "summary.md").exists()
+    summary = (workdir / "summary.md").read_text(encoding="utf-8")
+    for cut in ("Biggest tradeoff", "Who to ask next", "feedback plan"):
+        assert cut not in summary and cut not in report, cut
 
 
 def test_results_and_reports_refer_to_the_draft_by_filename():

@@ -35,7 +35,7 @@ STANDING_LIMITATIONS = [
      "check; nothing here confirms that anything is correct."),
     ("Verify before you act",
      "Check anything you plan to act on against your draft and the sources, and get real readers' reactions before "
-     "you submit. The feedback plan suggests who to ask."),
+     "you submit."),
     ("Your draft went to an AI service",
      "Follow any rules that apply to your use of AI tools, such as a journal's or publisher's policy."),
 ]

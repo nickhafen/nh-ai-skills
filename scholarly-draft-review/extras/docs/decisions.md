@@ -2,7 +2,7 @@
 
 Design choices for scholarly-draft-review, newest first.
 
-## 2026-09-29 — Leaner reports: one issue list; tradeoffs and the feedback plan only in the chat summary
+## 2026-09-29 — Leaner reports: one issue list; no tradeoffs or feedback plan
 
 The reports had grown sections that repeated each other or asked the author to weigh more than they could act on. In both `report.html` and `report.md`:
 
@@ -11,7 +11,7 @@ The reports had grown sections that repeated each other or asked the author to w
 - **Removed from the reports:** tradeoffs, "who to ask next" with its listening note, the stage ladder, and the related-work section. Named works still appear under the reader who named them, with their check status.
 - **Reader details** show each reader's fuller finding text, without the one-line reason, the quote, or the finding number.
 
-The synthesis still produces tradeoffs and the feedback plan, and the chat summary still shows the biggest tradeoff and who to ask next.
+The chat summary drops the biggest tradeoff and who to ask next too, and the skill's description no longer promises who to ask next. The "Verify before you act" limitation no longer points to the feedback plan. Asking only who should read a draft still gets the stage, the readers, and real readers to suggest (SKILL.md, before step 1).
 
 ## 2026-09-29 — Simplified for authors: no cold read, next actions, attention maps, or next-steps tab
 

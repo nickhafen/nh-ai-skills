@@ -32,10 +32,8 @@ The exact structure is in `assets/results.schema.json` (generated; edit `extras/
 
 1. **Plan line**, the stage (marked inferred if it was), and the claim (marked inferred if it was)
 2. **Top priorities now:** the first three, one line each, plus how many issues were parked for later
-3. **Biggest tradeoff,** if any
-4. **Who to ask next:** the first entry in the feedback plan
-5. **Before you rely on this:** every limitation in `quality.limitations`, in full (see "Limitations to disclose" in `synthesis-rubric.md`)
-6. **Link** to the HTML report
+3. **Before you rely on this:** every limitation in `quality.limitations`, in full (see "Limitations to disclose" in `synthesis-rubric.md`)
+4. **Link** to the HTML report
 
 ## HTML report
 

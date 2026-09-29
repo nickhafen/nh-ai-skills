@@ -6,7 +6,7 @@
 - **AI can be wrong, including about sources.** The AI can misread your draft, misstate what it says, or invent or misdescribe sources. Quotes from your draft are checked word for word; summaries and paraphrases aren't. A named work is marked verified only if a search found it, which confirms it exists and seems to address the topic, not that it says what the reader claims.
 - **Novelty views are leads.** What the AI knows about legal scholarship is incomplete and out of date, especially recent work. Treat its views on whether your claim is new, and its reading suggestions, as leads, and do your own search before relying on them.
 - **Not a cite-check.** This review doesn't verify the law, cases, facts, or citations in your draft. A reader may flag something to check; nothing here confirms that anything is correct.
-- **Verify before you act.** Check anything you plan to act on against your draft and the sources, and get real readers' reactions before you submit. The feedback plan suggests who to ask.
+- **Verify before you act.** Check anything you plan to act on against your draft and the sources, and get real readers' reactions before you submit.
 - **Your draft went to an AI service.** Follow any rules that apply to your use of AI tools, such as a journal's or publisher's policy.
 
 </details>
@@ -372,7 +372,7 @@ Read alone, the introduction's key sentences give the story, the problem, and th
 ## Method
 
 - **Draft:** document.md (1499 words; working copy `document.md`). This report refers to the draft by filename and doesn't include its text.
-- **Run:** b3be758881c7 · 2026-09-29T21:54:04+00:00 · claude-code · model claude-opus-5-5 · skill content 5568d7d2e42f933b. Each reader reviewed the draft in turn, in one conversation.
+- **Run:** a561eaab4f00 · 2026-09-29T22:03:47+00:00 · claude-code · model claude-opus-5-5 · skill content 257c2302d76d6222. Each reader reviewed the draft in turn, in one conversation.
 - **Quotes checked:** 19 of 19 quote the draft word for word.
 - **Named works:** 1 named; 0 verified, 1 already cited, 0 not checked, 0 not found and left out.
 
