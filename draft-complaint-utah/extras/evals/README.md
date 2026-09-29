@@ -1,12 +1,13 @@
 # Evals: draft-complaint-utah
 
-This folder holds three synthetic Utah matters. Each one has seeded "traps": problems a careful lawyer would catch and a careless AI would miss. The evals test whether the skill (M1 chronology through M7 memo) catches them.
+This folder is a maintainer tool, not part of the skill. It holds three synthetic Utah matters. Each one has seeded "traps": problems a careful lawyer would catch and a careless AI would miss. The evals test whether the skill (M1 chronology through M7 memo) catches them.
 
 ```
 evals/
   evals.json          # prompts, input files, and assertions (skill-creator format)
   files/case-N/       # run inputs: the ONLY material a run may see
   answer-keys/        # grader-only: correct handling, reasons, and source lines for each trap
+  run-evals.js        # optional multi-agent runner: with-skill vs. baseline, then grading
   README.md
 ```
 
@@ -20,7 +21,7 @@ All names, entities, vendors ("LegalQuick," "ChronoBrief," "CaseSpark"), address
 
 ## Running with skill-creator
 
-1. **Load the skill-creator skill** and point it at `draft-complaint-utah/` and this `evals/evals.json`.
+1. **Load the skill-creator skill** and point it at the skill folder (`draft-complaint-utah/draft-complaint-utah/`) and this `extras/evals/evals.json`.
 2. **Set up an iteration workspace** (for example `draft-complaint-utah-workspace/iteration-1/`), with one directory per eval.
 3. **Spawn paired runs for each eval in the same batch:**
    - **with_skill:** the eval `prompt`, with the skill available, and the files listed in `files` copied into the run's working directory. Nothing else.

@@ -4,7 +4,7 @@ Changes to the build spec agreed during the build. Where this file and the spec 
 
 Entries before the move into `nh-ai-skills` (2026-09-24) use the old standalone layout: `skill/fresh-eyes-review/` is now `fresh-eyes-review/`, and `engine/`, `eval/`, `build/`, `portable/`, and `docs/` are now under `extras/`.
 
-## 2026-09-24 — Dogfood round 2 (user's claude.ai run on a draft complaint)
+## 2026-09-24 — Trial run 2 (user's claude.ai run on a draft complaint)
 
 The user ran the skill on claude.ai (Opus 5.5) on a draft complaint. The document stays out of the repo. Changes:
 
@@ -14,7 +14,7 @@ The user ran the skill on claude.ai (Opus 5.5) on a draft complaint. The documen
 - **The AI-reader check records how it ran:** `method` is `fresh_context`, `same_conversation`, or `not_run`, and the report warns when answers came from the same conversation. The claude.ai run had all nine answers filled in, although claude.ai normally can't start subagents, and nothing recorded how they were produced.
 - **Repo:** the project moves into the user's private `nh-ai-skills` collection, following its layout (`fresh-eyes-review/fresh-eyes-review/` is the skill; `fresh-eyes-review/extras/` holds everything else). The build spec moves to `extras/docs/build-spec.md`.
 
-## 2026-09-24 — Dogfood round 1 feedback
+## 2026-09-24 — Trial run 1 feedback
 
 **Judge each document against its purpose.** A client persona reviewing a letter sent on the client's behalf asked for its own collection costs and net recovery, which belong in advice to the client, not in a demand letter. Fixed in three places: a "Judge the document against its purpose" section in `persona-review-format.md`, a scoping note in each client persona's out-of-scope section (a small edit to attorney-reviewed files), and synthesis screening rule 4, which drops findings that ask a document to do another document's job.
 
