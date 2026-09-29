@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import re
 import tempfile
 import unittest
 import zipfile
@@ -183,6 +184,24 @@ class UploadRules(unittest.TestCase):
         self.assertTrue(self.problems("name: x\ndescription: Uses <tags>."))
         self.assertTrue(self.problems(f"name: x\ndescription: {'a' * 1025}"))
         self.assertTrue(self.problems("name: x"))
+
+
+class Viewer(unittest.TestCase):
+
+    def test_cdn_scripts_are_pinned_with_sri(self):
+        html = (build.SITE_DIR / "index.html").read_text(encoding="utf-8")
+        scripts = re.findall(r"<script\b[^>]*>", html)
+        remote = [s for s in scripts if "https://" in s]
+        self.assertEqual(len(remote), 3)
+        for tag in remote:
+            self.assertIn("https://cdnjs.cloudflare.com/", tag)
+            self.assertRegex(tag, r'integrity="sha(384|512)-[A-Za-z0-9+/=]+"')
+            self.assertIn('crossorigin="anonymous"', tag)
+            self.assertRegex(tag, r"/\d+\.\d+\.\d+/")  # exact version
+
+    def test_labels_json_is_valid(self):
+        labels = json.loads((build.SITE_DIR / "labels.json").read_text(encoding="utf-8"))
+        self.assertIn("SKILL.md", labels)
 
 
 class ReadmeSummary(unittest.TestCase):
