@@ -2,3 +2,9 @@
 __pycache__/
 .pytest_cache/
 ~$*
+
+# Hand-made skill zips; the site builds them
+*.zip
+
+# Site build output
+dist/
