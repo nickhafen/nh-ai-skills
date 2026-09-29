@@ -46,3 +46,14 @@ One self-contained file, rendered by `scripts/render_report.py` from `assets/rep
 3. **Readers:** one tab per reader with what they think the draft argues, look-for checks, findings, what to keep, and the work they'd point to; reader-tab buttons show names only.
 4. **Key sentences:** the verdict, and the full outline with flagged paragraphs highlighted
 5. **Method:** the draft's filename, run details, assumptions, readers as adapted, findings set aside, named works that couldn't be found, and a download of `results.json`
+
+## Markdown report
+
+`report.md`, rendered by `scripts/render_markdown.py`, has the HTML report's content on one page, in this order:
+
+1. **Before you rely on this:** every limitation, in a collapsible block that starts open
+2. **Priority actions:** priority actions followed by the remaining issues (now and later, by rank) in one continuously numbered list, each with severity, readers, quote, summary, and direction
+3. **What's working**
+4. **By reader:** what each thinks the draft argues, look-for checks, findings, what to keep, and the work they'd point to
+5. **Key-sentence outline:** the verdict, flagged paragraphs, and the full outline in a collapsible block
+6. **Method:** as in the HTML report, with each reader as adapted in a collapsible block

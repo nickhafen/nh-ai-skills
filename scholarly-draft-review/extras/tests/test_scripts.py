@@ -7,6 +7,7 @@ Run from extras/: python tests/test_scripts.py   (or with pytest)
 """
 
 import json
+import re
 import shutil
 import sys
 import tempfile
@@ -61,10 +62,16 @@ def test_finalize_assembles_valid_results_and_report():
     assert results["document"]["key_sentences"][0]["text"].startswith("On a cold night")
     report = (workdir / "report.md").read_text(encoding="utf-8")
     assert "<summary><strong>Before you rely on this</strong></summary>" in report
-    for heading in ("## Priority actions", "## For a later draft", "## Who to ask next", "## By reader",
-                    "## Key-sentence outline", "## Method"):
+    for heading in ("## Priority actions", "## What's working", "## By reader", "## Key-sentence outline", "## Method"):
         assert heading in report, heading
-    assert "## Related work to check" not in report
+    for cut in ("## For a later draft", "## Tradeoffs", "## Who to ask next", "## Related work to check"):
+        assert cut not in report, cut
+    # Every issue, now or later, appears once in one numbered list, priority actions first.
+    priorities = report[report.index("## Priority actions"):report.index("## What's working")]
+    numbered = re.findall(r"^### (\d+)\. (.+)$", priorities, re.M)
+    assert [int(n) for n, _ in numbered] == list(range(1, len(issues) + 1))
+    first = [issues[i]["title"] for i in synthesis["priority_actions"]]
+    assert [t for _, t in numbered[:len(first)]] == first
     assert (workdir / "summary.md").exists()
 
 

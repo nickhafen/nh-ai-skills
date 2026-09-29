@@ -18,14 +18,10 @@ STAGE_LABEL = {"idea": "Idea", "early": "Early draft", "full": "Full draft", "wo
                "submission": "Submission draft"}
 READER_TYPE_LABEL = {"nonexpert": "Nonexpert", "expert": "Law-trained, outside the specialty", "Expert": "Specialist",
                      "gatekeeper": "Gatekeeper", "custom": "Custom reader"}
-WHEN_LABEL = {"now": "Now", "next_draft": "After the next draft", "before_submission": "Before you submit"}
 PSEUDO = {"key-sentences": "Key-sentence outline"}
 WORK_LABEL = {"verified": "Verified", "cited_in_draft": "Already cited in the draft",
               "not_checked": "Not checked: confirm it exists before relying on it",
               "kind": "Kind of work to search for"}
-LISTENING_NOTE = ("When they respond, listen without defending. Ask \"Can you say more about that?\" rather than "
-                  "explaining what you meant. If a reader found a passage unclear, it was unclear to that reader, "
-                  "whatever you intended. Then respond to each comment, even if the response is to decide against it.")
 
 
 def quote(text):
@@ -91,7 +87,7 @@ def claim_line(a):
 
 
 def front_matter(results):
-    """The compact setup and reliance note shown first in each rendered report."""
+    """The collapsible reliance note that opens each rendered report."""
     return ["<details open><summary><strong>Before you rely on this</strong></summary>", ""] + limitation_lines(results) + ["", "</details>", ""]
 
 
@@ -118,45 +114,18 @@ def render_report(results):
     if synthesis:
         issues = synthesis["output"]["issues"]
         ranked = {r["issue_index"]: r for r in synthesis["ranked_issues"]}
-        out += ["## Priority actions", "", f"What matters at this stage: {a['stage_focus']}", ""]
-        for n, index in enumerate(synthesis["priority_actions"], start=1):
+        # Priority actions first, then every other issue (now or later) by rank, numbered as one list.
+        priority = synthesis["priority_actions"]
+        rest = sorted((i for i in range(len(issues)) if i not in priority), key=lambda i: ranked.get(i, {}).get("rank", 999))
+        out += ["## Priority actions", ""]
+        for n, index in enumerate(priority + rest, start=1):
             out += issue_block(issues[index], n, ranked.get(index, {}), table)
-        shown = set(synthesis["priority_actions"]) | set(synthesis["parked"])
-        others = sorted((i for i in range(len(issues)) if i not in shown), key=lambda i: ranked.get(i, {}).get("rank", 999))
-        if others:
-            out += ["**Other issues to look at now**", ""]
-            out += [f"- {issues[i]['title']} ({SEVERITY_LABEL[issues[i]['severity']].lower()}; "
-                    f"{reader_list(issue_readers(issues[i]), table)})" for i in others] + [""]
-        if synthesis["parked"]:
-            out += ["## For a later draft", "", "Real issues, but not priorities at this stage.", ""]
-            for i in synthesis["parked"]:
-                issue = issues[i]
-                out.append(f"- **{issue['title']}** — {issue['summary']} *({reader_list(issue_readers(issue), table)})*")
-            out.append("")
-
-        tradeoffs = synthesis["output"].get("tradeoffs", [])
-        if tradeoffs:
-            out += ["## Tradeoffs", "", "Readers pull in different directions here. These are yours to decide.", ""]
-            for t in tradeoffs:
-                out += [quote(t["quote"]), ""]
-                for side in t["sides"]:
-                    out.append(f"- **{table.get(side['reader'], side['reader'])}** wants {side['wants']} — {side['why']}")
-                if t.get("note"):
-                    out += ["", t["note"]]
-                out.append("")
 
         working = synthesis["output"].get("whats_working", [])
         if working:
             out += ["## What's working", ""]
             for w in working:
                 out += [quote(w["quote"]), "", f"{w['note']} *({reader_list(w['readers'], table)})*", ""]
-
-        plan = synthesis["output"].get("feedback_plan", [])
-        if plan:
-            out += ["## Who to ask next", "", "| When | Who | What to ask | Why |", "| --- | --- | --- | --- |"]
-            for x in plan:
-                out.append(f"| {WHEN_LABEL[x['when']]} | {x['who']} | {x['ask']} | {x['why']} |".replace("\n", " "))
-            out += ["", LISTENING_NOTE, ""]
 
     # By reader
     out += ["## By reader", ""]

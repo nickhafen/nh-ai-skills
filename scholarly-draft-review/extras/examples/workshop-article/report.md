@@ -13,8 +13,6 @@
 
 ## Priority actions
 
-What matters at this stage: The contribution and how it's positioned; objections; stakes; scope; claims about the literature.
-
 ### 1. The introduction states a topic; your claim first appears in Part III
 
 *High — raised by Expert in the field, Law colleague outside the subfield, Key-sentence outline*
@@ -85,28 +83,45 @@ Part III proposes a firm rule; the conclusion proposes a factor. Both experts no
 
 **Direction:** state one version of the claim the same way throughout
 
-**Other issues to look at now**
+### 8. 'Latent' changes meaning between Part I and Part III
 
-- 'Latent' changes meaning between Part I and Part III (medium; Skeptical expert)
-- No hard cases: defects never disclosed or fixed silently (medium; Skeptical expert)
-- The Keystead story never comes back to test the rule (medium; Law colleague outside the subfield)
+*Medium — raised by Skeptical expert*
 
-## For a later draft
+> “A defect is latent, in the language of these cases, when the manufacturer could not have known of it at the time of sale.”
 
-Real issues, but not priorities at this stage.
+Part I defines a latent defect by what the manufacturer knew; Part III uses the term for a defect the owner can't see. A careful reader will ask which standard the rule uses.
 
-- **Several Part I paragraphs open with a transition or a case, not their point** — k6, k7, and k9 don't say what their paragraphs do for the argument. Worth fixing, but only after Part I is cut; many of these paragraphs may go. *(Key-sentence outline)*
+**Direction:** use one definition of 'latent' throughout
 
-## Tradeoffs
+### 9. No hard cases: defects never disclosed or fixed silently
 
-Readers pull in different directions here. These are yours to decide.
+*Medium — raised by Skeptical expert*
 
-> “The literature on the discovery rule predates the rise of connected devices, and the literature on software liability has focused on whether software is a "product" at all.”
+> “the limitations period should begin to run no earlier than the date on which the manufacturer publicly discloses the defect”
 
-- **Expert in the field** wants a fuller map of existing work, so the contribution is positioned — Two sentences can't carry a novelty claim for readers in the field.
-- **Law colleague outside the subfield** wants less material before the claim, not more — Every added paragraph of background pushes the proposal further from the first pages.
+'No earlier than' disclosure implies the clock may never start for a defect that's never disclosed. The draft doesn't say whether that's intended.
 
-Where the positioning goes, not only how long it is, affects both readers.
+**Direction:** work through the undisclosed-defect case
+
+### 10. The Keystead story never comes back to test the rule
+
+*Medium — raised by Law colleague outside the subfield*
+
+> “Second, the rule is administrable. Patch notes are dated and public.”
+
+The generalist wanted to see the rule decide the opening case: when would the first family's clock have started? The example that sells the problem isn't used to show the solution.
+
+**Direction:** apply the rule to the opening example
+
+### 11. Several Part I paragraphs open with a transition or a case, not their point
+
+*Low — raised by Key-sentence outline*
+
+> “Moreover, the early exceptions were narrow.”
+
+k6, k7, and k9 don't say what their paragraphs do for the argument. Worth fixing, but only after Part I is cut; many of these paragraphs may go.
+
+**Direction:** revisit Part I's paragraph openings after cutting it
 
 ## What's working
 
@@ -125,17 +140,6 @@ Makes the post-sale-change problem concrete in two sentences. *(Expert in the fi
 > “The patch-notice rule applies only where the defect lives in code that the owner cannot see.”
 
 A clear limit that makes the claim easier to defend. *(Skeptical expert)*
-
-## Who to ask next
-
-| When | Who | What to ask | Why |
-| --- | --- | --- | --- |
-| Now | Two or three colleagues who'll be at the workshop and work outside products liability | Reading just the introduction, what do you think I'm proposing, and what's new about it? | The buried claim is the problem most likely to shape the workshop discussion, and a ten-minute read tells you whether a revised introduction fixes it. |
-| Now | Not a reader: a literature search | Search law reviews, SSRN, and the databases for accrual rules tied to manufacturer disclosure or software updates. | The 'no scholar has examined' claim needs a search behind it, or a narrower wording. The simulated readers can't do this. |
-| After the next draft | One or two scholars whose work on accrual or software liability you rely on most | Could you give me twenty minutes on the incentive objection, what I should engage that I haven't, and where you'd send this? | Only a real expert can say whether the contribution is new and which work you must address. |
-| Before you submit | A judge, clerk, or litigator who handles product cases | Would you know how to apply this rule to a real case, and what would make you cite it? | The piece proposes a rule for courts; a practitioner's read tests whether it's usable. |
-
-When they respond, listen without defending. Ask "Can you say more about that?" rather than explaining what you meant. If a reader found a passage unclear, it was unclear to that reader, whatever you intended. Then respond to each comment, even if the response is to decide against it.
 
 ## By reader
 
@@ -368,7 +372,7 @@ Read alone, the introduction's key sentences give the story, the problem, and th
 ## Method
 
 - **Draft:** document.md (1499 words; working copy `document.md`). This report refers to the draft by filename and doesn't include its text.
-- **Run:** 561bcb495700 · 2026-09-29T21:37:40+00:00 · claude-code · model claude-opus-5-5 · skill content 6b9b87b751939cb1. Each reader reviewed the draft in turn, in one conversation.
+- **Run:** b3be758881c7 · 2026-09-29T21:54:04+00:00 · claude-code · model claude-opus-5-5 · skill content 5568d7d2e42f933b. Each reader reviewed the draft in turn, in one conversation.
 - **Quotes checked:** 19 of 19 quote the draft word for word.
 - **Named works:** 1 named; 0 verified, 1 already cited, 0 not checked, 0 not found and left out.
 

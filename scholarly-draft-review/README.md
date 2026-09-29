@@ -16,7 +16,7 @@ It's the scholarship counterpart to [fresh-eyes-review](../fresh-eyes-review/REA
 
 **Its experts engage the literature, and it checks what they name.** Like real experts, the expert readers say whether your contribution looks new and point to work you should engage. Because a model can misremember or invent sources, every specific work they name is looked up before you see it (using web search or a research connector when one is available). Works that check out are linked; works that can't be found are dropped; and if no search tool is available, named works are clearly marked as unchecked. A judgment that your claim has already been made must point to a work that checked out. It isn't a cite-check: it won't rule on whether you've described a case correctly, though an expert may flag a characterization to double-check.
 
-**Its readers are simulations.** Treat their reactions as informed hypotheses. Simulated readers are more agreeable and more uniform than real people, and a simulated expert knows only what the model knows, which is incomplete and out of date (recent SSRN postings especially). That's why every report ends with a plan for real readers.
+**Its readers are simulations.** Treat their reactions as informed hypotheses. Simulated readers are more agreeable and more uniform than real people, and a simulated expert knows only what the model knows, which is incomplete and out of date (recent SSRN postings especially). That's why the chat summary suggests which real person to ask next.
 
 **Every result starts with its limitations.** The chat summary and the report open with "Before you rely on this": the readers are simulations, the AI can be wrong (including about sources), its sense of the literature is incomplete and out of date, it isn't a cite-check, and anything you act on needs checking. Items specific to the run are added, such as works that couldn't be checked or a claim the review had to infer.
 
@@ -30,7 +30,7 @@ It's the scholarship counterpart to [fresh-eyes-review](../fresh-eyes-review/REA
 4. Each reader reads the whole draft in good faith and reviews it from their own position. None of them is told your intended claim; comparing what each thinks you argue with what you meant is the main test of whether your claim comes through. Expert readers also point to related work.
 5. Every specific work a reader named is looked up, so you see only works that exist, or works clearly marked as unchecked.
 6. A key-sentence check lists the first sentence of every paragraph, in order, and asks whether that outline alone tells your argument (one of Gray's revision techniques).
-7. It combines everything into ranked priorities for this stage (each with a one-line direction), a "park for later" list, tradeoffs between readers, what's working, and a feedback plan: which real people to ask next, when, and what to ask them.
+7. It combines everything into one ranked list of issues, with the priority actions for this stage first and issues for a later draft after them, each with a one-line direction. It also notes what's working. The chat summary adds the biggest tradeoff between readers and which real person to ask next.
 
 ### The readers
 
@@ -79,7 +79,7 @@ If you're using the paste-in prompt, rebuild it after editing (`python build/bui
 
 ## Design notes
 
-**Who reads when.** The stage map follows Tara Gray, *Publish & Flourish: Become a Prolific Scholar* (New Mexico State University Teaching Academy). Gray sorts readers into nonexperts (anyone without your training, best at spotting what's unclear or disorganized), little-e experts (people with your training outside your specialty), and Capital-E Experts (the scholars you cite most), and advises sharing early drafts with nonexperts and later drafts with experts, asking Capital-E Experts for a short read shortly before submission: to spot major problems, suggest citations, and recommend journals. That's why the expert readers here point to related work, with a lookup step added because a model's citations can't be taken on trust. The key-sentence check follows her advice to organize paragraphs around key sentences and to use them as an after-the-fact outline. The "how to use what you hear" note in each report follows her advice to listen without defending and to respond to each criticism.
+**Who reads when.** The stage map follows Tara Gray, *Publish & Flourish: Become a Prolific Scholar* (New Mexico State University Teaching Academy). Gray sorts readers into nonexperts (anyone without your training, best at spotting what's unclear or disorganized), little-e experts (people with your training outside your specialty), and Capital-E Experts (the scholars you cite most), and advises sharing early drafts with nonexperts and later drafts with experts, asking Capital-E Experts for a short read shortly before submission: to spot major problems, suggest citations, and recommend journals. That's why the expert readers here point to related work, with a lookup step added because a model's citations can't be taken on trust. The key-sentence check follows her advice to organize paragraphs around key sentences and to use them as an after-the-fact outline.
 
 **What readers look for.** The personas' checklists draw on standard advice for legal and academic writers:
 

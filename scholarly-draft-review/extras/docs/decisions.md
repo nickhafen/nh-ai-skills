@@ -2,6 +2,17 @@
 
 Design choices for scholarly-draft-review, newest first.
 
+## 2026-09-29 — Leaner reports: one issue list; tradeoffs and the feedback plan only in the chat summary
+
+The reports had grown sections that repeated each other or asked the author to weigh more than they could act on. In both `report.html` and `report.md`:
+
+- **"Before you rely on this" is the whole front matter,** in a collapsible block that starts open. The stage, claim, and plan line moved out; run context and assumptions are in Method. The duplicate limitations list in Method is gone.
+- **One numbered issue list.** Now and Later (in HTML), and "other issues" and "park for later" (in Markdown), merge into one list: priority actions first, then every other issue by rank. Severity tags convey priority. The severity/reader filters, the "several readers" tag, and the stage-focus sentence are removed.
+- **Removed from the reports:** tradeoffs, "who to ask next" with its listening note, the stage ladder, and the related-work section. Named works still appear under the reader who named them, with their check status.
+- **Reader details** show each reader's fuller finding text, without the one-line reason, the quote, or the finding number.
+
+The synthesis still produces tradeoffs and the feedback plan, and the chat summary still shows the biggest tradeoff and who to ask next.
+
 ## 2026-09-29 — Simplified for authors: no cold read, next actions, attention maps, or next-steps tab
 
 The skill carried over tooling from fresh-eyes-review that serves a practitioner's document or that project's validation work, not an author revising scholarship. Removed:
