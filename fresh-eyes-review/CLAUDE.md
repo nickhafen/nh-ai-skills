@@ -13,7 +13,7 @@ The full build spec is `extras/docs/build-spec.md`. Its **Build progress** table
   - `assets/results.schema.json` defines `results.json`. Its model-output `$defs` are also sent to the API as structured-output formats, so they must follow the API's schema limits (closed objects, all fields required, nullable via `anyOf`, no min/max).
   - `scripts/quality.py` (stdlib only) does quote verification, ranking, coverage, and run-quality metrics for every environment.
 - `extras/engine/` is the pipeline (prompts, model clients, conditions A–E). It reads content from the skill folder; it never duplicates it.
-- `extras/eval/` has the harness, scoring, fixtures, dogfood runs, and offline tests. See `extras/eval/README.md`.
+- `extras/eval/` has the harness, scoring, fixtures, example runs, and offline tests. See `extras/eval/README.md`.
 - `extras/build/check_personas.py` checks every persona against the schema; `extras/build/build_portable.py` generates the paste-in prompts.
 
 ## Checks to run after changes
