@@ -77,9 +77,7 @@ DEFS = {
             rule=enum("no_anchor", "no_goal_link", "substance", "unverified_source", "out_of_lane", "known_gap",
                       "leaked_knowledge"),
             note=STR)),
-        tradeoffs=arr(obj(quote=STR, sides=arr(obj(reader=STR, wants=STR, why=STR)), note=STR)),
-        whats_working=arr(obj(quote=STR, readers=arr(STR), note=STR)),
-        feedback_plan=arr(obj(who=STR, when=enum("now", "next_draft", "before_submission"), ask=STR, why=STR))),
+        whats_working=arr(obj(quote=STR, readers=arr(STR), note=STR))),
     "section": obj(id=STR, label=STR),
     "key_sentence": obj(id=STR, section_id=null(STR), text=STR),
     "persona_record": obj(
@@ -92,7 +90,7 @@ DEFS = {
 sourced = lambda: obj(text=STR, source=enum("stated", "inferred"))  # noqa: E731
 
 PROPERTIES = {
-    "schema_version": {"const": "0.2"},
+    "schema_version": {"const": "0.3"},
     "run": obj(id=STR, created_at=STR, tool_version=STR, content_hash=STR, model=STR, platform=STR),
     "document": obj(title=null(STR), source_file=null(STR), working_copy=STR, word_count=INT,
                     sections=arr(ref("section")), key_sentences=arr(ref("key_sentence"))),

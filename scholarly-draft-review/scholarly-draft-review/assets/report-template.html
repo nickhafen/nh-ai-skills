@@ -44,10 +44,12 @@ button { font: inherit; color: inherit; }
 header.top { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 0 0; }
 .eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
 h1 { font: 600 26px/1.25 var(--serif); margin: 6px 0 12px; }
-.plan { color: var(--muted); margin: 0 0 8px; max-width: 75ch; }
-.goal { margin: 0 0 14px; max-width: 75ch; }
-.goal .tag { margin-right: 6px; }
-.caveat { font-size: 13px; color: var(--faint); margin: 0 0 18px; }
+.front-matter { margin: 0; border-top: 1px solid var(--border); }
+.front-matter > summary { cursor: pointer; padding: 12px 0; color: var(--accent-text); font-size: 14px; list-style: none; }
+.front-matter > summary::-webkit-details-marker { display: none; }
+.front-matter > summary::before { content: "▸"; display: inline-block; width: 1em; transition: transform .15s; }
+.front-matter[open] > summary::before { transform: rotate(90deg); }
+.front-matter .limits-card { margin: 0 0 18px; }
 
 nav.tabs { position: sticky; top: 0; z-index: 5; background: var(--surface); border-bottom: 1px solid var(--border); }
 nav.tabs .wrap { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
@@ -87,6 +89,7 @@ blockquote.q { margin: 10px 0; padding: 6px 0 6px 14px; border-left: 3px solid v
 
 .issue { display: grid; grid-template-columns: 34px 1fr; gap: 0 12px; }
 .rank { flex: 0 0 30px; width: 30px; height: 30px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-text); font-weight: 700; display: grid; place-items: center; font-size: 14px; }
+.overview-row { display: flex; gap: 10px; margin: 10px 0; }
 .issue-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 2px 0 4px; }
 details { margin-top: 8px; }
 details > summary { cursor: pointer; color: var(--accent); font-size: 14px; font-weight: 500; list-style: none; }
@@ -96,15 +99,12 @@ details[open] > summary::before { transform: rotate(90deg); }
 .support { border-top: 1px dashed var(--border); margin-top: 10px; padding-top: 8px; }
 .support .who { font-weight: 600; font-size: 13px; }
 
-.filters { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; margin: 0 0 16px; padding: 10px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
-.filters .label { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--faint); font-weight: 600; }
 .toggle { border: 1px solid var(--border); background: var(--surface-2); border-radius: 999px; padding: 3px 10px; font-size: 13px; cursor: pointer; color: var(--muted); }
 .toggle[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent-text); border-color: transparent; font-weight: 600; }
 
 .subtabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; }
 .subtabs button { border: 1px solid var(--border); background: var(--surface); border-radius: 8px; padding: 8px 12px; cursor: pointer; text-align: left; }
 .subtabs button[aria-selected="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent-text); }
-.subtabs .sub { display: block; font-size: 12px; color: var(--faint); }
 
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
 th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
@@ -152,7 +152,7 @@ header.top { position: relative; }
   .card { padding: 14px; }
 }
 @media print {
-  nav.tabs, .filters, .theme, .subtabs, .no-print { display: none !important; }
+  nav.tabs, .theme, .subtabs, .no-print { display: none !important; }
   section.panel, .persona-panel, .print-only-name { display: block !important; }
   section.panel { break-before: page; }
   section.panel:first-of-type { break-before: auto; }
@@ -249,9 +249,7 @@ header.top { position: relative; }
   var STAGE = { idea: "Idea", early: "Early draft", full: "Full draft", workshop: "Workshop draft", submission: "Submission draft" };
   var STAGES = ["idea", "early", "full", "workshop", "submission"];
   var KIND = { nonexpert: "Nonexpert", expert: "Law-trained, outside the specialty", Expert: "Specialist", gatekeeper: "Gatekeeper", custom: "Custom reader" };
-  var WHEN = { now: "Now", next_draft: "After the next draft", before_submission: "Before you submit" };
   var WORK = { verified: "Verified", cited_in_draft: "Already cited", not_checked: "Not checked: confirm it exists before relying on it", kind: "Kind of work to search for" };
-  var LISTEN = "When they respond, listen without defending. Ask “Can you say more about that?” rather than explaining what you meant. If a reader found a passage unclear, it was unclear to that reader, whatever you intended. Then respond to each comment, even if the response is to decide against it.";
 
   // ---------- render ----------
   function render(R) {
@@ -295,30 +293,21 @@ header.top { position: relative; }
       var dark = cur ? cur === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
       root.setAttribute("data-theme", dark ? "light" : "dark");
     });
-    var stageIdx = STAGES.indexOf(A.stage.id);
-    var ladder = h("div", { class: "ladder", "aria-label": "Stage" }, STAGES.map(function (s, i) {
-      return h("span", { class: i < stageIdx ? "done" : i === stageIdx ? "here" : "", text: STAGE[s] });
-    }));
+    var front = h("details", { class: "front-matter", open: true },
+      h("summary", { text: "Before you rely on this" }),
+      h("div", { class: "card limits-card" }, limitList(Q.limitations)));
     add(app, h("header", { class: "top" }, h("div", { class: "wrap" },
       themeBtn,
       h("div", { class: "eyebrow", text: "Scholarly draft review" }),
       h("h1", { text: D.title || A.piece_type }),
-      ladder,
-      h("p", { class: "plan", text: A.plan_line }),
-      A.stage.source === "inferred" ? h("p", { class: "goal" }, tag("Inferred stage", "inferred"), " ", STAGE[A.stage.id] + " — " + A.stage.basis,
-        h("span", { class: "muted small", text: " If this is wrong, tell me; the readers change." })) : null,
-      h("p", { class: "goal" }, A.claim.source === "inferred" ? tag("Inferred claim", "inferred") : tag("Your claim", "accent"), " ", A.claim.text,
-        A.claim.source === "inferred" ? h("span", { class: "muted small", text: " — if this is wrong, much of the feedback shifts." }) : null),
-      h("p", { class: "caveat", text: "AI-simulated readers: reactions are hypotheses, and the AI can be wrong, including about sources. Read “Before you rely on this” first." })
+      front
     )));
 
     // Tabs
     var tabs = [
-      ["overview", "Overview"], ["priorities", "Now", S ? S.priority_actions.length : null],
-      ["later", "Later", S && S.parked.length ? S.parked.length : null],
+      ["overview", "Overview"], ["priorities", "Priorities", S ? S.priority_actions.length : null],
       ["readers", "Readers", R.persona_reviews.length], ["keys", "Key sentences"], ["method", "Method"]
     ].filter(function (t) {
-      if (t[0] === "later") return S && S.parked.length;
       if (t[0] === "keys") return K || (D.key_sentences || []).length;
       return true;
     });
@@ -343,9 +332,8 @@ header.top { position: relative; }
 
     // Issue card (shared)
     function issueCard(index, n) {
-      var it = issues[index], r = ranked[index] || {}, readers = readersOf(it);
+      var it = issues[index], readers = readersOf(it);
       var meta = h("div", { class: "issue-meta" }, tag(SEV[it.severity], it.severity),
-        r.convergent ? tag("Several readers", "accent") : null,
         readers.map(function (x) { return h("span", { class: "chip", text: nm(x) }); }));
       var support = it.finding_refs.filter(function (ref) { return findings[ref]; });
       return h("div", { class: "card issue", "data-sev": it.severity, "data-readers": readers.join(" ") },
@@ -353,100 +341,46 @@ header.top { position: relative; }
         h("div", null, h("h3", { text: it.title }), meta, quote(it.quote), h("div", { text: it.summary }),
           it.direction ? h("div", { class: "direction" }, h("b", { text: "Direction: " }), it.direction) : null,
           (support.length || (it.reasons || []).length) ? h("details", null, h("summary", { text: "What each reader said" }),
-            (it.reasons || []).map(function (x) { return h("div", { class: "support" }, h("div", { class: "who", text: nm(x.reader) }), h("div", { class: "small", text: x.reason })); }),
-            support.map(function (ref) { var s = findings[ref]; return h("div", { class: "support" }, h("div", { class: "who", text: nm(s.pid) + " · " + ref.split("/")[1] }), h("div", { class: "small" }, h("b", { text: s.f.issue + " " }), s.f.why_it_matters), quote(s.f.quote)); })
+            support.length ? support.map(function (ref) { var s = findings[ref]; return h("div", { class: "support" }, h("div", { class: "who", text: nm(s.pid) }), h("div", { class: "small", text: s.f.issue + " " + s.f.why_it_matters })); }) :
+              (it.reasons || []).map(function (x) { return h("div", { class: "support" }, h("div", { class: "who", text: nm(x.reader) }), h("div", { class: "small", text: x.reason })); })
           ) : null));
     }
 
     // ---- Overview ----
     var ov = panels.overview;
-    add(ov, h("div", { class: "card limits-card" }, h("h4", { text: "Before you rely on this" }), limitList(Q.limitations)));
     if (S) {
-      var top = h("div", { class: "card" }, h("h4", { text: "Top priorities for this stage" }), h("p", { class: "small muted", text: A.stage_focus, style: "margin:0 0 6px" }));
+      var top = h("div", { class: "card" });
       S.priority_actions.slice(0, 3).forEach(function (i, n) {
         var it = issues[i];
-        top.appendChild(h("div", { style: "display:flex;gap:10px;margin:8px 0" }, h("div", { class: "rank", text: String(n + 1) }),
+        top.appendChild(h("div", { class: "overview-row" }, h("div", { class: "rank", text: String(n + 1) }),
           h("div", null, h("b", { text: it.title }), h("div", { class: "small muted", text: readersOf(it).map(nm).join(" · ") }))));
       });
       if (!S.priority_actions.length) top.appendChild(h("p", { class: "muted", text: "No issues to address at this stage." }));
       top.appendChild(h("button", { class: "toggle no-print", type: "button", text: "See all priorities →", onclick: function () { show("priorities"); } }));
-      if (S.parked.length) top.appendChild(h("span", { class: "small muted", text: "  " + S.parked.length + " more parked for a later draft." }));
-      add(ov, top);
-      if (S.output.tradeoffs.length) {
-        var t0 = S.output.tradeoffs[0];
-        add(ov, h("div", { class: "card" }, h("h4", { text: "Biggest tradeoff" }),
-          h("div", { class: "chips" }, t0.sides.map(function (s) { return h("span", { class: "chip", text: nm(s.reader) }); })),
-          h("div", { class: "small", text: t0.note || t0.sides[0].wants })));
-      }
+      add(ov, h("h2", { text: "Top priorities" }), top);
       if (S.output.whats_working.length) {
-        add(ov, h("h2", { text: "What's working" }));
+        var working = h("div", { class: "card" });
         S.output.whats_working.forEach(function (w) {
-          add(ov, h("div", { class: "card" }, quote(w.quote), h("div", { text: w.note }), h("div", { class: "chips" }, w.readers.map(function (x) { return h("span", { class: "chip", text: nm(x) }); }))));
+          var row = h("div", { class: "overview-row" });
+          row.appendChild(h("div", { class: "rank", text: "✓" }));
+          row.appendChild(h("div", null, quote(w.quote), h("div", { text: w.note }),
+            h("div", { class: "chips" }, w.readers.map(function (x) { return h("span", { class: "chip", text: nm(x) }); }))));
+          working.appendChild(row);
         });
-      }
-      if (S.output.feedback_plan.length) {
-        add(ov, h("h2", { text: "Who to ask next" }), h("p", { class: "lede", text: "Real readers, in order. Tell each one what kind of feedback you want." }),
-          h("div", { class: "card" }, h("div", { class: "table-wrap" }, h("table", null,
-            h("tr", null, h("th", { text: "When" }), h("th", { text: "Who" }), h("th", { text: "What to ask" }), h("th", { text: "Why" })),
-            S.output.feedback_plan.map(function (x) { return h("tr", null, h("td", { text: WHEN[x.when] }), h("td", null, h("b", { text: x.who })), h("td", { class: "serif", text: "“" + x.ask + "”" }), h("td", { class: "small", text: x.why })); })))),
-          h("p", { class: "small muted", text: LISTEN }));
+        add(ov, h("h2", { text: "What's working" }), working);
       }
     }
-    var shownWorks = works.filter(function (w) { return w.status !== "not_found"; });
-    if (shownWorks.length) {
-      var searched = (R.related_work_check || {}).method === "searched";
-      var note = searched ? "Specific works were looked up; ones that couldn't be found are left out."
-        : shownWorks.some(function (w) { return w.status === "not_checked"; }) ? "No search ran, so named works are unchecked." : null;
-      add(ov, h("h2", { text: "Related work to check" }), note ? h("p", { class: "lede", text: note }) : null,
-        h("div", { class: "card" }, shownWorks.map(function (w) { return workItem(w, true); })));
-    }
-
-    // ---- Now ----
+    // ---- Priorities ----
     var pr = panels.priorities;
     if (S) {
       var nowIdx = issues.map(function (_, i) { return i; }).filter(function (i) { return issues[i].timing === "now"; });
-      var state = { sev: { high: true, medium: true, low: true }, readers: {} };
-      var readerIds = {}; nowIdx.forEach(function (i) { readersOf(issues[i]).forEach(function (x) { readerIds[x] = 1; }); });
-      var filters = h("div", { class: "filters" }, h("span", { class: "label", text: "Severity" }),
-        ["high", "medium", "low"].map(function (s) {
-          var b = h("button", { class: "toggle", type: "button", "aria-pressed": "true", text: SEV[s] });
-          b.addEventListener("click", function () { state.sev[s] = !state.sev[s]; b.setAttribute("aria-pressed", state.sev[s]); apply(); }); return b;
-        }), h("span", { class: "label", text: "Raised by" }),
-        Object.keys(readerIds).map(function (x) {
-          var b = h("button", { class: "toggle", type: "button", "aria-pressed": "false", text: nm(x) });
-          b.addEventListener("click", function () { state.readers[x] = !state.readers[x]; b.setAttribute("aria-pressed", !!state.readers[x]); apply(); }); return b;
-        }));
-      add(pr, filters);
-      add(pr, h("h2", { text: "Priority actions" }), h("p", { class: "lede", text: "What matters at this stage: " + A.stage_focus + " Ranked by severity and how many readers raised it." }));
+      add(pr, h("h2", { text: "Priority actions" }));
       var list = h("div", null); add(pr, list);
       S.priority_actions.forEach(function (i, n) { list.appendChild(issueCard(i, n + 1)); });
-      var others = nowIdx.filter(function (i) { return S.priority_actions.indexOf(i) < 0; })
+      var remaining = nowIdx.filter(function (i) { return S.priority_actions.indexOf(i) < 0; }).concat(S.parked)
         .sort(function (a, b) { return (ranked[a] || {}).rank - (ranked[b] || {}).rank; });
-      if (others.length) { add(pr, h("h2", { text: "Other issues to look at now" })); var ol = h("div", null); add(pr, ol); others.forEach(function (i) { ol.appendChild(issueCard(i)); }); }
-      var none = h("p", { class: "muted", text: "No issues match these filters.", style: "display:none" }); add(pr, none);
-      function apply() {
-        var picked = Object.keys(state.readers).filter(function (k) { return state.readers[k]; }), shown = 0;
-        pr.querySelectorAll(".issue").forEach(function (c) {
-          var ok = state.sev[c.getAttribute("data-sev")] && (!picked.length || picked.some(function (x) { return (" " + c.getAttribute("data-readers") + " ").indexOf(" " + x + " ") >= 0; }));
-          c.style.display = ok ? "" : "none"; if (ok) shown++;
-        });
-        none.style.display = shown ? "none" : "";
-      }
-      if (S.output.tradeoffs.length) {
-        add(pr, h("h2", { text: "Tradeoffs" }), h("p", { class: "lede", text: "Readers pull in different directions here. These are yours to decide." }));
-        S.output.tradeoffs.forEach(function (t) {
-          add(pr, h("div", { class: "card" }, quote(t.quote),
-            t.sides.map(function (s) { return h("div", { style: "margin:6px 0" }, h("b", { text: nm(s.reader) + " wants " }), s.wants, h("span", { class: "muted", text: " — " + s.why })); }),
-            t.note ? h("p", { class: "small muted", text: t.note, style: "margin:8px 0 0" }) : null));
-        });
-      }
+      remaining.forEach(function (i, n) { list.appendChild(issueCard(i, S.priority_actions.length + n + 1)); });
     } else add(pr, h("p", { class: "muted", text: "No synthesis in this run." }));
-
-    // ---- Later ----
-    if (panels.later) {
-      add(panels.later, h("h2", { text: "Park for later" }), h("p", { class: "lede", text: "Real issues, but not for this stage. Come back to them in a later draft." }));
-      S.parked.forEach(function (i) { panels.later.appendChild(issueCard(i)); });
-    }
 
     // ---- Readers ----
     var rd = panels.readers, sub = h("div", { class: "subtabs", role: "tablist" }), holder = h("div", null);
@@ -456,8 +390,7 @@ header.top { position: relative; }
     var ppanels = [];
     R.persona_reviews.forEach(function (rv, idx) {
       var p = personas[rv.persona_id] || { name: rv.persona_id, reader_type: "custom", briefing: "briefed" }, o = rv.output;
-      var btn = h("button", { type: "button", role: "tab", "aria-selected": idx === 0 ? "true" : "false" }, p.name,
-        h("span", { class: "sub", text: KIND[p.reader_type] + " · " + o.findings.length + " findings" }));
+      var btn = h("button", { type: "button", role: "tab", "aria-selected": idx === 0 ? "true" : "false" }, p.name);
       sub.appendChild(btn);
       var pane = h("div", { class: "persona-panel", style: idx === 0 ? "" : "display:none" });
       btn.addEventListener("click", function () {
@@ -530,8 +463,8 @@ header.top { position: relative; }
       var a = h("a", { href: URL.createObjectURL(new Blob([JSON.stringify(R, null, 2)], { type: "application/json" })), download: "results.json" });
       document.body.appendChild(a); a.click(); a.remove();
     });
-    add(me, h("h2", { text: "Limitations" }), h("div", { class: "card small" }, limitList(Q.limitations)), dl,
-      h("p", { class: "foot", text: "Generated by scholarly-draft-review. This file works offline; nothing in it is sent anywhere." }));
+    add(me, dl,
+      h("p", { class: "foot" }, "Generated by ", h("a", { href: "https://github.com/nickhafen/nh-ai-skills", target: "_blank", rel: "noopener noreferrer", text: "scholarly-draft-review" }), ". This file works offline; nothing in it is sent anywhere."));
 
     show((location.hash || "#overview").slice(1));
   }

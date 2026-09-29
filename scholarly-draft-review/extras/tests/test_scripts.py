@@ -7,6 +7,7 @@ Run from extras/: python tests/test_scripts.py   (or with pytest)
 """
 
 import json
+import re
 import shutil
 import sys
 import tempfile
@@ -60,10 +61,23 @@ def test_finalize_assembles_valid_results_and_report():
     assert synthesis["parked"] and all(issues[i]["timing"] == "later" for i in synthesis["parked"])
     assert results["document"]["key_sentences"][0]["text"].startswith("On a cold night")
     report = (workdir / "report.md").read_text(encoding="utf-8")
-    for heading in ("## Before you rely on this", "## Priority actions", "## Park for later", "## Who to ask next",
-                    "## Related work to check", "## By reader", "## Key-sentence outline", "## Method"):
+    assert "<summary><strong>Before you rely on this</strong></summary>" in report
+    for heading in ("## Priority actions", "## What's working", "## By reader", "## Key-sentence outline", "## Method"):
         assert heading in report, heading
-    assert (workdir / "summary.md").exists()
+    for cut in ("## For a later draft", "## Tradeoffs", "## Who to ask next", "## Related work to check"):
+        assert cut not in report, cut
+    # Every issue, now or later, appears once in one numbered list, priority actions first.
+    priorities = report[report.index("## Priority actions"):report.index("## What's working")]
+    numbered = re.findall(r"^### (\d+)\. (.+)$", priorities, re.M)
+    assert [int(n) for n, _ in numbered] == list(range(1, len(issues) + 1))
+    first = [issues[i]["title"] for i in synthesis["priority_actions"]]
+    assert [t for _, t in numbered[:len(first)]] == first
+    summary = (workdir / "summary.md").read_text(encoding="utf-8")
+    for cut in ("Biggest tradeoff", "Who to ask next", "feedback plan"):
+        assert cut not in summary and cut not in report, cut
+    # The synthesis no longer produces tradeoffs or a feedback plan.
+    assert "tradeoffs" not in synthesis["output"] and "feedback_plan" not in synthesis["output"]
+    assert results["schema_version"] == "0.3"
 
 
 def test_results_and_reports_refer_to_the_draft_by_filename():
@@ -84,7 +98,7 @@ def test_limitations_are_disclosed_in_summary_and_report():
     summary = (workdir / "summary.md").read_text(encoding="utf-8")
     report = (workdir / "report.md").read_text(encoding="utf-8")
     assert "**Before you rely on this**" in summary
-    assert report.index("## Before you rely on this") < report.index("## Priority actions")
+    assert report.index("Before you rely on this") < report.index("## Priority actions")
     for title, text in quality.STANDING_LIMITATIONS:
         assert f"**{title}.** {text}" in summary and f"**{title}.** {text}" in report, title
     assert "**Your claim was inferred.**" in summary
@@ -112,7 +126,6 @@ def test_named_works_default_to_not_checked_and_never_to_verified():
                                                   "not_found": 0, "not_checked": 2}
     report = (workdir / "report.md").read_text(encoding="utf-8")
     assert "Not checked: confirm it exists before relying on it" in report
-    assert "No search ran, so named works are unchecked." in report
     assert "**2 named works not checked.**" in (workdir / "summary.md").read_text(encoding="utf-8")
 
 

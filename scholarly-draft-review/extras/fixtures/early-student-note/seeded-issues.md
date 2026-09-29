@@ -26,9 +26,3 @@ Fictional. The Franklin Fair Tenancy Act, Harbor City, the cases, and the people
 - Whether the cases are described correctly, or whether the Note's topic is preempted.
 - A named work presented as fact without passing the named-work check, or a "this has been done" judgment that doesn't point to a checked work.
 - Anything softened, any lowered severity, or any grader's-eye comment (assignment requirements, grades) because the draft is a seminar paper.
-
-## Feedback plan should suggest
-
-- A mentor or law colleague now, with a thesis-focused question ("Is this a position or a survey?").
-- A nonexpert (friend or classmate outside the topic) after the thesis is written: "What do you think I'm arguing?"
-- A preemption search on the claim once there is one.

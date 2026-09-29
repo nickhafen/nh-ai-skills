@@ -1,6 +1,6 @@
 # Synthesis rubric
 
-The synthesis reads every reader review and the key-sentence check and turns them into one set of results for the author. It flags issues, sorts them into now and later, shows tradeoffs, and suggests who to ask next. It never drafts or rewrites.
+The synthesis reads every reader review and the key-sentence check and turns them into one set of results for the author. It flags issues, sorts them into now and later, and notes what's working. It never drafts or rewrites.
 
 ## Inputs
 
@@ -20,7 +20,7 @@ Apply these rules to every finding (including "missing" look-for items and key-s
    - Keep: "An expert is likely to test this characterization of the case law; flag it for checking." Drop: "This characterization of the case law is wrong."
 4. **Named works must check out** (`unverified_source`). Use `related-work.json`.
    - Drop a finding that rests on a work marked `not_found`. If the point survives without the work ("the draft doesn't engage empirical work on X"), keep that version and note the change.
-   - A finding that the claim isn't new stays only if it rests on a work marked `verified` or `cited_in_draft`. Otherwise, rewrite it as a question for a search ("an expert would ask how this differs from work on X") and put the search in the feedback plan.
+   - A finding that the claim isn't new stays only if it rests on a work marked `verified` or `cited_in_draft`. Otherwise, rewrite it as a question for a search ("an expert would ask how this differs from work on X"), with running that search as its direction.
    - A finding that rests on a work marked `not_checked` stays, but its summary must say the work hasn't been checked.
 5. **In the reader's lane** (`out_of_lane`). Drop findings under the persona's "out of scope" section, findings that ask the piece to be a different genre, and findings that only point out placeholders or notes to self before `submission`.
 6. **Known gaps** (`known_gap`). Drop findings about gaps the author's note already names.
@@ -35,11 +35,12 @@ Two findings are duplicates if they concern the same (or overlapping) passage an
 - **Finding:** raised by one or more readers.
 - **Claim mismatch:** a reader's "main point as understood" differs from the author's claim, or a reader couldn't state a claim at all. Always high severity. Name the readers and what each thought the draft argued.
 - **Key sentence:** from the key-sentence check: paragraphs whose opening doesn't say what they're for, or an outline that doesn't tell the argument.
-- **Tradeoff:** two readers want opposite things from the same passage (the outsider wants more background; the expert wants less). Present both sides neutrally. Don't pick one.
+
+When two readers want opposite things from the same passage (the outsider wants more background; the expert wants less), make it one issue that states both sides neutrally. Its direction leaves the choice to the author; don't pick a side.
 
 ## Step 4: Now or later
 
-Mark every issue **now** or **later** using "What matters at each stage" in `stage-map.md`. Anything that would sink the piece (no discernible claim, a claim that changes between the introduction and the conclusion, an argument that doesn't reach its conclusion) is **now** at every stage. Only **now** issues become priority actions; **later** issues go in a short "park for later" list so the author doesn't lose them.
+Mark every issue **now** or **later** using "What matters at each stage" in `stage-map.md`. Anything that would sink the piece (no discernible claim, a claim that changes between the introduction and the conclusion, an argument that doesn't reach its conclusion) is **now** at every stage. Only **now** issues become priority actions; **later** issues follow them in the report so the author doesn't lose them.
 
 ## Step 5: Rank
 
@@ -56,12 +57,10 @@ Only **now** issues are eligible for the top seven. Ties go to the issue closest
 ## Step 6: Produce the synthesis
 
 1. **Issues:** every surviving issue with title, quote, summary, supporting findings, each reader's reason, severity, category, now or later, and a direction in one short phrase ("state the claim in the first paragraph"), never a rewritten passage.
-2. **Tradeoffs:** each with the passage, what each reader wants, and why. No recommendation.
-3. **What's working:** passages at least one reader said to keep.
-4. **Feedback plan:** two to four real readers to ask next, in order, from "Real readers to suggest" in `stage-map.md`, tailored to the findings: who (a kind of person, never a named individual), when (`now`, `next_draft`, or `before_submission`), what to ask them, and why. If a finding can only be settled by a real expert or a search (for example, whether the claim is new), say so here.
-5. **Dropped findings,** with their rules.
+2. **What's working:** passages at least one reader said to keep.
+3. **Dropped findings,** with their rules.
 
-Related work isn't written here: the report lists it from the reviews and `related-work.json`, with verified works linked, unchecked ones labeled, and works that weren't found left out.
+Related work isn't written here: the report shows it under each reader, from the reviews and `related-work.json`, with verified works linked, unchecked ones labeled, and works that weren't found left out.
 
 ## Voice and framing
 
@@ -81,7 +80,7 @@ Always:
 - **AI can be wrong, including about sources.** The AI can misread your draft, misstate what it says, or invent or misdescribe sources. Quotes from your draft are checked word for word; summaries and paraphrases aren't. A named work is marked verified only if a search found it, which confirms it exists and seems to address the topic, not that it says what the reader claims.
 - **Novelty views are leads.** What the AI knows about legal scholarship is incomplete and out of date, especially recent work. Treat its views on whether your claim is new, and its reading suggestions, as leads, and do your own search before relying on them.
 - **Not a cite-check.** This review doesn't verify the law, cases, facts, or citations in your draft. A reader may flag something to check; nothing here confirms that anything is correct.
-- **Verify before you act.** Check anything you plan to act on against your draft and the sources, and get real readers' reactions before you submit. The feedback plan suggests who to ask.
+- **Verify before you act.** Check anything you plan to act on against your draft and the sources, and get real readers' reactions before you submit.
 - **Your draft went to an AI service.** Follow any rules that apply to your use of AI tools, such as a journal's or publisher's policy.
 
 When they apply to the run:

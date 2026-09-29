@@ -17,7 +17,7 @@ The exact structure is in `assets/results.schema.json` (generated; edit `extras/
 | `persona_reviews` | Each reader's review, in the format in `persona-review-format.md`, including its related-work pointers | Model (step 4) |
 | `related_work_check` | Each specific work a reader named, with its status (`verified` with a link, `cited_in_draft`, `not_found`, or `not_checked`), and whether a search ran | Model (step 5), completed by script |
 | `key_sentence_check` | Verdict and up to five flagged paragraphs, or null if the check didn't run | Model (step 6) |
-| `synthesis` | Issues (each now or later), dropped findings, tradeoffs, what's working, and the feedback plan (from the model); ranking, priority actions, and parked issues (from script) | Model + script (step 7) |
+| `synthesis` | Issues (each now or later), dropped findings, and what's working (from the model); ranking, priority actions, and parked issues (from script) | Model + script (step 7) |
 | `quality` | Quote verification, named-work counts, and the limitations to disclose (standing ones plus any that apply to this run) | Script |
 
 ### Conventions
@@ -32,18 +32,26 @@ The exact structure is in `assets/results.schema.json` (generated; edit `extras/
 
 1. **Plan line**, the stage (marked inferred if it was), and the claim (marked inferred if it was)
 2. **Top priorities now:** the first three, one line each, plus how many issues were parked for later
-3. **Biggest tradeoff,** if any
-4. **Who to ask next:** the first entry in the feedback plan
-5. **Before you rely on this:** every limitation in `quality.limitations`, in full (see "Limitations to disclose" in `synthesis-rubric.md`)
-6. **Link** to the HTML report
+3. **Before you rely on this:** every limitation in `quality.limitations`, in full (see "Limitations to disclose" in `synthesis-rubric.md`)
+4. **Link** to the HTML report
 
 ## HTML report
 
-One self-contained file, rendered by `scripts/render_report.py` from `assets/report-template.html` with `results.json` embedded inline. It opens by double-click with no server or network access, prints cleanly, and follows the system's light or dark mode. With no embedded results, the same template is a viewer (`render_report.py --viewer`). The header shows the stage on a five-step ladder and the claim. Tabs:
+One self-contained file, rendered by `scripts/render_report.py` from `assets/report-template.html` with `results.json` embedded inline. It opens by double-click with no server or network access, prints cleanly, and follows the system's light or dark mode. With no embedded results, the same template is a viewer (`render_report.py --viewer`). Its collapsible header contains every "Before you rely on this" limitation. Tabs:
 
-1. **Overview:** "Before you rely on this" (every limitation) first; then top priorities, the biggest tradeoff, what's working, who to ask next (the full feedback plan), and related work to check
-2. **Now:** ranked issues for this stage, each expanding to what each reader said, plus tradeoffs; filterable by severity and reader
-3. **Later:** issues parked for a later draft (shown only if there are any)
-4. **Readers:** one tab per reader with what they think the draft argues, look-for checks, findings, what to keep, and the work they'd point to
-5. **Key sentences:** the verdict, and the full outline with flagged paragraphs highlighted
-6. **Method:** the draft's filename, run details, assumptions, readers as adapted, findings set aside, named works that couldn't be found, the limitations again, and a download of `results.json`
+1. **Overview:** top priorities and what's working.
+2. **Priorities:** priority actions followed by the remaining issues in one continuously numbered list. Issue cards show severity and readers, without filters or convergence tags.
+3. **Readers:** one tab per reader with what they think the draft argues, look-for checks, findings, what to keep, and the work they'd point to; reader-tab buttons show names only.
+4. **Key sentences:** the verdict, and the full outline with flagged paragraphs highlighted
+5. **Method:** the draft's filename, run details, assumptions, readers as adapted, findings set aside, named works that couldn't be found, and a download of `results.json`
+
+## Markdown report
+
+`report.md`, rendered by `scripts/render_markdown.py`, has the HTML report's content on one page, in this order:
+
+1. **Before you rely on this:** every limitation, in a collapsible block that starts open
+2. **Priority actions:** priority actions followed by the remaining issues (now and later, by rank) in one continuously numbered list, each with severity, readers, quote, summary, and direction
+3. **What's working**
+4. **By reader:** what each thinks the draft argues, look-for checks, findings, what to keep, and the work they'd point to
+5. **Key-sentence outline:** the verdict, flagged paragraphs, and the full outline in a collapsible block
+6. **Method:** as in the HTML report, with each reader as adapted in a collapsible block

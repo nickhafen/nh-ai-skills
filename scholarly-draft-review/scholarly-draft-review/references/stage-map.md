@@ -1,6 +1,6 @@
 # Stage map
 
-This file tells the skill how to place a draft in a stage, which readers to use at each stage, what feedback matters now and what can wait, and which real people to suggest next. You don't need to read it to use the tool. It matters if you want to know why certain readers were picked or want to change the defaults (see `house-settings.md`).
+This file tells the skill how to place a draft in a stage, which readers to use at each stage, and what feedback matters now and what can wait. You don't need to read it to use the tool. It matters if you want to know why certain readers were picked or want to change the defaults (see `house-settings.md`).
 
 Persona names below match the files in `personas/`.
 
@@ -70,13 +70,13 @@ The same defaults apply to every author (see "One standard for every author").
 | `workshop` | `field-expert`, `skeptical-expert`, `generalist-law-colleague` |
 | `submission` | `articles-editor`, `field-expert`, `skeptical-expert` |
 
-Early stages use two readers on purpose: at that point, two nonexpert reads give the author what they need, and an expert read would be premature. Users can ask for more readers; each adds usage and time. Say which readers were left for a later stage so the user can ask for them now.
+Early stages use two readers on purpose: at that point, two nonexpert reads give the author what they need, and an expert read would be premature. Users can ask for more readers; each adds usage and time.
 
 ## Swaps
 
 Apply after the defaults, in this order.
 
-- **Prescriptive or doctrinal piece aimed at courts, legislatures, agencies, or practice:** at `submission`, `practitioner-judge` replaces `field-expert` (the expert read should have happened at the workshop stage). At `workshop`, suggest `practitioner-judge` as a follow-up review, or run it as a fourth reader if the user asks.
+- **Prescriptive or doctrinal piece aimed at courts, legislatures, agencies, or practice:** at `submission`, `practitioner-judge` replaces `field-expert` (the expert read should have happened at the workshop stage). At `workshop`, run it as a fourth reader if the user asks.
 - **Empirical or interdisciplinary piece:** adapt `skeptical-expert` (or `field-expert` at `full`) to the methods focus of the relevant discipline.
 - **Peer-reviewed or interdisciplinary journal:** at `submission`, replace `articles-editor` with `skeptical-expert` adapted as an anonymous peer reviewer, and add `generalist-law-colleague` adapted to a reader from the journal's discipline.
 - **Job-talk paper or appointments packet:** put `generalist-law-colleague`, adapted as an appointments committee member, in the first slot.
@@ -88,23 +88,6 @@ Apply after the defaults, in this order.
 
 - **Named-work check:** every stage, whenever a reader names a specific work, author, or case the draft doesn't cite. Each one is looked up before the author sees it (SKILL.md step 5).
 - **Key-sentence check:** stages `early` through `submission`, when the draft has at least eight prose paragraphs. Skip it for `idea`.
-
-## Real readers to suggest
-
-The synthesis ends with a feedback plan: which real people to show the draft to next, when, and what to ask them. Draw on this table, then tailor it to the findings. Telling readers what kind of feedback you want gets you better feedback.
-
-| Stage | Who to ask | What to ask them |
-| --- | --- | --- |
-| `idea` | A writing partner or group (nonexperts), and a mentor if you have one | Nonexperts: "What question do you think I'm asking? Would you want to read the answer?" Mentor: "Is this narrow enough, and is it an argument or a survey?" |
-| `idea` | Not a reader: a preemption search | Search law reviews, SSRN, and the major databases for the claim, not just the topic, before investing more. The expert readers' suggestions are a place to start, not a substitute. |
-| `early` | Two or three nonexperts | "Where did you get lost? What do you think my claim is?" |
-| `full` | Nonexperts, then a law colleague outside the subfield | "Where is it least clear, least organized, and least persuasive?" |
-| `workshop` | Law colleagues (a faculty workshop or works-in-progress session), then one or two scholars whose work you cite most | Colleagues: "Does the introduction tell you what's new and why it matters?" Experts, for twenty minutes: "What are the biggest problems, what should I engage that I haven't, and where would you send it?" |
-| `submission` | Any Capital-E Expert you haven't asked yet; one cold reader for the title, abstract, and introduction | "Reading only the abstract and first five pages, what is the claim and why is it new?" |
-
-At every stage, suggest reading the draft aloud before sending it to a real reader.
-
-**How to use what you hear** (include once in every report): listen without defending. Ask "Can you say more about that?" rather than explaining what you meant. If a reader found a passage unclear, it was unclear to that reader, whatever you intended. Then respond to each comment, even if the response is to decide against it.
 
 ## Unknown kinds of pieces
 

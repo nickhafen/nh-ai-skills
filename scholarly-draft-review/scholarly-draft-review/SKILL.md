@@ -1,6 +1,6 @@
 ---
 name: scholarly-draft-review
-description: Gives feedback on legal scholarship drafts (law review articles, student notes and seminar papers, essays, job-talk papers, abstracts) at any stage, from readers matched to that stage, and suggests who to ask next. Use when a law professor or law student wants feedback on a scholarly draft, asks who should read it, or wants to know how a workshop, expert, or law review will react. Gives feedback only; doesn't draft or rewrite.
+description: Gives feedback on legal scholarship drafts (law review articles, student notes and seminar papers, essays, job-talk papers, abstracts) at any stage, from readers matched to that stage. Use when a law professor or law student wants feedback on a scholarly draft or wants to know how a workshop, expert, or law review will react. Gives feedback only; doesn't draft or rewrite.
 ---
 
 # Scholarly draft review
@@ -29,8 +29,6 @@ The reference files (personas, stage map, house settings, reader review format, 
 The only thing required is the draft. Everything else is optional: the stage, where it's headed (law review, peer-reviewed journal, workshop, job talk), the claim in one sentence, what feedback the author wants, known gaps, feedback they're responding to, and which readers to use. Whatever the user says overrides inference.
 
 Don't ask questions.
-
-**If the user only asks who should read the draft** (or what feedback to get now), do steps 1–3, give the plan and a feedback plan from "Real readers to suggest" in `stage-map.md`, and offer to run the review. Don't run it.
 
 Read `house-settings.md` for the user's defaults.
 
@@ -85,7 +83,7 @@ Write `<working-folder>/setup.json`:
 ```
 <!-- /skill-only -->
 
-Tell the user the plan in two or three lines: the stage and why, the claim (marked inferred if it is), the readers, and which readers are left for a later stage. Then continue.
+Tell the user the plan in two or three lines: the stage and why, the claim (marked inferred if it is), and the readers. Then continue.
 
 ## Step 4. Reader reviews
 
@@ -145,10 +143,10 @@ Refer to these flags in the synthesis as `key-sentences/1`, `key-sentences/2`, a
 
 ## Step 7. Synthesis
 
-Read `synthesis-rubric.md` and apply it: screen findings, merge duplicates, classify, mark each issue now or later, find tradeoffs, note what's working, and write a feedback plan naming the kinds of real readers to ask next and what to ask them.
+Read `synthesis-rubric.md` and apply it: screen findings, merge duplicates, classify, mark each issue now or later, and note what's working.
 
 <!-- skill-only -->
-Scripts do the ranking and quote checks, so don't rank. Save `<working-folder>/synthesis.json` with the fields in `$defs/synthesis_output`: `issues` (each with `title`, `quote`, `summary`, `finding_refs` like `"field-expert/2"` or `"key-sentences/1"`, `reasons` per reader, `severity`, `category`, `timing`, `direction`), `dropped_findings`, `tradeoffs`, `whats_working`, and `feedback_plan` (entries with `who`, `when`, `ask`, `why`).
+Scripts do the ranking and quote checks, so don't rank. Save `<working-folder>/synthesis.json` with the fields in `$defs/synthesis_output`: `issues` (each with `title`, `quote`, `summary`, `finding_refs` like `"field-expert/2"` or `"key-sentences/1"`, `reasons` per reader, `severity`, `category`, `timing`, `direction`), `dropped_findings`, and `whats_working`.
 <!-- /skill-only -->
 <!-- portable-only -->
 Rank the **now** issues yourself using the rubric's weights, and choose up to seven priority actions.
@@ -163,8 +161,8 @@ Run:
 python <skill-dir>/scripts/finalize.py <working-folder> --platform <claude-code or claude.ai> --model <your model name>
 ```
 
-If it reports problems, fix the working file it names and run it again. When it succeeds, show the user the summary it prints (also saved as `summary.md`), including its "Before you rely on this" list in full, and point them to `report.html`, a self-contained page that opens in any browser. `report.md` has the same content as plain text. In claude.ai, share `report.html` as a file. Don't retype the report in chat.
+If it reports problems, fix the working file it names and run it again. When it succeeds, show the user the summary it prints (also saved as `summary.md`), including its "Before you rely on this" list in full, and point them to `report.html`, a self-contained page that opens in any browser. Its collapsible front matter contains the reliance notes; run context and assumptions are in Method. `report.md` has the same content as plain text. In claude.ai, share `report.html` as a file. Don't retype the report in chat.
 <!-- /skill-only -->
 <!-- portable-only -->
-Write the report in chat, in this order: first a short summary (the plan line, the top three priorities, the biggest tradeoff, who to ask next, and every item in "Limitations to disclose" in `synthesis-rubric.md` under the heading "Before you rely on this"), then the full report (priority actions, park for later, tradeoffs, what's working, who to ask next, related work, by reader, and key sentences).
+Write the report in chat, in this order: first a short summary (the plan line, the top three priorities, and every item in "Limitations to disclose" in `synthesis-rubric.md` under the heading "Before you rely on this"), then the full report (priority actions followed by every other issue in one numbered list, what's working, by reader, and key sentences).
 <!-- /portable-only -->
