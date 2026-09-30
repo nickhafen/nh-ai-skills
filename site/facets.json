@@ -1,0 +1,32 @@
+{
+  "users": {
+    "label": "Users",
+    "values": {
+      "academic": "Academic",
+      "practitioner": "Practitioner"
+    }
+  },
+  "area": {
+    "label": "Practice area",
+    "values": {
+      "litigation": "Litigation",
+      "transactional": "Transactional",
+      "scholarship": "Scholarship"
+    }
+  },
+  "task": {
+    "label": "Task",
+    "values": {
+      "drafting": "Drafting",
+      "review": "Review",
+      "research": "Research",
+      "coding": "Coding"
+    }
+  },
+  "jurisdiction": {
+    "label": "Jurisdiction",
+    "values": {
+      "utah": "Utah"
+    }
+  }
+}

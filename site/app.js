@@ -3,6 +3,7 @@
 // load. File text comes from files/<path>, fetched when a file is opened.
 // Routes are hash paths so deep links work on GitHub Pages:
 //   #/                                         home page
+//   #/?task=review&q=letter                    home page, filtered
 //   #/<skill>/<skill>/references/x.md          a file or folder, by its repo path
 // The short form #/<skill>/references/x.md also works and is redirected.
 
@@ -81,6 +82,12 @@ const ICONS = {
   file: SVG('<path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5"/>'),
   copy: SVG('<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/>'),
   link: SVG('<path d="M10 14a4 4 0 0 0 5.7 0l3.1-3.1a4 4 0 0 0-5.7-5.7L11.6 6.7"/><path d="M14 10a4 4 0 0 0-5.7 0l-3.1 3.1a4 4 0 0 0 5.7 5.7l1.5-1.5"/>'),
+  grid: SVG('<rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/>'),
+  list: SVG('<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>'),
+  filter: SVG('<path d="M4 5h16l-6 7.5V19l-4-2v-4.5z"/>'),
+  folderSolid: SVG('<path fill="currentColor" d="M3 6.5A1.5 1.5 0 0 1 4.5 5h4.2l2 2.2h8.8A1.5 1.5 0 0 1 21 8.7v9.8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/>'),
+  chevron: SVG('<path d="m9 6 6 6-6 6"/>'),
+  home: SVG('<path d="M4 11.5 12 5l8 6.5"/><path d="M6 10v9h12v-9"/>'),
   folderOpen: SVG('<path d="M3 7a1.5 1.5 0 0 1 1.5-1.5h4.2l2 2h8.8A1.5 1.5 0 0 1 21 9v1H7.5L4.5 19H4.5A1.5 1.5 0 0 1 3 17.5z"/><path d="M7.5 10H22l-3 9H4.5z"/>'),
 };
 
@@ -228,15 +235,12 @@ function breadcrumbs(parts, skill) {
 }
 
 function navBar(crumbs) {
-  const parent = crumbs[crumbs.length - 2];
   return [
     el("nav", { class: "crumbs", "aria-label": "Breadcrumb" },
       el("ol", {}, crumbs.map((c, i) => el("li", {},
         i === crumbs.length - 1
           ? el("span", { "aria-current": "page" }, c.label)
-          : el("a", { href: routeHref(c.parts) }, c.label))))),
-    el("a", { class: "btn btn-back", href: routeHref(parent.parts) },
-      icon("back"), `Back to ${parent.label}`),
+          : el("a", { href: routeHref(c.parts) }, i === 0 && icon("home"), c.label))))),
   ];
 }
 
@@ -246,17 +250,24 @@ function maintainerNote() {
     "They aren't part of the skill and aren't in the download.");
 }
 
+function itemCount(node) {
+  const n = node.children.length;
+  return n === 1 ? "1 item" : `${n} items`;
+}
+
 function rowList(nodes, parentParts, withLabels = true) {
   return el("ul", { class: "rows" }, nodes.map(node => {
     const parts = [...parentParts, node.name];
     const label = withLabels && labelFor(node);
     return el("li", {},
       el("a", { class: "row", href: routeHref(parts) },
-        el("span", { class: `row-icon ${node.type}` }, icon(node.type === "dir" ? "folder" : "file")),
+        el("span", { class: `row-icon ${node.type}` }, icon(node.type === "dir" ? "folderSolid" : "file")),
         el("span", { class: "row-text" },
           el("span", { class: "row-name" }, node.name + (node.type === "dir" ? "/" : "")),
           label && el("span", { class: "row-label" }, label)),
-        node.type === "file" && el("span", { class: "row-size" }, formatSize(node.bytes))));
+        node.type === "dir"
+          ? el("span", { class: "row-size" }, itemCount(node), icon("chevron"))
+          : el("span", { class: "row-size" }, formatSize(node.bytes))));
   }));
 }
 
@@ -416,9 +427,9 @@ function installSteps() {
     picker.querySelectorAll("button").forEach(btn =>
       btn.setAttribute("aria-pressed", String(btn.dataset.id === id)));
     panel.replaceChildren(...[
-      el("h2", {}, p.heading || `Add a skill to ${p.name}`),
+      el("h3", {}, p.heading || `Add a skill to ${p.name}`),
       stepList("ol", p.steps()),
-      el("h3", {}, "Good to know"),
+      el("h4", {}, "Good to know"),
       stepList("ul", p.notes()),
       p.link && el("p", { class: "more" }, ext(p.link[0], p.link[1])),
     ].filter(Boolean));
@@ -428,8 +439,8 @@ function installSteps() {
   }, p.name)));
   show(current);
 
-  return el("details", { class: "install" },
-    el("summary", {}, "How to install a skill"),
+  return el("details", { class: "install", id: "install-help" },
+    el("summary", {}, "How do I install a skill?"),
     el("div", { class: "install-body stack" },
       el("p", { class: "picker-label" }, "Where do you use AI?"),
       picker, panel));
@@ -449,7 +460,7 @@ function platformGuide() {
   ];
   const head = ["Platform", "Who can use skills", "Runs a skill's scripts?", "Files", "How a skill gets used"];
   return el("details", { class: "install" },
-    el("summary", {}, "How AI platforms handle skills"),
+    el("summary", {}, "How do AI platforms handle skills?"),
     el("div", { class: "install-body stack" },
       el("p", {}, "These skills follow ",
         ext("https://agentskills.io/home", "Agent Skills"),
@@ -468,50 +479,295 @@ function platformGuide() {
       el("p", {}, "Each skill's card says what it includes. A skill with scripts works fully only where ",
         "those scripts can run, and some scripts need extra software installed. ",
         "A platform may also ignore settings in ", code("SKILL.md"),
-        " that only another platform uses. Platforms change often, so check the help pages below if something doesn't match.")));
-}
-
-function resources() {
-  const group = (title, items) => el("section", {},
-    el("h3", {}, title),
-    el("ul", {}, items.map(([href, text, desc]) =>
-      el("li", {}, ext(href, text), desc && el("span", { class: "desc" }, ` ${desc}`)))));
-  return el("section", { class: "resources", "aria-labelledby": "learn-more" },
-    el("h2", { id: "learn-more" }, "Learn more"),
-    el("div", { class: "resource-groups" },
-      group("About skills", [
-        ["https://agentskills.io/home", "Agent Skills", "The open format these skills follow, and its specification."],
-        ["https://code.claude.com/docs/en/skills", "Claude's skill documentation", "Skill structure, frontmatter fields, and how Claude applies skills."],
-        ["https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf", "The Complete Guide to Building Skills for Claude", "Anthropic's PDF guide to designing skills and writing instructions."],
-        ["https://github.com/anthropics/knowledge-work-plugins/tree/main/legal/skills", "Example legal skills", "Anthropic's legal skills, useful as templates."],
-      ]),
-      group("Markdown", [
-        ["https://www.markdownguide.org/cheat-sheet/", "Markdown cheat sheet", "Headings, bold, lists, links, and code blocks."],
-        ["https://stackedit.io/app", "StackEdit", "Write and preview Markdown in your browser."],
-        ["https://support.google.com/docs/answer/12014036", "Markdown in Google Docs", "Use, import, or export Markdown in Docs, Slides, and Drawings."],
-      ]),
-      group("Skills on each platform", [
-        ["https://support.claude.com/en/articles/12512180-use-skills-in-claude", "Claude", ""],
-        ["https://code.claude.com/docs/en/skills", "Claude Code", ""],
-        ["https://help.openai.com/en/articles/20001066-skills-in-chatgpt", "ChatGPT", ""],
-        ["https://support.google.com/gemini/answer/17094296", "Gemini", ""],
+        " that only another platform uses. Platforms change often, so check each platform's help page if something doesn't match:"),
+      linkList([
+        ["https://support.claude.com/en/articles/12512180-use-skills-in-claude", "Claude"],
+        ["https://code.claude.com/docs/en/skills", "Claude Code"],
+        ["https://help.openai.com/en/articles/20001066-skills-in-chatgpt", "ChatGPT"],
+        ["https://support.google.com/gemini/answer/17094296", "Gemini"],
         ["https://agentskills.io/clients", "Other tools", "Setup links for tools that support Agent Skills."],
       ])));
 }
 
-function skillCard(skill) {
+function linkList(items) {
+  return el("ul", { class: "link-list" }, items.map(([href, text, desc]) =>
+    el("li", {}, ext(href, text), desc && el("span", { class: "desc" }, desc))));
+}
+
+function learnMore() {
+  return el("details", { class: "install" },
+    el("summary", {}, "Where can I learn more about skills?"),
+    el("div", { class: "install-body stack" },
+      linkList([
+        ["https://agentskills.io/home", "Agent Skills", "The open format these skills follow, and its specification."],
+        ["https://code.claude.com/docs/en/skills", "Claude's skill documentation", "Skill structure, frontmatter fields, and how Claude applies skills."],
+        ["https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf", "The Complete Guide to Building Skills for Claude", "Anthropic's PDF guide to designing skills and writing instructions."],
+        ["https://github.com/anthropics/knowledge-work-plugins/tree/main/legal/skills", "Example legal skills", "Anthropic's legal skills, useful as templates."],
+      ])));
+}
+
+function markdownHelp() {
+  return el("details", { class: "install" },
+    el("summary", {}, "How do I read or edit Markdown?"),
+    el("div", { class: "install-body stack" },
+      el("p", {}, "Skill files end in ", code(".md"), ". That's Markdown: plain text with a few marks for headings, ",
+        "bold, and lists. Any text editor opens it, and these tools make it easier:"),
+      linkList([
+        ["https://www.markdownguide.org/cheat-sheet/", "Markdown cheat sheet", "Headings, bold, lists, links, and code blocks."],
+        ["https://stackedit.io/app", "StackEdit", "Write and preview Markdown in your browser."],
+        ["https://support.google.com/docs/answer/12014036", "Markdown in Google Docs", "Use, import, or export Markdown in Docs, Slides, and Drawings."],
+      ])));
+}
+
+function faq() {
+  return el("section", { class: "faq", "aria-labelledby": "faq-heading" },
+    el("h2", { id: "faq-heading" }, "Common questions"),
+    installSteps(), platformGuide(), learnMore(), markdownHelp());
+}
+
+// ------------------------------------------------------------------ skill list
+
+// Search and filters appear once the list is this long, or when a shared link
+// already has filters in it.
+const FILTER_MIN = 8;
+let skillView = storageGet("skillView") === "list" ? "list" : "grid";
+
+// Categories from site/facets.json (tagged in each skill's extras/site.json),
+// plus two the manifest already answers.
+function allFacets() {
+  return [
+    ...(manifest.facets || []),
+    { id: "scripts", label: "Scripts", values: [
+      { id: "none", label: "Instructions only" }, { id: "has", label: "Includes scripts" }] },
+    { id: "status", label: "Status", values: [
+      { id: "stable", label: "Stable" }, { id: "pre-release", label: "Pre-release" }] },
+  ];
+}
+
+function skillTags(skill) {
+  const n = skillNeeds(skill);
+  return { ...skill.tags, scripts: [n.python || n.javascript ? "has" : "none"], status: [skill.status] };
+}
+
+// Filters live in the URL (#/?task=review,drafting&q=letter) so a filtered
+// list can be shared.
+function readFilters(facets) {
+  const params = currentQuery();
+  const sel = {};
+  for (const f of facets) {
+    const known = new Set(f.values.map(v => v.id));
+    sel[f.id] = new Set((params.get(f.id) || "").split(",").filter(v => known.has(v)));
+  }
+  return { q: params.get("q") || "", sel };
+}
+
+function writeFilters(state) {
+  const params = new URLSearchParams();
+  if (state.q.trim()) params.set("q", state.q.trim());
+  for (const [id, set] of Object.entries(state.sel)) if (set.size) params.set(id, [...set].join(","));
+  const qs = params.toString().replace(/%2C/g, ",");
+  history.replaceState(null, "", "#/" + (qs ? "?" + qs : ""));
+}
+
+function matchesFilters(skill, state, facets) {
+  const tags = skillTags(skill);
+  for (const f of facets) {
+    const want = state.sel[f.id];
+    if (want.size && !(tags[f.id] || []).some(v => want.has(v))) return false;
+  }
+  const terms = state.q.toLowerCase().split(/\s+/).filter(Boolean);
+  if (!terms.length) return true;
+  const labelOf = (fid, vid) => facets.find(f => f.id === fid)?.values.find(v => v.id === vid)?.label || "";
+  const text = [skill.name, skill.summary,
+    ...Object.entries(tags).flatMap(([fid, vals]) => vals.map(v => labelOf(fid, v)))].join(" ").toLowerCase();
+  return terms.every(t => text.includes(t));
+}
+
+function tagList(skill) {
+  const labelled = (manifest.facets || []).flatMap(f =>
+    (skill.tags[f.id] || []).map(v => f.values.find(x => x.id === v)?.label).filter(Boolean));
+  return labelled.length && el("ul", { class: "tags", "aria-label": "Tags" },
+    labelled.map(label => el("li", {}, label)));
+}
+
+function skillCard(skill, view) {
+  const grid = view === "grid";
+  const summaryId = `summary-${skill.id}`;
+  const summary = el("p", { class: "card-summary", id: summaryId }, skill.summary);
+  const more = grid && el("button", {
+    type: "button", class: "read-more", hidden: true,
+    "aria-expanded": "false", "aria-controls": summaryId,
+    onclick: () => {
+      const open = summary.classList.toggle("expanded");
+      more.setAttribute("aria-expanded", String(open));
+      more.firstChild.textContent = open ? "Show less" : "Read more";
+    },
+  }, "Read more", el("span", { class: "sr-only" }, ` about ${skill.name}`));
+  // Grid cards are narrow, so the size joins the "Includes" line there.
+  const [nameNode, sizeNode] = skillNameNodes(skill);
+  const includes = includesLine(skill);
+  if (grid) includes.append(" · ", sizeNode);
   return el("li", { class: "card" },
     el("div", { class: "card-head" },
       el("h2", {}, skill.name),
       skill.status === "pre-release" && el("span", { class: "badge" }, "Pre-release")),
-    el("p", {}, skill.summary),
-    includesLine(skill),
+    summary,
+    more,
+    !grid && tagList(skill),
+    includes,
     el("div", { class: "actions" },
       downloadSkillButton(skill),
       el("a", { class: "btn btn-secondary", href: routeHref(skillHome(skill)),
                 "aria-label": `Browse files in ${skill.name}` },
         icon("folderOpen"), "Browse files"),
-      skillNameNodes(skill)));
+      nameNode, !grid && sizeNode));
+}
+
+// Show "Read more" only on grid cards whose summary is cut off.
+function updateReadMore(list) {
+  for (const button of list.querySelectorAll(".read-more")) {
+    const summary = button.previousElementSibling;
+    if (summary.classList.contains("expanded")) continue;
+    button.hidden = summary.scrollHeight <= summary.clientHeight + 1;
+  }
+}
+
+function viewSwitcher(onChange) {
+  const group = el("div", { class: "segmented view-switch", role: "group", "aria-label": "View" });
+  const views = [["grid", "Grid"], ["list", "List"]];
+  const sync = () => group.querySelectorAll("button").forEach(btn =>
+    btn.setAttribute("aria-pressed", String(btn.dataset.view === skillView)));
+  group.append(...views.map(([id, label]) => el("button", {
+    type: "button", "data-view": id,
+    onclick: () => { skillView = id; storageSet("skillView", id); sync(); onChange(); },
+  }, icon(id), label)));
+  sync();
+  return group;
+}
+
+function skillBrowser() {
+  const facets = allFacets();
+  const total = manifest.skills.length;
+  const state = readFilters(facets);
+  const isActive = () => Boolean(state.q.trim()) || Object.values(state.sel).some(s => s.size);
+  const withFilters = total >= FILTER_MIN || isActive();
+  let search = null, panel = null, filterButton = null; // set below when filters show
+
+  const list = el("ul", { class: "cards", "aria-label": "Skills" });
+  const count = el("p", { class: "result-count" });
+  const chips = el("div", { class: "active-filters" });
+  const clearAll = () => {
+    state.q = "";
+    if (search) search.value = "";
+    Object.values(state.sel).forEach(s => s.clear());
+    panel?.querySelectorAll("input[type=checkbox]").forEach(box => { box.checked = false; });
+    update(true);
+  };
+  const empty = el("div", { class: "empty", hidden: true },
+    el("p", {}, "No skills match these filters."),
+    el("button", { type: "button", class: "btn btn-secondary", onclick: clearAll }, "Clear filters"));
+
+  let announceTimer;
+  const update = (speak = false) => {
+    const shown = manifest.skills.filter(s => matchesFilters(s, state, facets));
+    list.className = `cards view-${skillView}`;
+    list.replaceChildren(...shown.map(s => skillCard(s, skillView)));
+    empty.hidden = shown.length > 0;
+    count.textContent = isActive()
+      ? `Showing ${shown.length} of ${total} skills`
+      : `${total} skills`;
+    if (withFilters) {
+      writeFilters(state);
+      renderChips();
+      filterButton.querySelector(".label").textContent = activeCount()
+        ? `Filters (${activeCount()})` : "Filters";
+    }
+    requestAnimationFrame(() => updateReadMore(list));
+    if (speak) {
+      clearTimeout(announceTimer);
+      announceTimer = setTimeout(() => announce(count.textContent), 400);
+    }
+  };
+  new ResizeObserver(() => updateReadMore(list)).observe(list);
+
+  const view = viewSwitcher(() => update());
+  if (!withFilters) {
+    update();
+    return [el("div", { class: "list-toolbar" }, count, view), list];
+  }
+
+  // Search and filters
+  function activeCount() { return Object.values(state.sel).reduce((n, s) => n + s.size, 0); }
+  const tagsOf = new Map(manifest.skills.map(s => [s.id, skillTags(s)]));
+  const used = (fid, vid) => manifest.skills.filter(s => (tagsOf.get(s.id)[fid] || []).includes(vid)).length;
+
+  search = el("input", {
+    type: "search", class: "search", id: "skill-search", placeholder: "Search skills",
+    autocomplete: "off", value: state.q,
+    oninput: () => { state.q = search.value; update(true); },
+  });
+  search.value = state.q;
+
+  panel = el("div", { class: "filter-panel", id: "filter-panel", hidden: true },
+    facets.map(f => {
+      const values = f.values.map(v => [v, used(f.id, v.id)]).filter(([, n]) => n > 0);
+      return values.length > 0 && el("fieldset", {},
+        el("legend", {}, f.label),
+        values.map(([v, n]) => el("label", { class: "check" },
+          el("input", {
+            type: "checkbox", "data-facet": f.id, value: v.id, checked: state.sel[f.id].has(v.id),
+            onchange: e => {
+              state.sel[f.id][e.target.checked ? "add" : "delete"](v.id);
+              update(true);
+            },
+          }),
+          el("span", {}, v.label), el("span", { class: "count" }, `(${n})`))));
+    }));
+
+  filterButton = el("button", {
+    type: "button", class: "btn btn-secondary", "aria-expanded": "false", "aria-controls": "filter-panel",
+    onclick: () => {
+      panel.hidden = !panel.hidden;
+      filterButton.setAttribute("aria-expanded", String(!panel.hidden));
+    },
+  }, icon("filter"), el("span", { class: "label" }, "Filters"));
+
+  function renderChips() {
+    const items = facets.flatMap(f => [...state.sel[f.id]].map(vid => {
+      const label = f.values.find(v => v.id === vid).label;
+      return el("button", {
+        type: "button", class: "chip chip-small", "aria-label": `Remove filter: ${f.label}, ${label}`,
+        onclick: () => {
+          state.sel[f.id].delete(vid);
+          const box = panel.querySelector(`input[data-facet="${f.id}"][value="${vid}"]`);
+          if (box) box.checked = false;
+          update(true);
+          (chips.querySelector("button") || search).focus();
+        },
+      }, label, el("span", { "aria-hidden": "true" }, " ×"));
+    }));
+    chips.replaceChildren(count, ...items,
+      isActive() ? el("button", { type: "button", class: "link-button", onclick: () => { clearAll(); search.focus(); } }, "Clear all") : null);
+  }
+
+  update();
+  return [
+    el("div", { class: "list-toolbar" },
+      el("label", { class: "sr-only", for: "skill-search" }, "Search skills"),
+      search, filterButton, view),
+    panel,
+    chips,
+    list,
+    empty,
+  ];
+}
+
+function openInstallHelp(event) {
+  event.preventDefault();
+  const details = document.getElementById("install-help");
+  details.open = true;
+  details.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  details.querySelector("summary").focus({ preventScroll: true });
 }
 
 function renderHome() {
@@ -522,12 +778,10 @@ function renderHome() {
       el("h1", { tabindex: "-1" }, "Skills for AI assistants"),
       el("p", {}, "A skill is a folder of instructions and files that teaches an AI assistant to do a specific job. ",
         "These skills use an open format, so they work in Claude, ChatGPT, Gemini, and other AI tools, ",
-        "though each platform handles skills a little differently. Download a skill, then add it to the AI you use.")),
-    installSteps(),
-    platformGuide(),
-    el("ul", { class: "cards", "aria-label": "Skills" },
-      manifest.skills.map(skillCard)),
-    resources());
+        "though each platform handles skills a little differently. Download a skill, then add it to the AI you use ",
+        "(", el("a", { href: "#/", onclick: openInstallHelp }, "how to install a skill"), ").")),
+    ...skillBrowser(),
+    faq());
 }
 
 // ------------------------------------------------------------------ folders
@@ -834,12 +1088,18 @@ async function renderFile({ node, skill, parts }, token) {
 // ------------------------------------------------------------------ routing
 
 function currentParts() {
-  const hash = location.hash.replace(/^#\/?/, "");
+  const hash = location.hash.replace(/^#\/?/, "").split("?")[0];
   try {
     return hash.split("/").filter(Boolean).map(decodeURIComponent);
   } catch {
     return null;
   }
+}
+
+// The home page keeps its filters after a "?" in the hash.
+function currentQuery() {
+  const i = location.hash.indexOf("?");
+  return new URLSearchParams(i < 0 ? "" : location.hash.slice(i + 1));
 }
 
 // Find the entry for a route. A bare skill id and the short form without the
