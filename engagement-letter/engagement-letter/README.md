@@ -69,7 +69,7 @@ What to point out:
 
 ### (c) Same litigation request with no skill, for comparison
 
-Turn the skill off (Settings > Capabilities > Skills), or use another assistant,
+Turn the skill off (in Claude, Customize > Skills), or use another assistant,
 and paste prompt (a) again. Discuss:
 - Did it know the firm's letterhead and standard clauses? (No. It made them up.)
 - What answer deadline did it give? Did it add 3 or 7 days for mail, or skip
@@ -80,20 +80,23 @@ and paste prompt (a) again. Discuss:
 
 ## Install
 
-**Claude.ai (web or desktop):**
-1. Find this folder, the `engagement-letter` folder that contains `SKILL.md`.
-2. Right-click it and zip it. On Windows, choose **Compress to ZIP file** (or
-   **Send to > Compressed (zipped) folder**). On a Mac, choose **Compress**.
-3. In Claude, go to **Settings > Capabilities > Skills**, choose **Upload skill**,
-   and pick the zip. Code execution must be turned on.
+Click **Download skill (.zip)** on the engagement-letter card on the
+[skills site](https://nickhafen.github.io/nh-ai-skills/), then add the zip to
+your AI platform. The site has the steps for Claude, Claude Code, ChatGPT,
+Gemini, and other tools.
 
-**Claude Code:** copy this folder to `~/.claude/skills/engagement-letter/` (all
-your projects) or to `.claude/skills/engagement-letter/` inside one project.
-
-**Other platforms:** `SKILL.md` follows the open Agent Skills format. The
-scripts are plain Python 3, and `compute_deadline.py` uses only the standard
-library. On platforms without skill support, you can paste `SKILL.md` in as
-instructions and run the scripts yourself.
+- **Claude:** **Customize > Skills**, click **+**, choose **Create skill >
+  Upload a skill**, and pick the zip. Code execution must be turned on
+  (**Settings > Capabilities**).
+- **Claude Code:** unzip the download and move the folder to
+  `~/.claude/skills/engagement-letter/` (all your projects) or to
+  `.claude/skills/engagement-letter/` inside one project.
+- **Gemini:** won't take this skill as downloaded, because Gemini doesn't
+  accept Word files and the letterhead template is a `.docx`.
+- **Other platforms:** `SKILL.md` follows the open Agent Skills format. The
+  scripts are plain Python 3, and `compute_deadline.py` uses only the standard
+  library. On platforms without skill support, you can paste `SKILL.md` in as
+  instructions and run the scripts yourself.
 
 Requirements: Python 3.9+ and `python-docx` for the two document scripts
 (`pip install python-docx`). The tests need `pytest`.

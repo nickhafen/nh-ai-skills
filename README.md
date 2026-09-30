@@ -34,14 +34,31 @@ above; "Pre-release." in that row adds the badge.
 
 ## Install a skill
 
-**Claude.ai:**
-1. Download this repo (green **Code** button > **Download ZIP**) and unzip it.
-2. Open the skill's top-level folder. Right-click the inner skill folder, the
-   one that contains `SKILL.md`, and zip it (Windows: **Compress to ZIP file**;
-   Mac: **Compress**).
-3. In Claude, go to **Settings > Capabilities > Skills** > **Upload skill** and pick that zip.
+Use the [download site](https://nickhafen.github.io/nh-ai-skills/): click
+**Download skill (.zip)** on a skill, then add the zip to your AI platform. The
+site has step-by-step instructions for each platform and a table of how they
+differ. In short:
 
-**Claude Code:** copy the inner skill folder to `~/.claude/skills/`.
+- **Claude:** **Customize > Skills**, click **+**, choose **Create skill >
+  Upload a skill**, and pick the zip. Code execution must be on
+  (**Settings > Capabilities**).
+- **Claude Code:** unzip the download and move the folder into
+  `~/.claude/skills/`. Skills uploaded to your Claude account also sync to
+  Claude Code when you sign in with it.
+- **ChatGPT** (Business, Enterprise, Healthcare, and Edu plans): **Plugins >
+  Skills > Create > Upload from your computer**, and pick the zip.
+- **Gemini** (personal Google accounts): **Settings > Skills**, and upload the
+  zip. Gemini doesn't accept Word or JavaScript files in a skill, so skills with
+  a Word template or JavaScript scripts (today, `engagement-letter` and
+  `draft-complaint-utah`) won't work there as downloaded.
+- **Other tools:** unzip the download and put the folder where your tool looks
+  for skills. The [Agent Skills site](https://agentskills.io/clients) links to
+  each tool's setup steps.
+
+**Without the site:** download this repo (**Code > Download ZIP**) and unzip
+it. Open the skill's top-level folder, then zip the inner folder, the one that
+contains `SKILL.md` (Windows: right-click > **Compress to ZIP file**; Mac:
+**Compress**). That zip has the same contents as the site's download.
 
 All firms, people, and clients in these skills are fictional. This is teaching
 material, not legal advice.

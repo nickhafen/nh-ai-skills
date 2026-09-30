@@ -55,12 +55,13 @@ For example, an early draft gets the smart outsider and the law colleague; a wor
 
 You'll get the report in the chat. If your assistant can search the web, it looks up any works the readers name; otherwise it labels them as unchecked.
 
-### 2. Claude skill (Claude Code or claude.ai)
+### 2. Skill (Claude, Claude Code, or another platform that supports skills)
 
 The skill version checks every quote against your draft, builds the key-sentence outline by script, ranks issues the same way every time, and saves a full report as a web page you can open in any browser. The report refers to your draft by filename and doesn't include its text, so you can share it without sharing the draft.
 
-- **claude.ai:** zip the inner [`scholarly-draft-review`](scholarly-draft-review/) folder (the one that contains `SKILL.md`), then go to **Settings > Capabilities > Skills > Upload skill** and pick the zip. Code execution must be turned on.
-- **Claude Code:** copy the inner `scholarly-draft-review` folder into `~/.claude/skills/` (for all your projects) or into `.claude/skills/` in a project.
+- **Install:** click **Download skill (.zip)** on the scholarly-draft-review card on the [skills site](https://nickhafen.github.io/nh-ai-skills/), then add the zip to your AI platform. The site has the steps for Claude, Claude Code, ChatGPT, Gemini, and other tools.
+- **Needs code execution:** the skill runs Python scripts (standard library only), so the platform must be able to run code. On Claude, turn on code execution under **Settings > Capabilities**.
+- **Claude Code:** you can also copy the inner [`scholarly-draft-review`](scholarly-draft-review/) folder into `.claude/skills/` in one project instead of `~/.claude/skills/`.
 
 Then ask something like "Here's my draft for our faculty workshop; how will it land?" or "Can you give feedback on my note draft? My thesis is that…" You get a short summary in chat and a full `report.html` (with `report.md` as a plain-text copy).
 

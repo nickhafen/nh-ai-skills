@@ -34,12 +34,13 @@ See how your document's real readers are likely to react before it goes out: opp
 
 You'll get the report in the chat. The paste-in version can't check what an AI assistant tells the recipient on its own, because that needs a fresh chat. Instead, it gives you the recipient's questions to try in a new chat yourself.
 
-### 2. Claude skill (Claude Code or claude.ai)
+### 2. Skill (Claude, Claude Code, or another platform that supports skills)
 
 The skill version checks every quote against your document, ranks the issues the same way every time, and saves a full report as a web page you can open in any browser. In Claude Code, it also runs the AI-assistant check in fresh contexts on its own.
 
-- **claude.ai:** zip the inner [`fresh-eyes-review`](fresh-eyes-review/) folder (the one that contains `SKILL.md`), then go to **Settings > Capabilities > Skills > Upload skill** and pick the zip. Code execution must be turned on.
-- **Claude Code:** copy the inner `fresh-eyes-review` folder into `~/.claude/skills/` (for all your projects) or into `.claude/skills/` in a project. Then ask Claude for a fresh-eyes review of a document.
+- **Install:** click **Download skill (.zip)** on the fresh-eyes-review card on the [skills site](https://nickhafen.github.io/nh-ai-skills/), then add the zip to your AI platform. The site has the steps for Claude, Claude Code, ChatGPT, Gemini, and other tools.
+- **Needs code execution:** the skill runs Python scripts (standard library only), so the platform must be able to run code. On Claude, turn on code execution under **Settings > Capabilities**.
+- **Claude Code:** you can also copy the inner [`fresh-eyes-review`](fresh-eyes-review/) folder into `.claude/skills/` in one project instead of `~/.claude/skills/`.
 
 Then ask something like "Give this demand letter a fresh-eyes review before I send it." You get a short summary in chat and a full `report.html` (with `report.md` as a plain-text copy).
 

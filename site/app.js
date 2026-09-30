@@ -302,8 +302,9 @@ function geminiConflicts() {
   });
 }
 
+const NEW_TAB = () => el("span", { class: "sr-only" }, " (opens in a new tab)");
 const ext = (href, text) =>
-  el("a", { href, target: "_blank", rel: "noopener noreferrer" }, text);
+  el("a", { href, target: "_blank", rel: "noopener noreferrer" }, text, NEW_TAB());
 const b = text => el("strong", {}, text);
 const code = text => el("code", {}, text);
 
@@ -647,8 +648,14 @@ function renderMarkdown(text, fileParts, isSkillFile) {
   const html = window.marked.parse(text, { gfm: true });
   body.append(window.DOMPurify.sanitize(html, { RETURN_DOM_FRAGMENT: true }));
 
+  // The page title is the only h1, so Markdown headings move down one level.
+  body.querySelectorAll("h1, h2, h3, h4, h5").forEach(h => {
+    const lower = document.createElement(`h${Number(h.tagName[1]) + 1}`);
+    lower.append(...h.childNodes);
+    h.replaceWith(lower);
+  });
   const seen = new Map();
-  body.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(h => {
+  body.querySelectorAll("h2, h3, h4, h5, h6").forEach(h => {
     let id = slugify(h.textContent) || "section";
     const n = seen.get(id) || 0;
     seen.set(id, n + 1);
@@ -670,6 +677,7 @@ function renderMarkdown(text, fileParts, isSkillFile) {
     if (/^[a-z][a-z0-9+.-]*:/i.test(href)) {
       a.target = "_blank";
       a.rel = "noopener noreferrer";
+      a.append(NEW_TAB());
       return;
     }
     const parts = resolveLink(href, fileParts);
@@ -680,6 +688,7 @@ function renderMarkdown(text, fileParts, isSkillFile) {
       a.setAttribute("href", `${manifest.repo}/blob/main/${parts.map(encodeURIComponent).join("/")}`);
       a.target = "_blank";
       a.rel = "noopener noreferrer";
+      a.append(NEW_TAB());
     }
   });
 
@@ -702,6 +711,7 @@ function renderMarkdown(text, fileParts, isSkillFile) {
     if (lang && window.hljs?.getLanguage(lang)) window.hljs.highlightElement(code);
     const block = el("div", { class: "code-block" });
     pre.replaceWith(block);
+    pre.tabIndex = 0; // long lines scroll sideways, so the keyboard needs to reach it
     const button = copyButton(code.textContent, "Copy", "copy", () => code,
       { class: "btn btn-small code-copy", "aria-label": "Copy code" });
     block.append(button, pre);
@@ -801,7 +811,8 @@ async function renderFile({ node, skill, parts }, token) {
     if (canFormat) markdownMode = mode;
     const panes = [];
     if (mode === "formatted" || mode === "split") {
-      panes.push(el("section", { class: "pane", "aria-label": "Formatted" },
+      panes.push(el("section", { class: "pane", "aria-label": "Formatted",
+                                 tabindex: mode === "split" ? "0" : null },
         renderMarkdown(text, parts, isSkillFile)));
     }
     if (mode === "raw" || mode === "split") {
