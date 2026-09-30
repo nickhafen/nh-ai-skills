@@ -345,10 +345,9 @@ const PLATFORMS = [
     id: "chatgpt",
     name: "ChatGPT",
     steps: () => [
-      ["Click ", b("Download skill (.zip)"), " on the skill you want."],
+      ["Click ", b("Download skill (.zip)"), " on the skill you want. Don't unzip it."],
       ["In ChatGPT, open ", b("Plugins"), " in the sidebar and choose the ", b("Skills"), " tab."],
-      ["Choose ", b("Create"), ", then ", b("Upload from your computer"),
-        ", and pick the zip. If it isn't accepted, unzip it and upload the folder."],
+      ["Choose ", b("Create"), ", then ", b("Upload from your computer"), ", and pick the zip."],
     ],
     notes: () => [
       ["Skills are on ChatGPT Business, Enterprise, Healthcare, and Edu plans, not on personal plans. ",
@@ -442,7 +441,7 @@ function platformGuide() {
     ["Claude Code", "Anyone with Claude Code", "Yes, on your computer",
       "Folder in ~/.claude/skills", "Automatically, or type /name"],
     ["ChatGPT", "Business, Enterprise, Healthcare, and Edu plans", "Yes",
-      "Scanned on upload; some need review", "Automatically"],
+      "Upload the .zip; scanned first, and some need review", "Automatically"],
     ["Gemini", "Personal Google accounts, 18+", "Python and shell only, no internet",
       "No Word or JavaScript files; 100 MB max", "Automatically, or type /"],
     ["Other tools", "Varies", "Varies", "Usually a folder in a skills directory", "Varies"],
