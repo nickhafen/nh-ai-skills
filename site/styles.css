@@ -151,6 +151,58 @@ main:focus { outline: none; }
   border-radius: 4px;
 }
 
+.install-body.stack { display: block; }
+.install-body > p { max-width: 70ch; }
+.install h3 { font-size: 0.95rem; margin: 14px 0 4px; }
+.install .more { margin: 10px 0 0; }
+.picker-label { font-weight: 600; margin: 0 0 8px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.chip {
+  font: inherit;
+  font-weight: 600;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+.chip:hover { background: var(--accent-soft); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+
+.platform-panel {
+  border-top: 1px solid var(--border);
+  padding-top: 4px;
+}
+.platform-panel h2 { margin-top: 10px; }
+
+table.compare { border-collapse: collapse; font-size: 0.92rem; min-width: 640px; }
+.compare th, .compare td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+.compare thead th { background: var(--accent-soft); }
+
+.includes { color: var(--muted); font-size: 0.92rem; }
+.card p.includes { margin-top: -8px; }
+.page-head .includes { margin: 6px 0 0; }
+
+.resources { margin-top: 36px; }
+.resources h2 { font-size: 1.25rem; margin: 0 0 12px; }
+.resource-groups {
+  display: grid;
+  gap: 8px 28px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.resources h3 { font-size: 1rem; margin: 0 0 6px; }
+.resources ul { margin: 0 0 12px; padding-left: 1.1em; }
+.resources li { margin-bottom: 8px; }
+.resources .desc { color: var(--muted); font-size: 0.92rem; }
+
 .cards {
   list-style: none;
   margin: 0;

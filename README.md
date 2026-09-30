@@ -4,8 +4,9 @@ Agent skills for teaching law students, lawyers, and instructors how skills
 work.
 
 **Download a skill:** [nickhafen.github.io/nh-ai-skills](https://nickhafen.github.io/nh-ai-skills/)
-has a one-click download for each skill, ready to upload to Claude.ai, and
-lets you browse and copy any file in a skill.
+has a one-click download for each skill, ready to add to Claude, ChatGPT, Gemini,
+or another AI tool that supports skills. It also lets you browse and copy any
+file in a skill, and explains how each platform handles skills.
 
 | Skill | What it does |
 |---|---|

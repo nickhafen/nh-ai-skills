@@ -12,6 +12,7 @@ const app = document.getElementById("app");
 const announcer = document.getElementById("announcer");
 const IS_MAC = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
 const COPY_KEYS = IS_MAC ? "⌘C" : "Ctrl+C";
+const SITE_NAME = "AI Skills for Law";
 
 let manifest = null;
 let labels = {};
@@ -261,26 +262,241 @@ function rowList(nodes, parentParts, withLabels = true) {
 
 // ------------------------------------------------------------------ home
 
+// What a skill's own files need from a platform, read from the manifest so
+// it stays right as skills change. Only the inner skill folder counts.
+function skillNeeds(skill) {
+  const exts = new Set();
+  const walk = node => {
+    if (node.type === "dir") node.children.forEach(walk);
+    else exts.add(node.name.slice(node.name.lastIndexOf(".") + 1).toLowerCase());
+  };
+  const inner = skill.tree.children.find(c => c.role === "skill");
+  if (inner) walk(inner);
+  return {
+    python: exts.has("py"),
+    javascript: exts.has("js") || exts.has("mjs"),
+    word: exts.has("docx"),
+  };
+}
+
+function includesLine(skill) {
+  const n = skillNeeds(skill);
+  const parts = [];
+  if (n.python) parts.push("Python scripts");
+  if (n.javascript) parts.push("JavaScript (Node.js) scripts");
+  if (n.word) parts.push("a Word template");
+  const text = parts.length
+    ? `Includes ${parts.length > 1
+        ? parts.slice(0, -1).join(", ") + (parts.length > 2 ? "," : "") + " and " + parts.at(-1)
+        : parts[0]}.`
+    : "Instructions only, no scripts.";
+  return el("p", { class: "includes" }, text);
+}
+
+// Skills with files Gemini doesn't accept (Word files and JavaScript).
+function geminiConflicts() {
+  return manifest.skills.flatMap(skill => {
+    const n = skillNeeds(skill);
+    const why = [n.word && "a Word template", n.javascript && "JavaScript scripts"].filter(Boolean);
+    return why.length ? [[skill.name, why.join(" and ")]] : [];
+  });
+}
+
+const ext = (href, text) =>
+  el("a", { href, target: "_blank", rel: "noopener noreferrer" }, text);
+const b = text => el("strong", {}, text);
+const code = text => el("code", {}, text);
+
+const PLATFORMS = [
+  {
+    id: "claude",
+    name: "Claude",
+    steps: () => [
+      ["Click ", b("Download skill (.zip)"), " on the skill you want. Don't unzip it."],
+      ["In Claude (web or desktop app), go to ", b("Customize > Skills"), ", click ", b("+"),
+        ", choose ", b("Create skill"), ", then ", b("Upload a skill"), "."],
+      ["Pick the zip you downloaded."],
+    ],
+    notes: () => [
+      ["Works on every plan, including Free. ", b("Code execution"), " must be on: ",
+        b("Settings > Capabilities"), " (on Team and Enterprise plans, an admin controls this)."],
+      ["Claude uses a skill on its own when your request matches it."],
+      ["If you also use Claude Code and sign in with the same account, your uploaded skills show up there too."],
+    ],
+    link: ["https://support.claude.com/en/articles/12512180-use-skills-in-claude", "Claude's help page on skills"],
+  },
+  {
+    id: "claude-code",
+    name: "Claude Code",
+    steps: () => [
+      ["Click ", b("Download skill (.zip)"), " and unzip it. You get one folder named after the skill."],
+      ["Move that folder into ", code("~/.claude/skills/"), " (on Windows, ",
+        code("C:\\Users\\<you>\\.claude\\skills\\"), "). Create the ", code("skills"),
+        " folder if it isn't there."],
+      ["Start a new Claude Code session."],
+    ],
+    notes: () => [
+      ["Scripts run on your own computer, so you may need to install what a skill asks for (the skill's instructions say what)."],
+      ["Claude uses the skill when it's relevant, or you can type ", code("/"), " and the skill's name."],
+    ],
+    link: ["https://code.claude.com/docs/en/skills", "Claude Code's docs on skills"],
+  },
+  {
+    id: "chatgpt",
+    name: "ChatGPT",
+    steps: () => [
+      ["Click ", b("Download skill (.zip)"), " on the skill you want."],
+      ["In ChatGPT, open ", b("Plugins"), " in the sidebar and choose the ", b("Skills"), " tab."],
+      ["Choose ", b("Create"), ", then ", b("Upload from your computer"),
+        ", and pick the zip. If it isn't accepted, unzip it and upload the folder."],
+    ],
+    notes: () => [
+      ["Skills are on ChatGPT Business, Enterprise, Healthcare, and Edu plans, not on personal plans. ",
+        "Your workspace admin decides whether members can upload skills."],
+      ["ChatGPT scans each upload. Most skills are ready right away; some are marked ",
+        b("Needs Review"), " before you can use them."],
+      ["ChatGPT uses a skill on its own when it helps."],
+    ],
+    link: ["https://help.openai.com/en/articles/20001066-skills-in-chatgpt", "OpenAI's help page on skills"],
+  },
+  {
+    id: "gemini",
+    name: "Gemini",
+    steps: () => [
+      ["Click ", b("Download skill (.zip)"), " on the skill you want."],
+      ["Go to ", ext("https://gemini.google.com", "gemini.google.com"),
+        " (or the Gemini app on a Mac) and open ", b("Settings > Skills"), "."],
+      ["Choose to upload a file or folder, and pick the zip."],
+    ],
+    notes: () => {
+      const conflicts = geminiConflicts();
+      return [
+        ["Skills need a personal Google account (not work or school), age 18 or over, and ",
+          b("Keep Activity"), " turned on. They're rolling out gradually, so you may not have them yet."],
+        ["Gemini doesn't accept Word (.docx) or JavaScript files in a skill, and a skill's scripts can't use the internet."],
+        conflicts.length && ["Because of that, these skills won't work in Gemini as downloaded: ",
+          conflicts.map(([name, why], i) => [i ? "; " : "", b(name), ` (${why})`]), "."],
+        ["Gemini uses a skill on its own when it's relevant (Gemini Spark tasks included), or you can type ",
+          code("/"), " and pick it."],
+      ].filter(Boolean);
+    },
+    link: ["https://support.google.com/gemini/answer/17094296", "Google's help page on Gemini skills"],
+  },
+  {
+    id: "other",
+    name: "Other tools",
+    heading: "Add a skill to another AI tool",
+    steps: () => [
+      ["Click ", b("Download skill (.zip)"), " and unzip it."],
+      ["Put the folder where your tool looks for skills. Many coding tools, including Cursor, ",
+        "GitHub Copilot, Codex, and Gemini CLI, read this same format."],
+    ],
+    notes: () => [
+      ["The Agent Skills site ", ext("https://agentskills.io/clients", "lists tools that support skills"),
+        ", each with a link to its setup steps."],
+    ],
+    link: null,
+  },
+];
+
+function stepList(tag, items) {
+  return el(tag, {}, items.map(item => el("li", {}, item)));
+}
+
 function installSteps() {
+  const saved = storageGet("platform");
+  let current = PLATFORMS.some(p => p.id === saved) ? saved : "claude";
+  const panel = el("div", { class: "platform-panel" });
+  const picker = el("div", { class: "chips", role: "group", "aria-label": "Your AI platform" });
+
+  const show = id => {
+    current = id;
+    storageSet("platform", id);
+    const p = PLATFORMS.find(x => x.id === id);
+    picker.querySelectorAll("button").forEach(btn =>
+      btn.setAttribute("aria-pressed", String(btn.dataset.id === id)));
+    panel.replaceChildren(...[
+      el("h2", {}, p.heading || `Add a skill to ${p.name}`),
+      stepList("ol", p.steps()),
+      el("h3", {}, "Good to know"),
+      stepList("ul", p.notes()),
+      p.link && el("p", { class: "more" }, ext(p.link[0], p.link[1])),
+    ].filter(Boolean));
+  };
+  picker.append(...PLATFORMS.map(p => el("button", {
+    type: "button", class: "chip", "data-id": p.id, onclick: () => show(p.id),
+  }, p.name)));
+  show(current);
+
   return el("details", { class: "install" },
     el("summary", {}, "How to install a skill"),
-    el("div", { class: "install-body" },
-      el("section", {},
-        el("h2", {}, "Claude.ai"),
-        el("ol", {},
-          el("li", {}, "Click ", el("strong", {}, "Download skill (.zip)"),
-            " on the skill you want. Don't unzip it."),
-          el("li", {}, "In Claude, go to ", el("strong", {}, "Settings > Capabilities > Skills"),
-            " and choose ", el("strong", {}, "Upload skill"), "."),
-          el("li", {}, "Pick the zip you downloaded."))),
-      el("section", {},
-        el("h2", {}, "Claude Code"),
-        el("ol", {},
-          el("li", {}, "Download the skill and unzip it. You get one folder named after the skill."),
-          el("li", {}, "Move that folder into ", el("code", {}, "~/.claude/skills/"),
-            " (on Windows, ", el("code", {}, "C:\\Users\\<you>\\.claude\\skills\\"),
-            "). Create the ", el("code", {}, "skills"), " folder if it isn't there."),
-          el("li", {}, "Start a new Claude Code session.")))));
+    el("div", { class: "install-body stack" },
+      el("p", { class: "picker-label" }, "Where do you use AI?"),
+      picker, panel));
+}
+
+function platformGuide() {
+  const rows = [
+    ["Claude", "Every plan; code execution turned on", "Yes, in a sandbox",
+      "Upload the .zip", "Automatically"],
+    ["Claude Code", "Anyone with Claude Code", "Yes, on your computer",
+      "Folder in ~/.claude/skills", "Automatically, or type /name"],
+    ["ChatGPT", "Business, Enterprise, Healthcare, and Edu plans", "Yes",
+      "Scanned on upload; some need review", "Automatically"],
+    ["Gemini", "Personal Google accounts, 18+", "Python and shell only, no internet",
+      "No Word or JavaScript files; 100 MB max", "Automatically, or type /"],
+    ["Other tools", "Varies", "Varies", "Usually a folder in a skills directory", "Varies"],
+  ];
+  const head = ["Platform", "Who can use skills", "Runs a skill's scripts?", "Files", "How a skill gets used"];
+  return el("details", { class: "install" },
+    el("summary", {}, "How AI platforms handle skills"),
+    el("div", { class: "install-body stack" },
+      el("p", {}, "These skills follow ",
+        ext("https://agentskills.io/home", "Agent Skills"),
+        ", an open format that many AI platforms read. Every platform works from the same core: a folder with a ",
+        code("SKILL.md"), " file whose name and description tell the AI when the skill applies. ",
+        "The AI keeps only those short descriptions in mind until a request matches. Then it reads the full ",
+        "instructions, and it opens the skill's other files (reference material, templates, scripts) only when it needs them."),
+      el("p", {}, "What differs is who can use skills, whether the platform can run a skill's scripts, ",
+        "which file types it accepts, and how you add and start a skill:"),
+      el("div", { class: "table-wrap", tabindex: "0", role: "region",
+                  "aria-label": "How platforms differ" },
+        el("table", { class: "compare" },
+          el("thead", {}, el("tr", {}, head.map(h => el("th", { scope: "col" }, h)))),
+          el("tbody", {}, rows.map(([name, ...cells]) =>
+            el("tr", {}, el("th", { scope: "row" }, name), cells.map(c => el("td", {}, c))))))),
+      el("p", {}, "Each skill's card says what it includes. A skill with scripts works fully only where ",
+        "those scripts can run, and some scripts need extra software installed. ",
+        "A platform may also ignore settings in ", code("SKILL.md"),
+        " that only another platform uses. Platforms change often, so check the help pages below if something doesn't match.")));
+}
+
+function resources() {
+  const group = (title, items) => el("section", {},
+    el("h3", {}, title),
+    el("ul", {}, items.map(([href, text, desc]) =>
+      el("li", {}, ext(href, text), desc && el("span", { class: "desc" }, ` ${desc}`)))));
+  return el("section", { class: "resources", "aria-labelledby": "learn-more" },
+    el("h2", { id: "learn-more" }, "Learn more"),
+    el("div", { class: "resource-groups" },
+      group("About skills", [
+        ["https://agentskills.io/home", "Agent Skills", "The open format these skills follow, and its specification."],
+        ["https://code.claude.com/docs/en/skills", "Claude's skill documentation", "Skill structure, frontmatter fields, and how Claude applies skills."],
+        ["https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf", "The Complete Guide to Building Skills for Claude", "Anthropic's PDF guide to designing skills and writing instructions."],
+        ["https://github.com/anthropics/knowledge-work-plugins/tree/main/legal/skills", "Example legal skills", "Anthropic's legal skills, useful as templates."],
+      ]),
+      group("Markdown", [
+        ["https://www.markdownguide.org/cheat-sheet/", "Markdown cheat sheet", "Headings, bold, lists, links, and code blocks."],
+        ["https://stackedit.io/app", "StackEdit", "Write and preview Markdown in your browser."],
+        ["https://support.google.com/docs/answer/12014036", "Markdown in Google Docs", "Use, import, or export Markdown in Docs, Slides, and Drawings."],
+      ]),
+      group("Skills on each platform", [
+        ["https://support.claude.com/en/articles/12512180-use-skills-in-claude", "Claude", ""],
+        ["https://code.claude.com/docs/en/skills", "Claude Code", ""],
+        ["https://help.openai.com/en/articles/20001066-skills-in-chatgpt", "ChatGPT", ""],
+        ["https://support.google.com/gemini/answer/17094296", "Gemini", ""],
+        ["https://agentskills.io/clients", "Other tools", "Setup links for tools that support Agent Skills."],
+      ])));
 }
 
 function skillCard(skill) {
@@ -289,6 +505,7 @@ function skillCard(skill) {
       el("h2", {}, skill.name),
       skill.status === "pre-release" && el("span", { class: "badge" }, "Pre-release")),
     el("p", {}, skill.summary),
+    includesLine(skill),
     el("div", { class: "actions" },
       downloadSkillButton(skill),
       el("a", { class: "btn btn-secondary", href: routeHref(skillHome(skill)),
@@ -298,15 +515,19 @@ function skillCard(skill) {
 }
 
 function renderHome() {
-  document.title = "Claude Skills for Law";
+  document.title = SITE_NAME;
   app.classList.remove("wide");
   app.replaceChildren(
     el("div", { class: "intro" },
-      el("h1", { tabindex: "-1" }, "Skills for Claude"),
-      el("p", {}, "Skills teach Claude how to do a specific job. Download one, then upload it to Claude. No unzipping needed.")),
+      el("h1", { tabindex: "-1" }, "Skills for AI assistants"),
+      el("p", {}, "A skill is a folder of instructions and files that teaches an AI assistant to do a specific job. ",
+        "These skills use an open format, so they work in Claude, ChatGPT, Gemini, and other AI tools, ",
+        "though each platform handles skills a little differently. Download a skill, then add it to the AI you use.")),
     installSteps(),
+    platformGuide(),
     el("ul", { class: "cards", "aria-label": "Skills" },
-      manifest.skills.map(skillCard)));
+      manifest.skills.map(skillCard)),
+    resources());
 }
 
 // ------------------------------------------------------------------ folders
@@ -314,7 +535,7 @@ function renderHome() {
 function renderFolder({ node, skill, parts }) {
   const isHome = parts.length === 2 && inSkill(parts);
   const inMaintainer = !inSkill(parts);
-  document.title = `${isHome ? skill.name : node.name} · Claude Skills for Law`;
+  document.title = `${isHome ? skill.name : node.name} · ${SITE_NAME}`;
   app.classList.remove("wide");
 
   const head = el("div", { class: "page-head" },
@@ -322,6 +543,7 @@ function renderFolder({ node, skill, parts }) {
       el("h1", { tabindex: "-1" }, isHome ? skill.name : node.name + "/"),
       isHome && skill.status === "pre-release" && el("span", { class: "badge" }, "Pre-release")),
     isHome && el("p", { class: "summary" }, skill.summary),
+    isHome && includesLine(skill),
     !isHome && labelFor(node) && el("p", { class: "summary" }, labelFor(node)),
     el("div", { class: "actions" },
       downloadSkillButton(skill), skillNameNodes(skill), copyLinkButton()),
@@ -393,7 +615,7 @@ function parseFrontmatter(block) {
   }));
 }
 
-const SKILL_KEYS = { name: "Name", description: "When Claude uses this" };
+const SKILL_KEYS = { name: "Name", description: "When the AI uses this" };
 
 function frontmatterBox(block, isSkillFile) {
   const fields = parseFrontmatter(block);
@@ -525,7 +747,7 @@ async function loadText(parts) {
 }
 
 async function renderFile({ node, skill, parts }, token) {
-  document.title = `${node.name} · Claude Skills for Law`;
+  document.title = `${node.name} · ${SITE_NAME}`;
   const label = labelFor(node);
   const download = el("a", { class: "btn btn-secondary", href: fileUrl(parts), download: node.name },
     icon("download"), "Download file");
@@ -623,7 +845,7 @@ function resolve(parts) {
 }
 
 function renderNotFound() {
-  document.title = "Not found · Claude Skills for Law";
+  document.title = `Not found · ${SITE_NAME}`;
   app.classList.remove("wide");
   app.replaceChildren(el("div", { class: "error", role: "alert" },
     el("h1", { tabindex: "-1" }, "That page isn't here"),
