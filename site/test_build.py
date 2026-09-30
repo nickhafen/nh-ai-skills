@@ -124,6 +124,49 @@ class Fixtures(unittest.TestCase):
         build.build(self.root, self.out)
         self.assertTrue((self.out / "downloads/demo.zip").is_file())
 
+    def write_skill(self, site_json=None):
+        self.write("demo/demo/SKILL.md",
+                   "---\nname: demo\ndescription: Does a thing.\n---\n")
+        if site_json is not None:
+            self.write("demo/extras/site.json", site_json)
+
+    def test_name_must_match_folder(self):
+        self.write("demo/demo/SKILL.md", "---\nname: other\ndescription: x\n---\n")
+        with self.assertRaisesRegex(build.BuildError, "must match its folder"):
+            build.build(self.root, self.out)
+
+    def test_site_json_tags_reach_manifest_in_facet_order(self):
+        self.write_skill('{"task": ["review", "drafting"], "status": "pre-release"}')
+        manifest = build.build(self.root, self.out)
+        skill = manifest["skills"][0]
+        self.assertEqual(skill["tags"], {"task": ["drafting", "review"]})
+        self.assertEqual(skill["status"], "pre-release")
+        self.assertIn("task", [f["id"] for f in manifest["facets"]])
+
+    def test_no_site_json_means_no_tags(self):
+        self.write_skill()
+        self.assertEqual(build.build(self.root, self.out)["skills"][0]["tags"], {})
+
+    def test_unknown_tag_value_fails(self):
+        self.write_skill('{"task": ["juggling"]}')
+        with self.assertRaisesRegex(build.BuildError, "'juggling' isn't a task value"):
+            build.build(self.root, self.out)
+
+    def test_unknown_site_json_key_fails(self):
+        self.write_skill('{"audience": ["academic"]}')
+        with self.assertRaisesRegex(build.BuildError, "unknown key 'audience'"):
+            build.build(self.root, self.out)
+
+    def test_bad_status_and_non_list_tags_fail(self):
+        self.write_skill('{"status": "beta", "task": "review"}')
+        with self.assertRaisesRegex(build.BuildError, "'status' must be.*'task' must be a list"):
+            build.build(self.root, self.out)
+
+    def test_invalid_site_json_fails(self):
+        self.write_skill('{"task": [}')
+        with self.assertRaisesRegex(build.BuildError, "isn't valid JSON"):
+            build.build(self.root, self.out)
+
     def test_refuses_to_delete_unrelated_out_folder(self):
         self.write("demo/demo/SKILL.md",
                    "---\nname: demo\ndescription: x\n---\n")
@@ -198,6 +241,12 @@ class Viewer(unittest.TestCase):
             self.assertRegex(tag, r'integrity="sha(384|512)-[A-Za-z0-9+/=]+"')
             self.assertIn('crossorigin="anonymous"', tag)
             self.assertRegex(tag, r"/\d+\.\d+\.\d+/")  # exact version
+
+    def test_facets_json_is_valid(self):
+        facets = build.load_facets()
+        self.assertIn("users", facets)
+        for facet in facets.values():
+            self.assertTrue(all(isinstance(v, str) and v for v in facet["values"].values()))
 
     def test_labels_json_is_valid(self):
         labels = json.loads((build.SITE_DIR / "labels.json").read_text(encoding="utf-8"))

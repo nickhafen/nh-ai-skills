@@ -8,6 +8,10 @@ A skill is any top-level folder X/ that contains X/X/SKILL.md. Each one gets:
   dist/files/X/...      every file in X/ (extras included), copied unchanged
 and an entry in dist/manifest.json. The viewer files in site/ are copied to dist/.
 
+An optional X/extras/site.json adds site-only data: "summary" and "status"
+("stable" or "pre-release") override the README row, and each category in
+site/facets.json (such as "task") takes a list of that category's values.
+
 Files Git ignores are skipped, along with .git* files and OS clutter.
 Standard library only (Python 3.12+), so CI has nothing to install.
 """
@@ -345,25 +349,84 @@ def find_skills(root, paths):
     return skills
 
 
-def skill_meta(root, skill_id, rows):
+# ---------------------------------------------------------------- site.json
+
+SITE_KEYS = {"summary", "status"}
+STATUSES = {"stable", "pre-release"}
+
+
+def load_facets():
+    """The filter categories and their allowed values, from site/facets.json."""
+    facets = json.loads((SITE_DIR / "facets.json").read_text(encoding="utf-8"))
+    for fid, facet in facets.items():
+        if fid in SITE_KEYS or not facet.get("label") or not facet.get("values"):
+            raise BuildError(f"site/facets.json: '{fid}' needs a label and values")
+    return facets
+
+
+def read_site_json(path, rel, facets):
+    """Check a skill's site.json against site/facets.json and return it."""
+    try:
+        extra = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as e:
+        raise BuildError(f"{rel} isn't valid JSON: {e}")
+    if not isinstance(extra, dict):
+        raise BuildError(f"{rel} must be a JSON object")
+    problems = []
+    for key, value in extra.items():
+        if key == "summary":
+            if not isinstance(value, str) or not value.strip():
+                problems.append("'summary' must be non-empty text")
+        elif key == "status":
+            if value not in STATUSES:
+                problems.append(f"'status' must be one of {sorted(STATUSES)}")
+        elif key in facets:
+            allowed = facets[key]["values"]
+            if not isinstance(value, list) or not all(isinstance(v, str) for v in value):
+                problems.append(f"'{key}' must be a list of values")
+                continue
+            for v in value:
+                if v not in allowed:
+                    problems.append(f"'{v}' isn't a {key} value "
+                                    f"(add it to site/facets.json, or use one of {sorted(allowed)})")
+        else:
+            problems.append(f"unknown key '{key}' "
+                            f"(expected one of {sorted(SITE_KEYS | set(facets))})")
+    if problems:
+        raise BuildError(f"{rel}: " + "; ".join(problems))
+    return extra
+
+
+def skill_meta(root, skill_id, rows, facets):
     rel = f"{skill_id}/{skill_id}/SKILL.md"
     text = (root / rel).read_text(encoding="utf-8")
     problems = frontmatter_problems(text)
     if problems:
         raise BuildError(f"{rel} frontmatter: " + "; ".join(problems))
     fm = parse_frontmatter(text)
+    if fm["name"] != skill_id:
+        raise BuildError(f"{rel}: name '{fm['name']}' must match its folder name "
+                         f"'{skill_id}'")
 
     summary, pre = fm["description"], False
     if skill_id in rows:
         summary, pre = summarize_row(rows[skill_id])
+    extra = {}
     site_json = root / skill_id / "extras" / "site.json"
     if site_json.is_file():
-        extra = json.loads(site_json.read_text(encoding="utf-8"))
+        extra = read_site_json(site_json, f"{skill_id}/extras/site.json", facets)
         summary = extra.get("summary", summary)
         if "status" in extra:
             pre = extra["status"] == "pre-release"
+    # Tags keep the order of site/facets.json, so cards list them consistently.
+    tags = {}
+    for fid, facet in facets.items():
+        chosen = set(extra.get(fid, []))
+        if chosen:
+            tags[fid] = [v for v in facet["values"] if v in chosen]
     return {"name": fm["name"], "description": fm["description"],
-            "summary": summary, "status": "pre-release" if pre else "stable"}
+            "summary": summary, "status": "pre-release" if pre else "stable",
+            "tags": tags}
 
 
 def commit_id(root):
@@ -401,6 +464,7 @@ def build(root, out):
 
     paths = list_files(root)
     rows = readme_rows(root)
+    facets = load_facets()
     skills = []
     # Cards follow the README table's order; skills not in it go last.
     order = list(rows)
@@ -408,7 +472,7 @@ def build(root, out):
                    key=lambda s: (order.index(s) if s in order else len(order), s))
     for skill_id in found:
         mine = [p for p in paths if p.startswith(skill_id + "/")]
-        meta = skill_meta(root, skill_id, rows)
+        meta = skill_meta(root, skill_id, rows, facets)
 
         zip_path = out / "downloads" / f"{skill_id}.zip"
         write_zip(root, skill_id, mine, zip_path)
@@ -433,6 +497,9 @@ def build(root, out):
                      .strftime("%Y-%m-%dT%H:%M:%SZ"),
         "commit": commit_id(root),
         "repo": REPO_URL,
+        "facets": [{"id": fid, "label": f["label"],
+                    "values": [{"id": v, "label": label} for v, label in f["values"].items()]}
+                   for fid, f in facets.items()],
         "skills": skills,
     }
     (out / "manifest.json").write_text(json.dumps(manifest, indent=1),
