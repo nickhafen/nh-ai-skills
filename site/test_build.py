@@ -242,6 +242,16 @@ class Viewer(unittest.TestCase):
             self.assertIn('crossorigin="anonymous"', tag)
             self.assertRegex(tag, r"/\d+\.\d+\.\d+/")  # exact version
 
+    def test_lazy_scripts_are_pinned_with_sri(self):
+        js = (build.SITE_DIR / "app.js").read_text(encoding="utf-8")
+        pins = re.findall(r'src: "(https://[^"]+)",\s*integrity: "([^"]+)"', js)
+        self.assertEqual(len(pins), len(re.findall(r'"https://cdnjs', js)))
+        self.assertTrue(pins)
+        for src, integrity in pins:
+            self.assertTrue(src.startswith("https://cdnjs.cloudflare.com/"))
+            self.assertRegex(integrity, r"^sha(384|512)-[A-Za-z0-9+/=]+$")
+            self.assertRegex(src, r"/\d+\.\d+\.\d+/")  # exact version
+
     def test_facets_json_is_valid(self):
         facets = build.load_facets()
         self.assertIn("users", facets)
