@@ -19,7 +19,7 @@ let manifest = null;
 let labels = {};
 let firstRender = true;
 let renderToken = 0;
-let markdownMode = "formatted"; // remembered while the page is open
+let viewMode = "formatted"; // remembered while the page is open
 const index = new Map(); // repo path -> { node, skill, parts }
 const textCache = new Map();
 
@@ -88,6 +88,7 @@ const ICONS = {
   folderSolid: SVG('<path fill="currentColor" d="M3 6.5A1.5 1.5 0 0 1 4.5 5h4.2l2 2.2h8.8A1.5 1.5 0 0 1 21 8.7v9.8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/>'),
   chevron: SVG('<path d="m9 6 6 6-6 6"/>'),
   home: SVG('<path d="M4 11.5 12 5l8 6.5"/><path d="M6 10v9h12v-9"/>'),
+  external: SVG('<path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'),
   folderOpen: SVG('<path d="M3 7a1.5 1.5 0 0 1 1.5-1.5h4.2l2 2h8.8A1.5 1.5 0 0 1 21 9v1H7.5L4.5 19H4.5A1.5 1.5 0 0 1 3 17.5z"/><path d="M7.5 10H22l-3 9H4.5z"/>'),
 };
 
@@ -892,6 +893,23 @@ function resolveLink(href, fileParts) {
   return url.pathname.split("/").filter(Boolean).map(decodeURIComponent);
 }
 
+// The page title is the only h1, so headings in a file move down one level.
+function demoteHeadings(body) {
+  body.querySelectorAll("h1, h2, h3, h4, h5").forEach(h => {
+    const lower = document.createElement(`h${Number(h.tagName[1]) + 1}`);
+    lower.append(...h.childNodes);
+    h.replaceWith(lower);
+  });
+}
+
+function wrapTables(body) {
+  body.querySelectorAll("table").forEach(t => {
+    const wrap = el("div", { class: "table-wrap" });
+    t.replaceWith(wrap);
+    wrap.append(t);
+  });
+}
+
 function renderMarkdown(text, fileParts, isSkillFile) {
   const body = el("div", { class: "md-body" });
   const fm = FRONTMATTER.exec(text);
@@ -902,12 +920,7 @@ function renderMarkdown(text, fileParts, isSkillFile) {
   const html = window.marked.parse(text, { gfm: true });
   body.append(window.DOMPurify.sanitize(html, { RETURN_DOM_FRAGMENT: true }));
 
-  // The page title is the only h1, so Markdown headings move down one level.
-  body.querySelectorAll("h1, h2, h3, h4, h5").forEach(h => {
-    const lower = document.createElement(`h${Number(h.tagName[1]) + 1}`);
-    lower.append(...h.childNodes);
-    h.replaceWith(lower);
-  });
+  demoteHeadings(body);
   const seen = new Map();
   body.querySelectorAll("h2, h3, h4, h5, h6").forEach(h => {
     let id = slugify(h.textContent) || "section";
@@ -953,11 +966,7 @@ function renderMarkdown(text, fileParts, isSkillFile) {
     if (parts && index.has(parts.join("/"))) img.setAttribute("src", fileUrl(parts));
   });
 
-  body.querySelectorAll("table").forEach(t => {
-    const wrap = el("div", { class: "table-wrap" });
-    t.replaceWith(wrap);
-    wrap.append(t);
-  });
+  wrapTables(body);
 
   body.querySelectorAll("pre > code").forEach(code => {
     const pre = code.parentElement;
@@ -989,14 +998,50 @@ function rawView(text, node) {
                      "aria-label": `Raw text of ${node.name}` }, code);
 }
 
-function modeSwitch(current, onChange) {
-  const modes = [["formatted", "Formatted"], ["split", "Side-by-side"], ["raw", "Raw"]];
+// A web page shows as Preview and Code; Markdown as Formatted and Raw.
+function modeSwitch(current, onChange, isPage) {
+  const modes = [["formatted", isPage ? "Preview" : "Formatted"], ["split", "Side-by-side"],
+                 ["raw", isPage ? "Code" : "Raw"]];
   return el("div", { class: "segmented", role: "group", "aria-label": "View" },
     modes.map(([id, label]) => el("button", {
       type: "button",
       "aria-pressed": String(id === current),
       onclick: () => onChange(id),
     }, label)));
+}
+
+// Scripts that only some files need load on first use, pinned with SRI like
+// the ones in index.html.
+const MAMMOTH = {
+  src: "https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.13.0/mammoth.browser.min.js",
+  integrity: "sha512-5hAL8cCOeSztnaZ+3xjLAflXeSwJpGrdrH6McLq2Dtl0vfvCQw+jO9q652eMASTNAU8anRvrXnlW9QqzlfN2HA==",
+};
+const scriptLoads = new Map();
+
+function loadScript({ src, integrity }) {
+  if (!scriptLoads.has(src)) {
+    scriptLoads.set(src, new Promise((resolve, reject) => {
+      const script = el("script", { src, integrity, crossorigin: "anonymous",
+                                    referrerpolicy: "no-referrer" });
+      script.onload = resolve;
+      script.onerror = () => {
+        scriptLoads.delete(src); // let a later visit try again
+        script.remove();
+        reject(new Error(src));
+      };
+      document.head.append(script);
+    }));
+  }
+  return scriptLoads.get(src);
+}
+
+// The page runs its own scripts, so it goes in a sandbox with no access to
+// this site.
+function pagePreview(text, node) {
+  const frame = el("iframe", { class: "page-frame", title: `Preview of ${node.name}`,
+                               sandbox: "allow-scripts allow-popups allow-popups-to-escape-sandbox" });
+  frame.srcdoc = text;
+  return frame;
 }
 
 async function loadText(parts) {
@@ -1022,6 +1067,11 @@ async function renderFile({ node, skill, parts }, token) {
     label && el("p", { class: "summary" }, label));
   const view = [...navBar(breadcrumbs(parts, skill)), head];
   if (!inSkill(parts)) view.push(maintainerNote());
+
+  if (node.kind === "binary" && /\.docx$/i.test(node.name)) {
+    renderDocx(node, parts, view, download, token);
+    return;
+  }
 
   if (node.kind === "binary") {
     app.classList.remove("wide");
@@ -1053,7 +1103,8 @@ async function renderFile({ node, skill, parts }, token) {
   }
   if (token !== renderToken) return;
 
-  const canFormat = node.kind === "markdown" && window.marked && window.DOMPurify;
+  const isPage = /\.html?$/i.test(node.name);
+  const canFormat = isPage || (node.kind === "markdown" && window.marked && window.DOMPurify);
   const isSkillFile = node.name === "SKILL.md" && inSkill(parts) && parts.length === 3;
 
   const copyFile = copyButton(text, "Copy file", "copy", () => {
@@ -1062,27 +1113,79 @@ async function renderFile({ node, skill, parts }, token) {
   });
 
   const show = mode => {
-    if (canFormat) markdownMode = mode;
+    if (canFormat) viewMode = mode;
     const panes = [];
     if (mode === "formatted" || mode === "split") {
-      panes.push(el("section", { class: "pane", "aria-label": "Formatted",
-                                 tabindex: mode === "split" ? "0" : null },
-        renderMarkdown(text, parts, isSkillFile)));
+      panes.push(isPage
+        ? el("section", { class: "pane frame-pane", "aria-label": "Preview" }, pagePreview(text, node))
+        : el("section", { class: "pane", "aria-label": "Formatted",
+                          tabindex: mode === "split" ? "0" : null },
+            renderMarkdown(text, parts, isSkillFile)));
     }
     if (mode === "raw" || mode === "split") {
-      panes.push(el("section", { class: "pane", "aria-label": "Raw" }, rawView(text, node)));
+      panes.push(el("section", { class: "pane", "aria-label": isPage ? "Code" : "Raw" },
+        rawView(text, node)));
     }
     content.className = `file-content mode-${mode}`;
     content.replaceChildren(...panes);
     toolbar.replaceChildren(
-      canFormat && modeSwitch(mode, show),
-      el("div", { class: "toolbar-buttons" }, copyFile, download, copyLinkButton()));
+      canFormat ? modeSwitch(mode, show, isPage) : "",
+      el("div", { class: "toolbar-buttons" }, copyFile, download,
+        isPage && el("a", { class: "btn btn-secondary", href: fileUrl(parts), target: "_blank",
+                            rel: "noopener" }, icon("external"), "Open page", NEW_TAB()),
+        copyLinkButton()));
   };
-  show(canFormat ? markdownMode : "raw");
+  show(canFormat ? viewMode : "raw");
   if (node.kind === "markdown" && !canFormat) {
     content.prepend(el("p", { class: "note" },
       "The formatted view didn't load, so this shows the raw text."));
   }
+}
+
+// A Word file shows as a preview of its text. mammoth doesn't read headers,
+// footers, or page layout.
+async function renderDocx(node, parts, view, download, token) {
+  app.classList.add("wide");
+  const content = el("div", { class: "file-content mode-formatted" },
+    el("p", { class: "status" }, "Loading preview…"));
+  view.push(el("div", { class: "toolbar actions" },
+    el("div", { class: "toolbar-buttons" }, download, copyLinkButton())), content);
+  app.replaceChildren(...view);
+
+  let html;
+  try {
+    const [buffer] = await Promise.all([
+      fetch(fileUrl(parts), { cache: "no-cache" }).then(res => {
+        if (!res.ok) throw new Error(res.status);
+        return res.arrayBuffer();
+      }),
+      loadScript(MAMMOTH),
+    ]);
+    if (!window.DOMPurify) throw new Error("DOMPurify");
+    html = (await window.mammoth.convertToHtml({ arrayBuffer: buffer })).value;
+  } catch {
+    if (token !== renderToken) return;
+    content.replaceChildren(el("div", { class: "error", role: "alert" },
+      el("p", {}, "The preview didn't load. Download the file to open it in Word."),
+      el("p", {}, download)));
+    return;
+  }
+  if (token !== renderToken) return;
+
+  const body = el("div", { class: "md-body docx-body" });
+  body.append(window.DOMPurify.sanitize(html, { RETURN_DOM_FRAGMENT: true }));
+  demoteHeadings(body);
+  wrapTables(body);
+  body.querySelectorAll("a[href]").forEach(a => {
+    if (a.getAttribute("href").startsWith("#")) return;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.append(NEW_TAB());
+  });
+  content.replaceChildren(
+    el("p", { class: "note" }, "This preview shows the text and basic formatting. ",
+      "Headers, footers, and page layout show only when you open the file in Word."),
+    el("section", { class: "pane", "aria-label": "Preview" }, body));
 }
 
 // ------------------------------------------------------------------ routing
