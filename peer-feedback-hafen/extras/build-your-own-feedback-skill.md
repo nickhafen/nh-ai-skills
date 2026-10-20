@@ -136,6 +136,9 @@ The only way to know it sounds like you is to compare it with you.
 - Run it on a strong draft and check that it doesn't invent problems.
 - Run the same draft without your skill and compare. If the feedback is no
   better, your examples or standards need work.
+- To make that comparison more systematic, ask Claude to use its skill-creator
+  skill to run an eval of your skill against plain Claude with no skill. It runs
+  both on the same drafts and shows the results side by side.
 - Fix the gap you see, then test again. Usually the fix is a better example,
   not more rules.
 
